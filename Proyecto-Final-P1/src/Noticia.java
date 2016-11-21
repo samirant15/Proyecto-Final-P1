@@ -1,4 +1,4 @@
-
+//De: Samir y Luilli
 public class Noticia {
 	
 	private String texto;
