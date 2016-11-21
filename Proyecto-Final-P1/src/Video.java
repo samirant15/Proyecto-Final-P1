@@ -1,4 +1,4 @@
-
+//De: Samir y Luilli
 public class Video {
 
 	private int resX, resY; //resolucion

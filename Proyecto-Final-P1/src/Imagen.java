@@ -1,4 +1,4 @@
-
+//De: Samir y Luilli
 public class Imagen {
 	private int resX, resY; //resolucion
 
