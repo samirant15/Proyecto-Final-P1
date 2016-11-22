@@ -1,4 +1,4 @@
-package clases;
+package ligaBasketball;
 
 public class Jugador {
 	

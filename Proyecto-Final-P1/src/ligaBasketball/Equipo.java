@@ -1,4 +1,4 @@
-package clases;
+package ligaBasketball;
 
 
 import java.util.ArrayList;
@@ -10,6 +10,5 @@ public class Equipo {
 	
 	private String PGanada;
 	private String PPerdida;
-	
 	private List<Jugador> jugadores;
 }
