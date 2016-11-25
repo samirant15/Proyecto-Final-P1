@@ -1,5 +1,9 @@
 package clases;
 
+import java.util.ArrayList;
+
+import ui.NoticiasJFrame;
+
 //Clase controladora del programa
 
 public class Controlador {
@@ -17,5 +21,13 @@ public class Controlador {
 	}
 	
 	//************************************************
-
+	
+	private ArrayList<Noticia> noticias = new ArrayList<>(); 
+	
+	public static void main(String[] args) {
+		//Crea un JFrame de las noticias(solo para probar, pueden quitarlo)
+		NoticiasJFrame frame = new NoticiasJFrame();
+		frame.setVisible(true);
+	}
+	
 }

@@ -32,22 +32,6 @@ public class NoticiasJFrame extends JFrame {
 	private JTextField noticiaTituloText;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					NoticiasJFrame frame = new NoticiasJFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public NoticiasJFrame() {
