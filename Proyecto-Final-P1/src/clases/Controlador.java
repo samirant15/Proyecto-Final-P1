@@ -29,5 +29,4 @@ public class Controlador {
 		NoticiasJFrame frame = new NoticiasJFrame();
 		frame.setVisible(true);
 	}
-	
 }

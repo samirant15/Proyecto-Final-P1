@@ -52,7 +52,6 @@ public class NoticiasJFrame extends JFrame {
 		noticiaNuevaCrearBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				((CardLayout)noticiaPrincipalPanel.getLayout()).show(noticiaPrincipalPanel, "noticiaNuevaPanel");
-				
 			}
 		});
 		noticiaNuevaCrearBtn.setBounds(10, 110, 140, 70);
