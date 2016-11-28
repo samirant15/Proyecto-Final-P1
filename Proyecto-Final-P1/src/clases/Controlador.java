@@ -2,6 +2,7 @@ package clases;
 
 import java.util.ArrayList;
 
+import onlineMedia.Noticia;
 import ui.NoticiasJFrame;
 
 //Clase controladora del programa

@@ -1,20 +1,5 @@
-/Equipo.class
-/Imagen.class
-/Jugador.class
-/Liga.class
-/Noticia.class
-/Partido.class
-/Posicion.class
-<<<<<<< HEAD
-/Servder.class
-/Usuario.class
-/Video.class
-=======
-/Usuario.class
-/Video.class
 /clases/
-/userInterface/
->>>>>>> branch 'master' of https://github.com/samirant15/Proyecto-Final-P1
-/enums/
-/ligaBasketball.class
+/ui/
+/conexiones/
 /ligaBasketball/
+/onlineMedia/

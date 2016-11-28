@@ -1,5 +1,6 @@
 package ligaBasketball;
 
+import java.util.ArrayList;
 
 public class Liga {
 
@@ -12,6 +13,7 @@ public class Liga {
 		
 	}
 	
+	ArrayList<Equipo> equipos = new ArrayList<Equipo>();
 	
 	
 	
