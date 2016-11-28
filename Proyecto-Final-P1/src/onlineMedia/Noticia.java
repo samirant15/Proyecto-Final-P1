@@ -1,4 +1,5 @@
-package clases;
+package onlineMedia;
+
 //De: Samir y Luilli
 public class Noticia {
 	

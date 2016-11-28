@@ -1,6 +1,7 @@
-package clases;
+package onlineMedia;
 //De: Samir y Luilli
-public class Imagen {
+public class Video {
+
 	private int resX, resY; //resolucion
 
 	public int getResX() {
@@ -18,4 +19,5 @@ public class Imagen {
 	public void setResY(int resY) {
 		this.resY = resY;
 	}
+	
 }
