@@ -1,4 +1,4 @@
-package clases;
+package onlineMedia;
 
 public class Usuario {
 	
