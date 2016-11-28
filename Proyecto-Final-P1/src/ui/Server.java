@@ -71,7 +71,7 @@ public class Server {
 		frame.getContentPane().add(btnVerConectados);
 		
 		JButton btnVerConectados_1 = new JButton("Ver conectados");
-		btnVerConectados_1.setBounds(275, 401, 114, 23);
+		btnVerConectados_1.setBounds(264, 401, 137, 23);
 		frame.getContentPane().add(btnVerConectados_1);
 	}
 }
