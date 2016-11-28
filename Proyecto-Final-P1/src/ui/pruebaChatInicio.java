@@ -7,6 +7,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class pruebaChatInicio extends JDialog {
 
@@ -29,26 +32,21 @@ public class pruebaChatInicio extends JDialog {
 	 * Create the dialog.
 	 */
 	public pruebaChatInicio() {
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 308, 190);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
 		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
-			}
-			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
-			}
+			JButton btnInicioDelChat = new JButton("Inicio del Chat");
+			btnInicioDelChat.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+				}
+			});
+			btnInicioDelChat.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 25));
+			btnInicioDelChat.setBounds(12, 10, 266, 120);
+			contentPanel.add(btnInicioDelChat);
 		}
 	}
 
