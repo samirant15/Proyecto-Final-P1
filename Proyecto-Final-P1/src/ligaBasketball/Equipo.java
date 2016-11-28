@@ -8,7 +8,6 @@ public class Equipo {
 	private String PPerdida;
 	private List<Jugador> jugadores;
 	
-	
 	public String getPGanada() {
 		return PGanada;
 	}

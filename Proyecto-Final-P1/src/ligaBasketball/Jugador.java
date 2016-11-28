@@ -14,6 +14,7 @@ public class Jugador {
 	
 	private List<Posicion> position;
 	
+	
 	public Jugador(String nombre, int numero, String posicion, int rebotes, int asistencia, int falta, Equipo team,
 			List<Posicion> position) {
 		super();
