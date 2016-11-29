@@ -7,6 +7,10 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import onlineMedia.Conector;
+import onlineMedia.Servidor;
+
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -31,6 +35,7 @@ public class pruebaChatInicio extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
+	public static Conector server, cliente;
 	public pruebaChatInicio() {
 		setBounds(100, 100, 308, 190);
 		getContentPane().setLayout(new BorderLayout());
@@ -41,7 +46,8 @@ public class pruebaChatInicio extends JDialog {
 			JButton btnInicioDelChat = new JButton("Inicio del Chat");
 			btnInicioDelChat.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
+					Server server = new Server();
+					server.main();
 				}
 			});
 			btnInicioDelChat.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 25));
@@ -49,5 +55,10 @@ public class pruebaChatInicio extends JDialog {
 			contentPanel.add(btnInicioDelChat);
 		}
 	}
-
+	public static void iniciarServidor(){
+		server = new Conector();
+	} 
+	public static void iniciarCliente(String IP){
+		cliente = new Conector(IP);
+	}
 }

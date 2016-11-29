@@ -17,8 +17,8 @@ import javax.swing.JList;
 import javax.swing.JMenu;
 
 public class ChatFrame extends JFrame {
-	private JTextField chatTextField;
-
+	private JTextField txtEnviarMensaje;
+	String IP;
 	/**
 	 * Launch the application.
 	 */
@@ -43,16 +43,19 @@ public class ChatFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
-		chatTextField = new JTextField();
-		chatTextField.setFont(new Font("Calibri Light", Font.BOLD, 14));
-		chatTextField.setBounds(204, 564, 461, 36);
-		getContentPane().add(chatTextField);
-		chatTextField.setColumns(10);
+		txtEnviarMensaje = new JTextField();
+		txtEnviarMensaje.setFont(new Font("Calibri Light", Font.BOLD, 14));
+		txtEnviarMensaje.setBounds(204, 564, 461, 36);
+		getContentPane().add(txtEnviarMensaje);
+		txtEnviarMensaje.setColumns(10);
 		
 		JButton btnEnviarButton = new JButton("Enviar");
 		btnEnviarButton.setFont(new Font("Calibri Light", Font.BOLD, 24));
 		btnEnviarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//TODO Arreglar lo del IP, ese no es, le programa debe capturarlo solo
+				pruebaChatInicio.iniciarCliente(IP);
+				pruebaChatInicio.cliente.enviarMSG(txtEnviarMensaje.getText());
 			}
 		});
 		
