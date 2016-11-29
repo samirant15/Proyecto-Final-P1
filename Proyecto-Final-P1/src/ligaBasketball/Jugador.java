@@ -1,5 +1,5 @@
 package ligaBasketball;
-import java.util.List;
+import java.util.ArrayList;
 import enums.Posicion;
 public class Jugador {
 	
@@ -12,11 +12,11 @@ public class Jugador {
 	
 	Equipo team;
 	
-	private List<Posicion> position;
-	
-	
+	private ArrayList<Posicion> position = new ArrayList<Posicion>();
+
+
 	public Jugador(String nombre, int numero, String posicion, int rebotes, int asistencia, int falta, Equipo team,
-			List<Posicion> position) {
+			ArrayList<Posicion> position) {
 		super();
 		this.nombre = nombre;
 		this.numero = numero;
@@ -25,6 +25,16 @@ public class Jugador {
 		this.asistencia = asistencia;
 		this.falta = falta;
 		this.team = team;
+		this.position = position;
+	}
+
+
+	public ArrayList<Posicion> getPosition() {
+		return position;
+	}
+
+
+	public void setPosition(ArrayList<Posicion> position) {
 		this.position = position;
 	}
 
@@ -111,15 +121,6 @@ public class Jugador {
 	}
 
 
-
-	public List<Posicion> getPosition() {
-		return position;
-	}
-
-
-	public void setPosition(List<Posicion> position) {
-		this.position = position;
-	}
 
 	
 	

@@ -1,12 +1,12 @@
 package ligaBasketball;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Equipo {
 	
 	private String PGanada;
 	private String PPerdida;
-	private List<Jugador> jugadores;
+	private ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
 	
 	public String getPGanada() {
 		return PGanada;
@@ -20,12 +20,13 @@ public class Equipo {
 	public void setPPerdida(String pPerdida) {
 		PPerdida = pPerdida;
 	}
-	public List<Jugador> getJugadores() {
+	public ArrayList<Jugador> getJugadores() {
 		return jugadores;
 	}
-	public void setJugadores(List<Jugador> jugadores) {
+	public void setJugadores(ArrayList<Jugador> jugadores) {
 		this.jugadores = jugadores;
 	}
+
 	
 	
 	
