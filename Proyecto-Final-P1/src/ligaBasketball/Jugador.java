@@ -2,127 +2,76 @@ package ligaBasketball;
 import java.util.ArrayList;
 import enums.Posicion;
 public class Jugador {
-	
+
 	private String nombre;
 	private int numero;
-	private String posicion;
+	private Posicion posicion;
 	private int rebotes;
-	private int asistencia;
-	private int falta;
+	private int asistencias;
+	private int puntosAnotados;
 	
-	Equipo team;
+	public String getNombre() {
+		return nombre;
+	}
 	
-	private ArrayList<Posicion> position = new ArrayList<Posicion>();
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
+	public int getNumero() {
+		return numero;
+	}
+	
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+	
+
+	public Posicion getPosicion() {
+		return posicion;
+	}
+
+	public void setPosicion(Posicion posicion) {
+		this.posicion = posicion;
+	}
+	
+	
+	public int getRebotes() {
+		return rebotes;
+	}
+	
+	public void setRebotes(int rebotes) {
+		this.rebotes = rebotes;
+	}
+	
+	public int getAsistencias() {
+		return asistencias;
+	}
+	public void setAsistencias(int asistencias) {
+		this.asistencias = asistencias;
+	}
+	
+	public int getPuntosAnotados() {
+		return puntosAnotados;
+	}
+	
+	public void setPuntosAnotados(int puntosAnotados) {
+		this.puntosAnotados = puntosAnotados;
+	}
 
 
-	public Jugador(String nombre, int numero, String posicion, int rebotes, int asistencia, int falta, Equipo team,
-			ArrayList<Posicion> position) {
+	public Jugador(String nombre, int numero, Posicion posicion, int rebotes, int asistencias, int puntosAnotados) {
 		super();
 		this.nombre = nombre;
 		this.numero = numero;
 		this.posicion = posicion;
 		this.rebotes = rebotes;
-		this.asistencia = asistencia;
-		this.falta = falta;
-		this.team = team;
-		this.position = position;
+		this.asistencias = asistencias;
+		this.puntosAnotados = puntosAnotados;
 	}
-
-
-	public ArrayList<Posicion> getPosition() {
-		return position;
-	}
-
-
-	public void setPosition(ArrayList<Posicion> position) {
-		this.position = position;
-	}
-
-
-	public String getNombre() {
-		return nombre;
-	}
-	
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-
-
-	public int getNumero() {
-		return numero;
-	}
-
-
-
-	public void setNumero(int numero) {
-		this.numero = numero;
-	}
-
-
-
-	public String getPosicion() {
-		return posicion;
-	}
-
-
-
-	public void setPosicion(String posicion) {
-		this.posicion = posicion;
-	}
-
-
-
-	public int getRebotes() {
-		return rebotes;
-	}
-
-
-
-	public void setRebotes(int rebotes) {
-		this.rebotes = rebotes;
-	}
-
-
-
-	public int getAsistencia() {
-		return asistencia;
-	}
-
-
-
-	public void setAsistencia(int asistencia) {
-		this.asistencia = asistencia;
-	}
-
-
-
-	public int getFalta() {
-		return falta;
-	}
-
-
-
-	public void setFalta(int falta) {
-		this.falta = falta;
-	}
-
-
-
-	public Equipo getTeam() {
-		return team;
-	}
-
-
-
-	public void setTeam(Equipo team) {
-		this.team = team;
-	}
-
-
 
 	
 	
-	//puntos, asistencias, falta
+	
 }
+
