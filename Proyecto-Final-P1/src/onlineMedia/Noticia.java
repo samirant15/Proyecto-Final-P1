@@ -1,12 +1,35 @@
 package onlineMedia;
 
-//De: Samir y Luilli
 public class Noticia {
 	
 	private String titulo;
 	private String texto;
-	private int fecha;
-	private Usuario user;
+	private String fecha;
+	private String user;
+	private String path;
+	
+	public Noticia(String titulo, String texto, String user, String fecha, String path) {
+		super();
+		this.titulo = titulo;
+		this.texto = texto;
+		this.fecha = fecha;
+		this.user = user;
+		this.path = path;
+	}
+	
+	
+
+	public String getPath() {
+		return path;
+	}
+
+
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+
 
 	public String getTitulo() {
 		return titulo;
@@ -16,19 +39,19 @@ public class Noticia {
 		this.titulo = titulo;
 	}
 
-	public int getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(int fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 
-	public Usuario getUser() {
+	public String getUser() {
 		return user;
 	}
 
-	public void setUser(Usuario user) {
+	public void setUser(String user) {
 		this.user = user;
 	}
 
