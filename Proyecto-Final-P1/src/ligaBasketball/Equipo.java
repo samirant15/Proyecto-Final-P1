@@ -2,32 +2,54 @@ package ligaBasketball;
 
 import java.util.ArrayList;
 
+
 public class Equipo {
 	
-	private String PGanada;
-	private String PPerdida;
+	private String nombre;
+	private int partidosGanados;
+	private int partidasPerdidas;
 	private ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
 	
-	public String getPGanada() {
-		return PGanada;
+	public String getNombre() {
+		return nombre;
 	}
-	public void setPGanada(String pGanada) {
-		PGanada = pGanada;
+	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
-	public String getPPerdida() {
-		return PPerdida;
+	
+	public int getPartidosGanados() {
+		return partidosGanados;
 	}
-	public void setPPerdida(String pPerdida) {
-		PPerdida = pPerdida;
+	
+	public void setPartidosGanados(int partidosGanados) {
+		this.partidosGanados = partidosGanados;
 	}
+	
+	public int getPartidasPerdidas() {
+		return partidasPerdidas;
+	}
+	
+	public void setPartidasPerdidas(int partidasPerdidas) {
+		this.partidasPerdidas = partidasPerdidas;
+	}
+
+	
 	public ArrayList<Jugador> getJugadores() {
 		return jugadores;
 	}
+
 	public void setJugadores(ArrayList<Jugador> jugadores) {
 		this.jugadores = jugadores;
 	}
 
-	
+	public Equipo(String nombre, int partidosGanados, int partidasPerdidas) {
+		super();
+		this.nombre = nombre;
+		this.partidosGanados = partidosGanados;
+		this.partidasPerdidas = partidasPerdidas;
+	}
+
 	
 	
 }
