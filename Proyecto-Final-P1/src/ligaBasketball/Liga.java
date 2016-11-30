@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 
 import enums.Posicion;
+import enums.Roles;
+import onlineMedia.Usuario;
 
 
 public class Liga {
@@ -19,6 +21,7 @@ public class Liga {
 	private ArrayList<Partido> partidos = new ArrayList<Partido>();
 	private ArrayList<Equipo> equipos = new ArrayList<Equipo>();
 	private ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+	private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 	
 	public void InsertJugador(String nombre, int numero, Posicion posicion, int rebotes, int asistencias, int puntosAnotados){
 		Jugador player = new Jugador(nombre, numero,  posicion,  rebotes,  asistencias,  puntosAnotados);
@@ -72,10 +75,58 @@ public class Liga {
 		partidos.add(partido);
 	}
 	
+<<<<<<< HEAD
 	
 	
 	
+=======
+	public void ChoosePlayer(Jugador jugador){
+		
+	}
+	public ArrayList<Usuario> getUsuarios() {
+		return usuarios;
+	}
+	public void setUsuarios(ArrayList<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
+	public Usuario getUsuario(int pos){
+		return usuarios.get(pos); 
+	}
+	public int posUsuarioPorUserName(String username){
+		int pos = -1, i = 0;
+		for (Usuario user : usuarios){
+			if(user.getUsername().equals(username) == true){
+				pos = i; 
+			}
+			i++; 
+		}
+		return pos; 
+	}
+	public int posUsuarioPorEmail(String email){
+		int pos = -1,i = 0;
+		for (Usuario user : usuarios){
+			if(user.getEmail().equals(email) == true){
+				pos = i; 
+			}
+			i++; 
+		}
+		return pos; 
+	}
+	public boolean confirmarPassword(String tryPassword,int pos){
+		boolean igual = false ; 
+		if(usuarios.get(pos).equals(tryPassword) == true){
+			igual = true; 
+		}
+		return igual; 
+	}
+	public void addUsuarioV(String email, String contrasena, String username, String nombre, Roles rol){
+		Usuario usuario = new Usuario(email, contrasena, username, nombre,Roles.Visitante);
+		usuarios.add(usuario);
+	}
+>>>>>>> branch 'master' of https://github.com/samirant15/Proyecto-Final-P1.git
 }
+	
+
 
 	
 	
