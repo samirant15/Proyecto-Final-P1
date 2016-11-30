@@ -25,6 +25,10 @@ public class Liga {
 		jugadores.add(player);
 	}
 	
+	public void InsertEquipo(String nombre, int partidosGanados, int partidasPerdidas){
+		Equipo team = new Equipo(nombre, partidosGanados, partidasPerdidas);
+		equipos.add(team);
+	}
 	
 	public static Liga getLiga() {
 		return Liga;
@@ -68,8 +72,9 @@ public class Liga {
 		partidos.add(partido);
 	}
 	
-	
-	
+	public void ChoosePlayer(Jugador jugador){
+		
+	}
 	
 }
 
