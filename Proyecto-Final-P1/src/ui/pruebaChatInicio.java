@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import onlineMedia.Conector;
+import onlineMedia.ConectorCliente;
 import onlineMedia.Servidor;
 
 import java.awt.Font;
@@ -35,7 +36,8 @@ public class pruebaChatInicio extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public static Conector server, cliente;
+	public static Conector server;
+	public static ConectorCliente cliente;
 	public pruebaChatInicio() {
 		setBounds(100, 100, 308, 190);
 		getContentPane().setLayout(new BorderLayout());
@@ -46,19 +48,33 @@ public class pruebaChatInicio extends JDialog {
 			JButton btnInicioDelChat = new JButton("Inicio del Chat");
 			btnInicioDelChat.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					Server server = new Server();
-					server.main();
+					ChatFrame clientChat = new ChatFrame();
+					clientChat.setVisible(true);
 				}
 			});
-			btnInicioDelChat.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 25));
-			btnInicioDelChat.setBounds(12, 10, 266, 120);
+			btnInicioDelChat.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 25));
+			btnInicioDelChat.setBounds(12, 10, 266, 56);
 			contentPanel.add(btnInicioDelChat);
 		}
+		
+		JButton btnInicioDeServidor = new JButton("Incio del Servidor");
+		btnInicioDeServidor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ServerFrame server = new ServerFrame();
+				server.setVisible(true);
+			}
+		});
+		btnInicioDeServidor.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 25));
+		btnInicioDeServidor.setBounds(12, 77, 266, 45);
+		contentPanel.add(btnInicioDeServidor);
 	}
 	public static void iniciarServidor(){
-		server = new Conector();
+		server = new Conector("Servidor");
+		server.start();
+		
 	} 
 	public static void iniciarCliente(String IP){
-		cliente = new Conector(IP);
+		cliente = new ConectorCliente(IP);
+		cliente.start();
 	}
 }

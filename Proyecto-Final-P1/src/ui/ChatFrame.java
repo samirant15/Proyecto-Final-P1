@@ -19,22 +19,11 @@ import javax.swing.JMenu;
 public class ChatFrame extends JFrame {
 	private JTextField txtEnviarMensaje;
 	String IP;
+	public static JTextArea messageTextArea = new JTextArea();
+	private JTextField txtConectar;
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ChatFrame frame = new ChatFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the frame.
 	 */
@@ -54,7 +43,6 @@ public class ChatFrame extends JFrame {
 		btnEnviarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//TODO Arreglar lo del IP, ese no es, le programa debe capturarlo solo
-				pruebaChatInicio.iniciarCliente(IP);
 				pruebaChatInicio.cliente.enviarMSG(txtEnviarMensaje.getText());
 			}
 		});
@@ -66,7 +54,7 @@ public class ChatFrame extends JFrame {
 		
 		JMenu mnS = new JMenu("           Ver              ");
 		menuBar.add(mnS);
-		btnEnviarButton.setBounds(673, 564, 97, 36);
+		btnEnviarButton.setBounds(675, 561, 107, 36);
 		getContentPane().add(btnEnviarButton);
 		
 		JPanel panel = new JPanel();
@@ -74,18 +62,32 @@ public class ChatFrame extends JFrame {
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JTextArea messageTextArea = new JTextArea();
+		
 		messageTextArea.setBounds(0, 0, 566, 510);
 		panel.add(messageTextArea);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(12, 44, 180, 556);
+		panel_1.setBounds(12, 44, 180, 510);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
 		JList list = new JList();
 		list.setBounds(178, 0, -174, 556);
 		panel_1.add(list);
+		
+		txtConectar = new JTextField();
+		txtConectar.setBounds(3, 571, 104, 20);
+		getContentPane().add(txtConectar);
+		txtConectar.setColumns(10);
+		
+		JButton btnConectar = new JButton("Conectar");
+		btnConectar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				pruebaChatInicio.iniciarCliente(txtConectar.getText());
+			}
+		});
+		btnConectar.setBounds(111, 569, 88, 23);
+		getContentPane().add(btnConectar);
 
 	}
 }

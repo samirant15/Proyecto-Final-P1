@@ -1,14 +1,14 @@
 package onlineMedia;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import ui.ServerFrame;
+import ui.ChatFrame;
 
-
-public class Conector extends Thread{
+public class ConectorCliente extends Thread{
 	private Socket client;
 	private ServerSocket server;
 	private InputStreamReader inSocket;
@@ -16,14 +16,23 @@ public class Conector extends Thread{
 	private BufferedReader in;
 	final int port = 1234;
 	
-	public Conector(String nombre){
-		super(nombre);
+	public ConectorCliente(String IP){
+		try {
+			client = new Socket(IP, this.port);
+			//Creacion de entrada de datos para lectura de mensajes
+			inSocket = new InputStreamReader(client.getInputStream());
+			in = new BufferedReader(inSocket);
+			
+			//Cracion de salida de datos
+			outSocket = new DataOutputStream(client.getOutputStream());
+			outSocket.writeUTF("Conectado -");
+		} catch (Exception e){};
 	}
 	
 	public void enviarMSG(String msg){
 		try {
-		 	outSocket.writeUTF(msg + "\n");
-		 	//System.out.println(msg);
+		 	outSocket.writeUTF(msg);
+		 	System.out.println(msg);
 		} catch (Exception e){};
 	}
 	
@@ -37,25 +46,14 @@ public class Conector extends Thread{
 	
 	public void run(){
 		String text = "text";
-		try {
-			this.server = new ServerSocket(port);
-			this.client = server.accept();
-			
-			//entrada de datos
-			inSocket = new InputStreamReader(client.getInputStream());
-			in = new BufferedReader(inSocket);
-			
-			//salida de datos
-			outSocket = new DataOutputStream(client.getOutputStream());
-			
-			while(true){
+		while(true){
+			try {
 				text = in.readLine();
-				ServerFrame.txtAreaServidor.setText(ServerFrame.txtAreaServidor.getText() + "\n" + text);
+				ChatFrame.messageTextArea.setText(ChatFrame.messageTextArea.getText() + text + "\n");
 				System.out.println(in.readLine());
+			} catch (Exception e) {
+				System.out.println("Sucedió un error");
 			}
-			
-		} catch (Exception e) {
-			System.out.println("Sucedió un error");
 		}
 	}
 	
