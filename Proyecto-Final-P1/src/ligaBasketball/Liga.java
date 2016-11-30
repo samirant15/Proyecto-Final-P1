@@ -72,9 +72,7 @@ public class Liga {
 		partidos.add(partido);
 	}
 	
-	public void ChoosePlayer(Jugador jugador){
-		
-	}
+
 	
 }
 
