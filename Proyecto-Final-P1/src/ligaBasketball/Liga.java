@@ -72,7 +72,6 @@ public class Liga {
 		partidos.add(partido);
 	}
 	
-
 	
 }
 
