@@ -3,6 +3,9 @@ package ligaBasketball;
 import java.util.ArrayList;
 
 
+import enums.Posicion;
+
+
 public class Liga {
 
     private static Liga Liga = null;
@@ -16,6 +19,12 @@ public class Liga {
 	private ArrayList<Partido> partidos = new ArrayList<Partido>();
 	private ArrayList<Equipo> equipos = new ArrayList<Equipo>();
 	private ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+	
+	public void InsertJugador(String nombre, int numero, Posicion posicion, int rebotes, int asistencias, int puntosAnotados){
+		Jugador player = new Jugador(nombre, numero,  posicion,  rebotes,  asistencias,  puntosAnotados);
+		jugadores.add(player);
+	}
+	
 	
 	public static Liga getLiga() {
 		return Liga;
@@ -58,6 +67,7 @@ public class Liga {
 	{
 		partidos.add(partido);
 	}
+	
 	
 	
 	
