@@ -25,8 +25,8 @@ public class Liga {
 		jugadores.add(player);
 	}
 	
-	public void InsertEquipo(String nombre, int partidosGanados, int partidasPerdidas){
-		Equipo team = new Equipo(nombre, partidosGanados, partidasPerdidas);
+	public void InsertEquipo(String nombre, int partidosGanados, int partidasPerdidas, ArrayList<Jugador> jugadores){
+		Equipo team = new Equipo(nombre, partidosGanados, partidasPerdidas, jugadores);
 		equipos.add(team);
 	}
 	
