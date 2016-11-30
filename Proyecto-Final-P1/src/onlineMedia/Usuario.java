@@ -5,6 +5,7 @@ public class Usuario {
 	private String equipo;
 	private String email;
 	private String contrasena;
+	private String username; 
 	
 	public String getEquipo() {
 		return equipo;
@@ -24,6 +25,13 @@ public class Usuario {
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
 	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
 	
 	
 }
