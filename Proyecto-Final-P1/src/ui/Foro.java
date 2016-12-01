@@ -28,23 +28,11 @@ public class Foro extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Foro frame = new Foro();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the frame.
 	 */
 	public Foro() {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 360, 451);
 		contentPane = new JPanel();
@@ -71,7 +59,7 @@ public class Foro extends JFrame {
 		tableForo.getColumnModel().getColumn(0).setPreferredWidth(530);
 		tableForo.getColumnModel().getColumn(0).setMinWidth(10);
 		tableForo.setCellSelectionEnabled(true);
-		tableForo.setBounds(0, 50, 344, 362);
+		tableForo.setBounds(0, 45, 344, 362);
 		contentPane.add(tableForo);
 		
 		JLabel label = new JLabel("");
@@ -81,7 +69,8 @@ public class Foro extends JFrame {
 		JButton btnCrear = new JButton("Crear");
 		btnCrear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				HiloMensaje nuevoHilo = new HiloMensaje();
+				nuevoHilo.setVisible(true);
 			}
 		});
 		btnCrear.setBounds(245, 11, 89, 23);

@@ -46,15 +46,15 @@ public class ConectorCliente extends Thread{
 	
 	public void run(){
 		String text = "text";
-		while(true){
-			try {
-				text = in.readLine();
-				ChatFrame.messageTextArea.setText(ChatFrame.messageTextArea.getText() + text + "\n");
-				System.out.println(in.readLine());
-			} catch (Exception e) {
-				System.out.println("Sucedió un error");
-			}
+		//while(true){
+		try {
+			text = in.readLine();
+			ChatFrame.messageTextArea.setText(ChatFrame.messageTextArea.getText() + text + "\n");
+			System.out.println(in.readLine());
+		} catch (Exception e) {
+			System.out.println("Sucedió un error");
 		}
+		//}
 	}
 	
 	public void desconectar(){

@@ -11,6 +11,8 @@ public class Usuario {
 	private String Nombre; 
 	private Roles rol ; 
 	
+	public Usuario(){}
+	
 	public Usuario(String email, String contrasena, String username, String nombre, Roles rol) {
 		super();
 		this.email = email;

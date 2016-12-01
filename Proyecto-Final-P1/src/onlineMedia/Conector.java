@@ -23,7 +23,7 @@ public class Conector extends Thread{
 	public void enviarMSG(String msg){
 		try {
 		 	outSocket.writeUTF(msg + "\n");
-		 	//System.out.println(msg);
+		 	System.out.println(msg);
 		} catch (Exception e){};
 	}
 	

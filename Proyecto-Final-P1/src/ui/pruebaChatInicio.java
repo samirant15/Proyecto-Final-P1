@@ -48,7 +48,7 @@ public class pruebaChatInicio extends JDialog {
 			JButton btnInicioDelChat = new JButton("Inicio del Chat");
 			btnInicioDelChat.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					ChatFrame clientChat = new ChatFrame();
+					Foro clientChat = new Foro();
 					clientChat.setVisible(true);
 				}
 			});
