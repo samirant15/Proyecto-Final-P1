@@ -40,17 +40,7 @@ public class Liga {
 	}
 	
 	
-	public void GenerateFantasy(String name, int id){
-		
-		if (equipofantasy.get(id).getJugadores().get(id)== null){
-			
-			InsertEquipoFantasy(name, 0, 0, jugadores.get(id));
-		}
-		else{
-			System.out.println("El jugador ya existe");
-		}
-		
-	}
+	//
 	
 	public static Liga getLiga() {
 		return Liga;
