@@ -123,6 +123,13 @@ public class Liga {
 		Usuario usuario = new Usuario(email, contrasena, username, nombre,Roles.Visitante);
 		usuarios.add(usuario);
 	}
+	
+	
+	
+	
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/samirant15/Proyecto-Final-P1.git
+=======
 >>>>>>> branch 'master' of https://github.com/samirant15/Proyecto-Final-P1.git
 }
 	
