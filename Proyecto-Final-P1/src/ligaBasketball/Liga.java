@@ -94,11 +94,6 @@ public class Liga {
 		partidos.add(partido);
 	}
 	
-<<<<<<< HEAD
-	
-	
-	
-=======
 	public void ChoosePlayer(Jugador jugador){
 		
 	}
@@ -144,12 +139,7 @@ public class Liga {
 	}
 	
 	
-	
-	
-<<<<<<< HEAD
->>>>>>> branch 'master' of https://github.com/samirant15/Proyecto-Final-P1.git
-=======
->>>>>>> branch 'master' of https://github.com/samirant15/Proyecto-Final-P1.git
+
 }
 	
 
