@@ -39,17 +39,19 @@ public class Equipo {
 		return jugadores;
 	}
 
-	public void setJugadores(ArrayList<Jugador> jugadores) {
-		this.jugadores = jugadores;
+	public void setJugadores(ArrayList<Jugador> jugador) {
+		this.jugadores = jugador;
 	}
 
-	public Equipo(String nombre, int partidosGanados, int partidasPerdidas, Jugador jugador) {
+	public Equipo(String nombre, int partidosGanados, int partidasPerdidas, ArrayList<Jugador> jugadores) {
 		super();
 		this.nombre = nombre;
 		this.partidosGanados = partidosGanados;
 		this.partidasPerdidas = partidasPerdidas;
-		this.jugadores = jugador;
+		this.jugadores = jugadores;
 	}
+
+	
 
 	
 	

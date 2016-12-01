@@ -22,35 +22,24 @@ public class Liga {
 	private ArrayList<Equipo> equipos = new ArrayList<Equipo>();
 	private ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
 	private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-	private ArrayList<Equipo> equipofantasy = new ArrayList<Equipo>();
+	private ArrayList<EquipoFantasy> equiposfantasy = new ArrayList<EquipoFantasy>();
 	
 	public void InsertJugador(String nombre, int numero, Posicion posicion, int rebotes, int asistencias, int puntosAnotados){
 		Jugador player = new Jugador(nombre, numero,  posicion,  rebotes,  asistencias,  puntosAnotados);
 		jugadores.add(player);
 	}
 	
-	public void InsertEquipo(String nombre, int partidosGanados, int partidasPerdidas, Jugador jugador){
+	public void InsertEquipo(String nombre, int partidosGanados, int partidasPerdidas, ArrayList<Jugador> jugador){
 		Equipo team = new Equipo(nombre, partidosGanados, partidasPerdidas, jugador);
 		equipos.add(team);
 	}
 	
-	public void InsertEquipoFantasy(String nombre, int partidosGanados, int partidasPerdidas, Jugador jugador){
-		Equipo team = new Equipo(nombre, partidosGanados, partidasPerdidas, jugador);
-		equipofantasy.add(team);
+	public void InsertEquipoFantasy(String nombre, int partidosGanados, int partidasPerdidas, ArrayList<Jugador> jugador){
+		EquipoFantasy teamfancy = new EquipoFantasy(nombre, partidosGanados, partidasPerdidas, jugador);
+		equiposfantasy.add(teamfancy);
 	}
 	
 	
-	public void GenerateFantasy(String name, int id){
-		
-		if (equipofantasy.get(id).getJugadores().get(id)== null){
-			
-			InsertEquipoFantasy(name, 0, 0, jugadores.get(id));
-		}
-		else{
-			System.out.println("El jugador ya existe");
-		}
-		
-	}
 	
 	public static Liga getLiga() {
 		return Liga;
@@ -77,7 +66,6 @@ public class Liga {
 	}
 	
 	
-	
 	public void InsertarJugador(Jugador jugador)
 	{
 		jugadores.add(jugador);
@@ -94,6 +82,19 @@ public class Liga {
 		partidos.add(partido);
 	}
 	
+	
+	public ArrayList<Jugador> getJugadores() {
+		return jugadores;
+	}
+	public void setJugadores(ArrayList<Jugador> jugadores) {
+		this.jugadores = jugadores;
+	}
+	public ArrayList<EquipoFantasy> getEquiposfantasy() {
+		return equiposfantasy;
+	}
+	public void setEquiposfantasy(ArrayList<EquipoFantasy> equiposfantasy) {
+		this.equiposfantasy = equiposfantasy;
+	}
 	public void ChoosePlayer(Jugador jugador){
 		
 	}
