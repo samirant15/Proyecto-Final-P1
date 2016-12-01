@@ -104,7 +104,6 @@ public class LoginJDialog extends JDialog {
 						if(findUser == false || findPassword == false){
 							JOptionPane.showInternalMessageDialog(null, "El usuario o contraseña que ha ingresado no es correcto", "Error", ERROR);
 						}else if(findUser == true && findPassword == true){
-							if(liga.getUsuario(posUser).getRol() == Roles.Administrador){
 								//TODO Frame Principal
 				                MainJFrame mainFrame = new MainJFrame();
 				                mainFrame.setVisible(true);
@@ -112,7 +111,6 @@ public class LoginJDialog extends JDialog {
 				                mainFrame.setPosUser(posUser);
 							}
 							dispose();
-						}
 					}
 				});
 				okButton.setActionCommand("Login");
