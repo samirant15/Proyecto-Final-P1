@@ -40,32 +40,16 @@ public class Liga {
 	}
 	
 	
-	public void GenerateFantasy(String name, int id){
+	public void GenerateFantasy(String name, Jugador id){
 		
-		equiposfantasy.add(jugadores.get(id));
-		
-		
-		/*for (int i=0; i<equiposfantasy.size(); i++){
+		for (int i=0; i<equiposfantasy.size(); i++){
 			if(equiposfantasy.get(i).getNombre().equals(name)){
-				equiposfantasy.get(i).setJugadores(jugadores.get(id));
-			}
-		}*/
-		
-		
-		
-		for(EquipoFantasy fantasy : Liga.getInstance().getEquiposfantasy()){
-			if (fantasy.getNombre().equals(name)){
-			//fantasy.setJugadores(jugadores.get(id));
+				
+				equiposfantasy.get(i).getJugadores().add(id);
 			}
 		}
-	
 		
-		if (equiposfantasy.get(id).getJugadores().get(id)== null){
-			
-		}
-		else{
-			System.out.println("El jugador ya existe");
-		}
+		
 		
 	}
 	
