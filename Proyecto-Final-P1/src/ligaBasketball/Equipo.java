@@ -43,12 +43,12 @@ public class Equipo {
 		this.jugadores = jugadores;
 	}
 
-	public Equipo(String nombre, int partidosGanados, int partidasPerdidas, ArrayList<Jugador> jugadores) {
+	public Equipo(String nombre, int partidosGanados, int partidasPerdidas, Jugador jugador) {
 		super();
 		this.nombre = nombre;
 		this.partidosGanados = partidosGanados;
 		this.partidasPerdidas = partidasPerdidas;
-		this.jugadores = jugadores;
+		this.jugadores = jugador;
 	}
 
 	

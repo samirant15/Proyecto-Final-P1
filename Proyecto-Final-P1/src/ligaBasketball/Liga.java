@@ -22,15 +22,34 @@ public class Liga {
 	private ArrayList<Equipo> equipos = new ArrayList<Equipo>();
 	private ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
 	private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+	private ArrayList<Equipo> equipofantasy = new ArrayList<Equipo>();
 	
 	public void InsertJugador(String nombre, int numero, Posicion posicion, int rebotes, int asistencias, int puntosAnotados){
 		Jugador player = new Jugador(nombre, numero,  posicion,  rebotes,  asistencias,  puntosAnotados);
 		jugadores.add(player);
 	}
 	
-	public void InsertEquipo(String nombre, int partidosGanados, int partidasPerdidas, ArrayList<Jugador> jugadores){
-		Equipo team = new Equipo(nombre, partidosGanados, partidasPerdidas, jugadores);
+	public void InsertEquipo(String nombre, int partidosGanados, int partidasPerdidas, Jugador jugador){
+		Equipo team = new Equipo(nombre, partidosGanados, partidasPerdidas, jugador);
 		equipos.add(team);
+	}
+	
+	public void InsertEquipoFantasy(String nombre, int partidosGanados, int partidasPerdidas, Jugador jugador){
+		Equipo team = new Equipo(nombre, partidosGanados, partidasPerdidas, jugador);
+		equipofantasy.add(team);
+	}
+	
+	
+	public void GenerateFantasy(String name, int id){
+		
+		if (equipofantasy.get(id).getJugadores().get(id)== null){
+			
+			InsertEquipoFantasy(name, 0, 0, jugadores.get(id));
+		}
+		else{
+			System.out.println("El jugador ya existe");
+		}
+		
 	}
 	
 	public static Liga getLiga() {
