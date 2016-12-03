@@ -1,7 +1,13 @@
 package ligaBasketball;
 
-public class Partido {
+import java.io.Serializable;
 
+public class Partido implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5704965598524417419L;
 	private int ptsEquipoCasa;
 	private int ptsEquipoVisitante;
 	private int dia;

@@ -1,15 +1,19 @@
 package onlineMedia;
 
+import java.io.Serializable;
+
 import enums.Roles;
 
-public class Usuario {
+public class Usuario implements Serializable{
 	
+	private static final long serialVersionUID = -8404687263484925113L;
 	private String equipo;
 	private String email;
 	private String contrasena;
 	private String username; 
 	private String Nombre; 
 	private Roles rol ; 
+	private String ipAdress; 
 	
 	public Usuario(){}
 	
@@ -62,7 +66,11 @@ public class Usuario {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
-	
+	public String getIpAdress() {
+		return ipAdress;
+	}
+	public void setIpAdress(String ipAdress) {
+		this.ipAdress = ipAdress;
+	}
 	
 }

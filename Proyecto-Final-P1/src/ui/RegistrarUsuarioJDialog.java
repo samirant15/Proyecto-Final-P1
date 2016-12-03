@@ -134,9 +134,9 @@ public class RegistrarUsuarioJDialog extends JDialog {
 						String nombre = txtNombre.getText();
 						String username = txtUsuario.getText();
 						String email = txtEmail.getText(); 
-						String contrasena = txtPasswordDefinitiva.getText(); 
-						String intentoClave = txtPasswordConfirmar.getText(); 
-						liga.addUsuarioV(email, contrasena, username, nombre,Roles.Visitante);
+						String contrasena = String.valueOf(txtPasswordDefinitiva.getPassword());; 
+						String intentoClave = String.valueOf(txtPasswordConfirmar.getPassword());; 
+						liga.addUsuarioV(email, contrasena, username, nombre);
 						
 						
 					}

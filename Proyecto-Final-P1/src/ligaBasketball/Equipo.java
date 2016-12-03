@@ -1,15 +1,23 @@
 package ligaBasketball;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class Equipo {
+public class Equipo implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4877462266129460468L;
 	private String nombre;
 	private int partidosGanados;
 	private int partidasPerdidas;
 	private ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
 	
+	public void InsertJugador(Jugador jugador){
+		jugadores.add(jugador);
+	}
 	public String getNombre() {
 		return nombre;
 	}
