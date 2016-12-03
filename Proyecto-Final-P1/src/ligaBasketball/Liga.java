@@ -1,5 +1,11 @@
 package ligaBasketball;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -8,8 +14,9 @@ import enums.Roles;
 import onlineMedia.Usuario;
 
 
-public class Liga {
+public class Liga implements Serializable{
 
+	private static final long serialVersionUID = 2736906832795095562L;
     private static Liga Liga = null;
 	private Liga(){}
 	public static Liga getInstance(){
@@ -41,6 +48,9 @@ public class Liga {
 		EquipoFantasy teamfancy = new EquipoFantasy(nombre, partidosGanados, partidasPerdidas, jugador);
 		equiposfantasy.add(teamfancy);
 	}
+	public void insertJugadorEnEquipo(int posEquipo,int posJugador){
+        equipos.get(posEquipo).InsertJugador(jugadores.get(posJugador));
+	}
 	
 	public void InsertParidaFantasy(int ptsEquipoCasa, int ptsEquipoVisitante, EquipoFantasy equipoCasa, EquipoFantasy equipoVisitante,
 			Date fecha){
@@ -48,7 +58,6 @@ public class Liga {
 				 fecha);
 		partidasfantasy.add(partyfancy);
 	}
-	
 	
 	public void GenerateEquipoFantasy(String name, Jugador id){
 		
@@ -176,16 +185,43 @@ public class Liga {
 	}
 	public boolean confirmarPassword(String tryPassword,int pos){
 		boolean igual = false ; 
-		if(usuarios.get(pos).equals(tryPassword) == true){
+		if(usuarios.get(pos).getContrasena().equals(tryPassword) == true){
 			igual = true; 
 		}
 		return igual; 
 	}
-	public void addUsuarioV(String email, String contrasena, String username, String nombre, Roles rol){
+	public void addUsuarioV(String email, String contrasena, String username, String nombre){
 		Usuario usuario = new Usuario(email, contrasena, username, nombre,Roles.Visitante);
 		usuarios.add(usuario);
 	}
+	public void addUsuario(String email, String contrasena, String username, String nombre, Roles rol){
+		Usuario usuario = new Usuario(email, contrasena, username, nombre,rol);
+		usuarios.add(usuario);
+	}
+	public void escribirBinario() throws IOException{
+		/* Crea el archivo binario*/
+		FileOutputStream outStream = new FileOutputStream("Liga.dat");
+		ObjectOutputStream binario = new ObjectOutputStream(outStream);
+		binario.writeObject(Liga);
+		binario.close();
+	}
 	
+	public void leerBinario() throws IOException, ClassNotFoundException{
+		FileInputStream inStream = new FileInputStream("Liga.dat");
+		ObjectInputStream binario = new ObjectInputStream(inStream);
+		Liga = (Liga)binario.readObject();
+		binario.close();
+	}
+	
+	public void imprimirUsuarios(){
+		for(Usuario user : usuarios){
+			System.out.println(user.getUsername() + "    " + user.getContrasena() + "   " + user.getEmail());
+		}
+	}
+	public void imprimirIp(int pos){
+		//TODO getIpAdress
+		System.out.println(usuarios.get(pos).getIpAdress());
+	}
 	
 
 }
