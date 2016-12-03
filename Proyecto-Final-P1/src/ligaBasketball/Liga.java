@@ -25,6 +25,7 @@ public class Liga implements Serializable{
 		return Liga;
 	}
 
+	
 	private ArrayList<Partido> partidos = new ArrayList<Partido>();
 	private ArrayList<PartidaFantasy> partidasfantasy = new ArrayList<PartidaFantasy>();
 	private ArrayList<Equipo> equipos = new ArrayList<Equipo>();
