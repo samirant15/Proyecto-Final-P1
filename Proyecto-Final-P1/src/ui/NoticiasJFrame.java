@@ -57,7 +57,7 @@ public class NoticiasJFrame extends JFrame {
 	private JTextField noticiaTituloText;
 	private static JFileChooser ourFileSelector = new JFileChooser(); 
 	private JInternalFrame medialFrame = new JInternalFrame("Media");
-	private String vlcPath="C:/Program Files/VideoLAN/VLC", mediaPath="";
+	private String vlcPath="Proyecto-Final-P1/Resources/VLC", mediaPath="";
 
 	/**
 	 * Create the frame.
