@@ -10,7 +10,6 @@ import javax.swing.border.EmptyBorder;
 
 import onlineMedia.Conector;
 import onlineMedia.ConectorCliente;
-import onlineMedia.Servidor;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
