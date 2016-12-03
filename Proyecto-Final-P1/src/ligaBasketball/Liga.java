@@ -156,7 +156,7 @@ public class Liga implements Serializable{
 		}
 		return igual; 
 	}
-	public void addUsuarioV(String email, String contrasena, String username, String nombre, Roles rol){
+	public void addUsuarioV(String email, String contrasena, String username, String nombre){
 		Usuario usuario = new Usuario(email, contrasena, username, nombre,Roles.Visitante);
 		usuarios.add(usuario);
 	}

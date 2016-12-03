@@ -123,6 +123,7 @@ public class LoginJDialog extends JDialog {
 						}
 						if((findUser == false && findPassword == false)||(findUser == true && findPassword == false)){
 							JOptionPane.showMessageDialog(null, "No se ha encontrado el usuario o la contraseña no es correcta","Error en login", JOptionPane.ERROR_MESSAGE);
+							clear();
 						}else if(findUser == true && findPassword == true){	
 								//TODO Frame Principal
 				                MainJFrame mainFrame = null;
@@ -134,17 +135,6 @@ public class LoginJDialog extends JDialog {
 							}
 					}
 				});
-				
-				JButton btnRegistrarAdmin = new JButton("Registrar Admin");
-				btnRegistrarAdmin.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						//TODO quitar esta opcion
-						RegistrarUsuarioAdminJDialog registrarUsuarioAdmin = new RegistrarUsuarioAdminJDialog();
-						registrarUsuarioAdmin.setVisible(true);
-						registrarUsuarioAdmin.setLocationRelativeTo(null);
-					}
-				});
-				buttonPane.add(btnRegistrarAdmin);
 				okButton.setActionCommand("Login");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
