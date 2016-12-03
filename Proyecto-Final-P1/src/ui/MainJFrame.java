@@ -86,6 +86,17 @@ public class MainJFrame extends JFrame {
 		JMenu menu_3 = new JMenu("Admin Options");
 		menuBar.add(menu_3);
 		
+		JMenuItem mntmRegistrarUsuarioAdministrador = new JMenuItem("Registrar Usuario administrador");
+		mntmRegistrarUsuarioAdministrador.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegistrarUsuarioAdminJDialog registrarUsuarioAdmin = new RegistrarUsuarioAdminJDialog();
+				registrarUsuarioAdmin.setVisible(true);
+				registrarUsuarioAdmin.setLocationRelativeTo(null);
+			}
+		});
+		menu_3.add(mntmRegistrarUsuarioAdministrador);
+		
+		
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
 		panel_1.setBounds(0, 0, 712, 363);

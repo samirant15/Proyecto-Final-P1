@@ -1,8 +1,13 @@
 package ligaBasketball;
+import java.io.Serializable;
 import java.util.ArrayList;
 import enums.Posicion;
-public class Jugador {
-
+public class Jugador implements Serializable{
+    
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7356002253677261975L;
 	private String nombre;
 	private int numero;
 	private Posicion posicion;
