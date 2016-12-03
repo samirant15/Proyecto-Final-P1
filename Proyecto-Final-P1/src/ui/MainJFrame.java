@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -70,6 +71,31 @@ public class MainJFrame extends JFrame {
 		
 		JMenu menu = new JMenu("  Programa  ");
 		menuBar.add(menu);
+		
+		JMenuItem mntmLogOut = new JMenuItem("Log out");
+		mntmLogOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				   try {
+					Liga.getInstance().escribirBinario();
+				} catch (IOException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+				   dispose();
+				   Liga.getInstance().imprimirUsuarios();
+				    try {
+						Liga.getInstance().leerBinario();
+					} catch (ClassNotFoundException | IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+			        LoginJDialog login = new LoginJDialog();
+			        login.setVisible(true);
+			        login.setLocationRelativeTo(null);
+			        Liga.getInstance().imprimirUsuarios();
+			}
+		});
+		menu.add(mntmLogOut);
 		
 		JMenuItem menuItem = new JMenuItem("  Salir   ");
 		menu.add(menuItem);
