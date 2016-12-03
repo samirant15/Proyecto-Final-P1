@@ -66,7 +66,6 @@ public class Liga {
 		for (int i=0; i<equiposfantasy.size(); i++){
 			if (equiposfantasy.get(i).getNombre().equals(equipoC)){
 				casa = i;
-			
 				
 			}
 			
