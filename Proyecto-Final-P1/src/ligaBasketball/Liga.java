@@ -1,7 +1,7 @@
 package ligaBasketball;
 
 import java.util.ArrayList;
-
+import java.util.Date;
 
 import enums.Posicion;
 import enums.Roles;
@@ -19,10 +19,13 @@ public class Liga {
 	}
 
 	private ArrayList<Partido> partidos = new ArrayList<Partido>();
+	private ArrayList<PartidaFantasy> partidasfantasy = new ArrayList<PartidaFantasy>();
 	private ArrayList<Equipo> equipos = new ArrayList<Equipo>();
 	private ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
 	private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 	private ArrayList<EquipoFantasy> equiposfantasy = new ArrayList<EquipoFantasy>();
+	private int casa;
+	private int visita;
 	
 	public void InsertJugador(String nombre, int numero, Posicion posicion, int rebotes, int asistencias, int puntosAnotados){
 		Jugador player = new Jugador(nombre, numero,  posicion,  rebotes,  asistencias,  puntosAnotados);
@@ -39,8 +42,15 @@ public class Liga {
 		equiposfantasy.add(teamfancy);
 	}
 	
+	public void InsertParidaFantasy(int ptsEquipoCasa, int ptsEquipoVisitante, EquipoFantasy equipoCasa, EquipoFantasy equipoVisitante,
+			Date fecha){
+		PartidaFantasy partyfancy = new PartidaFantasy(ptsEquipoCasa, ptsEquipoVisitante, equipoCasa, equipoVisitante,
+				 fecha);
+		partidasfantasy.add(partyfancy);
+	}
 	
-	public void GenerateFantasy(String name, Jugador id){
+	
+	public void GenerateEquipoFantasy(String name, Jugador id){
 		
 		for (int i=0; i<equiposfantasy.size(); i++){
 			if(equiposfantasy.get(i).getNombre().equals(name)){
@@ -48,10 +58,27 @@ public class Liga {
 				equiposfantasy.get(i).getJugadores().add(id);
 			}
 		}
-		
-		
+	
+	}
+	
+	
+	public void GeneratePartidaFantasy(String equipoC, String equipoV, Date fecha){
+		for (int i=0; i<equiposfantasy.size(); i++){
+			if (equiposfantasy.get(i).getNombre().equals(equipoC)){
+				casa = i;
+			
+				
+			}
+			
+			if (equiposfantasy.get(i).getNombre().equals(equipoV)){
+				visita = i;
+				
+			}
+			InsertParidaFantasy(0, 0, equiposfantasy.get(casa), equiposfantasy.get(visita), fecha);
+		}
 		
 	}
+	
 	
 	public static Liga getLiga() {
 		return Liga;
@@ -107,6 +134,14 @@ public class Liga {
 	}
 	public void setEquiposfantasy(ArrayList<EquipoFantasy> equiposfantasy) {
 		this.equiposfantasy = equiposfantasy;
+	}
+	
+	
+	public ArrayList<PartidaFantasy> getPartidasfantasy() {
+		return partidasfantasy;
+	}
+	public void setPartidasfantasy(ArrayList<PartidaFantasy> partidasfantasy) {
+		this.partidasfantasy = partidasfantasy;
 	}
 	public void ChoosePlayer(Jugador jugador){
 		
