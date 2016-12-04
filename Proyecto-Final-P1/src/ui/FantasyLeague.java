@@ -23,6 +23,7 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EtchedBorder;
 
 import ligaBasketball.EquipoFantasy;
+import ligaBasketball.Jugador;
 import ligaBasketball.Liga;
 
 import javax.swing.JComboBox;
@@ -36,7 +37,7 @@ import java.awt.event.ActionEvent;
 public class FantasyLeague extends JDialog {
 	private JTextField nameEquip;
 	private JTable table;
-	private JTextField textField;
+	private JTextField idT;
 
 	/**
 	 * Launch the application.
@@ -144,16 +145,34 @@ public class FantasyLeague extends JDialog {
 		lblId.setBounds(243, 137, 39, 14);
 		panel.add(lblId);
 		
-		textField = new JTextField();
-		textField.setBounds(273, 135, 39, 17);
-		panel.add(textField);
-		textField.setColumns(10);
+		idT = new JTextField();
+		idT.setBounds(273, 135, 39, 17);
+		panel.add(idT);
+		idT.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Agregar a equipo");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int team_index = EquipoBox.getSelectedIndex();
+				
+				EquipoFantasy team=Liga.getInstance().getEquiposfantasy().get(team_index);
+				Jugador player = Liga.getInstance().getJugadores().get(Integer.parseInt(idT.getText()));
+				
+				Liga.getInstance().GenerateEquipoFantasy(team.getNombre(), player);
+			}
+		});
 		btnNewButton.setBounds(243, 162, 136, 23);
 		panel.add(btnNewButton);
 		
 		JButton btnVerJugadores = new JButton("Ver jugadores");
+		btnVerJugadores.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ListaJugadores dialog = new ListaJugadores();
+				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				dialog.setVisible(true);
+				
+			}
+		});
 		btnVerJugadores.setBounds(51, 162, 115, 23);
 		panel.add(btnVerJugadores);
 		
