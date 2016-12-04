@@ -168,11 +168,11 @@ public class NoticiasJFrame extends JFrame {
 					nuevaNoticia += noticiaNuevaText.getText();
 					try{
 						GuardarNoticias(nuevaNoticia, "user", Controlador.getInstance().ObtenerFecha(), mediaPath);
-							//client.Crear();
-							//client.sendFile("Noticias.txt");
-							//client.sendFile(mediaPath);
-							//client.getSock().close();
-							JOptionPane.showMessageDialog(null, "Eto no funciona aun, vayase pa otro lao", "ERROR", JOptionPane.ERROR_MESSAGE);
+							client.Crear();
+							client.sendFile("Noticias.txt");
+							client.sendFile(mediaPath);
+							client.getSock().close();
+							//JOptionPane.showMessageDialog(null, "Eto no funciona aun, vayase pa otro lao", "ERROR", JOptionPane.ERROR_MESSAGE);
 						    }catch (Exception e){
 						  System.err.println("Error: " + e.getMessage());
 						  }

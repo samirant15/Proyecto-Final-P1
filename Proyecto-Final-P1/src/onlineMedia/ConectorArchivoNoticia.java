@@ -39,20 +39,6 @@ public class ConectorArchivoNoticia {
 					+ "\nVuelva a Intentelo mas tarde", "ERROR", JOptionPane.ERROR_MESSAGE);
             //System.exit(1);
         }
-
-        /*os = new PrintStream(sock.getOutputStream());
-
-        try {
-                os.println("Recive");
-                System.err.print("Enter file name: ");
-                fileName = stdin.readLine();
-                os.println(fileName);
-                receiveFile(fileName);
-        } catch (Exception e) {
-            System.err.println("not valid input");
-        }*/
-
-
     }
 
 
@@ -80,6 +66,7 @@ public class ConectorArchivoNoticia {
             dos.write(mybytearray, 0, mybytearray.length);
             dos.flush();
             System.out.println("File "+fileName+" sent to Server.");
+            dis.close();
         } catch (Exception e) {
             System.err.println("File does not exist!");
         }
