@@ -27,6 +27,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.net.Socket;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
@@ -59,9 +60,12 @@ public class NoticiasJFrame extends JFrame {
 	private JPanel noticiaPrincipalPanel;
 	private JTextField noticiaTituloText;
 	private static JFileChooser ourFileSelector = new JFileChooser(); 
+	JButton btnEnviarMedia = new JButton("Enviar Media");
 	private JInternalFrame medialFrame = new JInternalFrame("Media");
 	private String vlcPath="Proyecto-Final-P1/Resources/VLC", mediaPath="";
 	ConectorArchivoNoticia client = new ConectorArchivoNoticia();
+	String ip = "localhost";
+	int port = 8080;
 
 	/**
 	 * Create the frame.
@@ -69,8 +73,9 @@ public class NoticiasJFrame extends JFrame {
 	
 	public void GuardarNoticias(String nuevaNoticia, String user, String date, String mediapath){
 		try {
-			File file = new File("Noticias.txt");
-			
+			File file = new File("Proyecto-Final-P1/Resources/Noticias.txt");
+			File media = new File(mediapath);
+			mediapath = "Proyecto-Final-P1/Resources/"+media.getName();
 			String txt="";			
 			// Si no existe se crea
 			if (!file.exists()) {
@@ -110,7 +115,8 @@ public class NoticiasJFrame extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				try {
-					client.Crear();
+					Socket sock = new Socket(ip, port);
+					client.Crear(sock);
 					if(client.getSock()!=null)
 						((CardLayout)noticiaPrincipalPanel.getLayout()).show(noticiaPrincipalPanel, "noticiaNuevaPanel");
 					client.getSock().close();
@@ -125,8 +131,9 @@ public class NoticiasJFrame extends JFrame {
 		mntmActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					client.Crear();
-					client.receiveFile("Noticias.txt");
+					Socket sock = new Socket(ip, port);
+					client.Crear(sock);
+					client.receiveFile("Proyecto-Final-P1/Resources/Noticias.txt");
 					client.getSock().close();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
@@ -156,22 +163,24 @@ public class NoticiasJFrame extends JFrame {
 		noticiaNuevaText.setBounds(10, 90, 365, 176);
 		noticiaNuevaPanel.add(noticiaNuevaText);
 		
-		JButton noticiaNuevaGuardarBtn = new JButton("Enviar");
-		noticiaNuevaGuardarBtn.setFont(new Font("Trebuchet MS", Font.PLAIN, 16));
-		noticiaNuevaGuardarBtn.addActionListener(new ActionListener() {
+		JButton noticiaNuevaEnviarBtn = new JButton("Enviar Noticia");
+		noticiaNuevaEnviarBtn.setFont(new Font("Trebuchet MS", Font.PLAIN, 16));
+		noticiaNuevaEnviarBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {//Se presiono boton guardar noticia
-				if(mediaPath.equals("")){
-					JOptionPane.showMessageDialog(null, "Seleccione una imagen o video", "ERROR", JOptionPane.ERROR_MESSAGE);
+				if(btnEnviarMedia.isEnabled()==true){
+					JOptionPane.showMessageDialog(null, "Primero presione enviar media", "ERROR", JOptionPane.ERROR_MESSAGE);
 				}else{
 					String nuevaNoticia = "";
 					nuevaNoticia += noticiaTituloText.getText()+"\n";
 					nuevaNoticia += noticiaNuevaText.getText();
 					try{
 						GuardarNoticias(nuevaNoticia, "user", Controlador.getInstance().ObtenerFecha(), mediaPath);
-							client.Crear();
-							client.sendFile("Noticias.txt");
-							client.sendFile(mediaPath);
+						
+							Socket sock = new Socket(ip, port);
+							client.Crear(sock);
+							client.sendFile("Proyecto-Final-P1/Resources/Noticias.txt");
 							client.getSock().close();
+							dispose();
 							//JOptionPane.showMessageDialog(null, "Eto no funciona aun, vayase pa otro lao", "ERROR", JOptionPane.ERROR_MESSAGE);
 						    }catch (Exception e){
 						  System.err.println("Error: " + e.getMessage());
@@ -179,8 +188,8 @@ public class NoticiasJFrame extends JFrame {
 					}
 		    }
 		});
-		noticiaNuevaGuardarBtn.setBounds(10, 318, 110, 23);
-		noticiaNuevaPanel.add(noticiaNuevaGuardarBtn);
+		noticiaNuevaEnviarBtn.setBounds(10, 328, 156, 23);
+		noticiaNuevaPanel.add(noticiaNuevaEnviarBtn);
 		
 		JLabel lblTtulo = new JLabel("T\u00EDtulo:");
 		lblTtulo.setFont(new Font("Trebuchet MS", Font.PLAIN, 16));
@@ -226,5 +235,31 @@ public class NoticiasJFrame extends JFrame {
 		} catch (PropertyVetoException e1) {
 			e1.printStackTrace();
 		}
+			
+			
+			btnEnviarMedia.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+					if(mediaPath.equals("")){
+						JOptionPane.showMessageDialog(null, "Seleccione una imagen o video", "ERROR", JOptionPane.ERROR_MESSAGE);
+					}else{
+						try{
+							Socket sock = new Socket(ip, port);
+							client.Crear(sock);
+							client.sendFile(mediaPath);
+							client.getSock().close();
+							btnEnviarMedia.setBackground(Color.green);
+							btnEnviarMedia.setEnabled(false);
+							//JOptionPane.showMessageDialog(null, "Eto no funciona aun, vayase pa otro lao", "ERROR", JOptionPane.ERROR_MESSAGE);
+						    }catch (Exception e1){
+						  System.err.println("Error: " + e1.getMessage());
+						  }
+					}
+				}
+			});
+			btnEnviarMedia.setFont(new Font("Trebuchet MS", Font.PLAIN, 16));
+			btnEnviarMedia.setBounds(10, 300, 156, 23);
+			noticiaNuevaPanel.add(btnEnviarMedia);
+
 	}
 }

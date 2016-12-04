@@ -31,16 +31,14 @@ public class ConectorClienteNoticia implements Runnable {
 	                    clientSocket.getInputStream()));
 	            String clientSelection;
 	            while ((clientSelection = in.readLine()) != null) {
-	            	/*if(clientSelection.equals("Recive")){//Envia para que lo reciba
-	            		String outGoingFileName;
-                        while ((outGoingFileName = in.readLine()) != null) {
-                            sendFile(outGoingFileName);
-                        }
-	            	}else
-	            		System.out.println("Incorrect command received.");
-	                */switch (clientSelection) {
+	            	switch (clientSelection) {
 	                    case "Send":
-	                        receiveFile();
+	                    	String inGoingFileName;
+	                        while ((inGoingFileName = in.readLine()) != null) {
+	                        	receiveFile(inGoingFileName);
+	                        	break;
+	                        }
+	                        
 	                        break;
 	                    case "Recive":
 	                        String outGoingFileName;
@@ -62,14 +60,21 @@ public class ConectorClienteNoticia implements Runnable {
 	        }
 	    }
 
-	    public void receiveFile() {
-	        try {
+	    public void receiveFile(String fileName) {
+	    	try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    	try {
+	        	
 	            int bytesRead;
 
 	            DataInputStream clientData = new DataInputStream(clientSocket.getInputStream());
 
-	            String fileName = clientData.readUTF();
-	            OutputStream output = new FileOutputStream(("received_from_client_" + fileName));
+	            //String fileName = clientData.readUTF();
+	            OutputStream output = new FileOutputStream(("Proyecto-Final-P1/Resources/" + fileName));
 	            long size = clientData.readLong();
 	            byte[] buffer = new byte[1024];
 	            while (size > 0 && (bytesRead = clientData.read(buffer, 0, (int) Math.min(buffer.length, size))) != -1) {

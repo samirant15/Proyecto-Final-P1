@@ -1,6 +1,7 @@
 package onlineMedia;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -15,7 +16,7 @@ public class ServidorNoticia  implements Runnable {
     public void run() {
 
         try {
-            serverSocket = new ServerSocket(5678);
+            serverSocket = new ServerSocket(8080);
             System.out.println("Server started.");
         } catch (Exception e) {
             System.err.println("Port already in use.");

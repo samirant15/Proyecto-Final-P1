@@ -29,10 +29,10 @@ public class ConectorArchivoNoticia {
 		return sock;
 	}
     
-    public void Crear() throws IOException {
+    public void Crear(Socket sock) throws IOException {
         try {
+        	this.sock = sock;
         	System.out.println("Cliente de noticias iniciado!.");
-            sock = new Socket("localhost", 5678);
             stdin = new BufferedReader(new InputStreamReader(System.in));
         } catch (Exception e) {
         	JOptionPane.showMessageDialog(null, "Usted no esta conectado al servidor de noticias"
@@ -44,10 +44,17 @@ public class ConectorArchivoNoticia {
 
 
     public static void sendFile(String fileName) {
+    	try {
+			Thread.sleep(100);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
         try {
         	os = new PrintStream(sock.getOutputStream());
             os.println("Send");
             File myFile = new File(fileName);
+            os.println(myFile.getName());
             byte[] mybytearray = new byte[(int) myFile.length()];
 
             FileInputStream fis = new FileInputStream(myFile);
@@ -61,12 +68,12 @@ public class ConectorArchivoNoticia {
 
             //Sending file name and file size to the server
             DataOutputStream dos = new DataOutputStream(os);
-            dos.writeUTF(myFile.getName());
+            //dos.writeUTF(myFile.getName());
             dos.writeLong(mybytearray.length);
             dos.write(mybytearray, 0, mybytearray.length);
             dos.flush();
             System.out.println("File "+fileName+" sent to Server.");
-            dis.close();
+            //dis.close();
         } catch (Exception e) {
             System.err.println("File does not exist!");
         }
@@ -92,9 +99,10 @@ public class ConectorArchivoNoticia {
             }
 
             output.close();
+            clientData.close();
             in.close();
 
-            System.out.println("Las noticias han sido actualizadas desde el servidor");
+            System.out.println("Las noticias han sido actualizadas desde el servidor, Recibido: " + fileName);
             JOptionPane.showMessageDialog(null, "Las noticias han sido actualizadas desde el servidor", "Actualizar noticias", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ex) {
             Logger.getLogger(ConectorClienteNoticia.class.getName()).log(Level.SEVERE, null, ex);
