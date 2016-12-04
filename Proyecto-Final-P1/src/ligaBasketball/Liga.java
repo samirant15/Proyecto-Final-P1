@@ -61,6 +61,7 @@ public class Liga implements Serializable{
 	}
 	
 	
+	
 	public void GenerateEquipoFantasy(String name, Jugador id){
 		
 		for (int i=0; i<equiposfantasy.size(); i++){
