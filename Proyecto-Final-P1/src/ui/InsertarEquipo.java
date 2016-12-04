@@ -110,7 +110,7 @@ public class InsertarEquipo extends JDialog {
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Equipo equipo = new Equipo(NombreTF.getText(), Integer.parseInt(PartidosGanadosTF.getText()),Integer.parseInt(PartidosPerdidosTF.getText()), null);
-				Liga.getInstancia().getEquipos().add(equipo);
+				Liga.getInstance().getEquipos().add(equipo);
 				textArea.setText( " Nombre: " + equipo.getNombre() +  "\n"+ " Partidos ganados: " + equipo.getPartidosGanados() +  "\n"+ " Partidos perdidos: " + equipo.getPartidasPerdidas());
 				resetearCampos();
 			}
