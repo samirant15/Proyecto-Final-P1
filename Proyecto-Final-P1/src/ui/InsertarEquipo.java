@@ -1,4 +1,4 @@
-//package Vistas;
+
 package ui;
 
 import java.awt.BorderLayout;
@@ -17,10 +17,10 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-//import Clases.Equipo;
+
 import ligaBasketball.Equipo;
 import ligaBasketball.Liga;
-//import Clases.Liga;
+
 
 
 public class InsertarEquipo extends JDialog {
