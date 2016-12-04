@@ -1,4 +1,4 @@
-//package Vistas;
+
  package ui;
 
 import java.awt.BorderLayout;
@@ -10,10 +10,6 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-//import Clases.Equipo;
-//import Clases.Jugador;
-//import Clases.Liga;
-//import Clases.Partido;
 import ligaBasketball.Equipo;
 import ligaBasketball.Jugador;
 import ligaBasketball.Liga;
