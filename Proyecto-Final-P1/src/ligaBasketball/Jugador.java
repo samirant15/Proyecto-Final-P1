@@ -7,7 +7,7 @@ public class Jugador implements Serializable{
 	/**
 	 * 
 	 */
-	private static long serialVersionUID = 7356002253677261975L;
+	//private static long serialVersionUID = 7356002253677261975L;
 	private String nombre;
 	private int numero;
 	private Posicion posicion;
@@ -62,15 +62,7 @@ public class Jugador implements Serializable{
 
 
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 
-
-
-	public static void setSerialversionuid(long serialversionuid) {
-		serialVersionUID = serialversionuid;
-	}
 
 
 
