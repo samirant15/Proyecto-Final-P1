@@ -16,7 +16,7 @@ public class Jugador implements Serializable{
 	private int rebotes;
 	
 	
-	
+
 	
 	public Jugador(String nombre, int numero, Posicion posicion, int anotaciones, int asistencias, int rebotes) {
 		super();
