@@ -7,24 +7,33 @@ public class Jugador implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7356002253677261975L;
+	private static long serialVersionUID = 7356002253677261975L;
 	private String nombre;
 	private int numero;
 	private Posicion posicion;
-	private ArrayList<Estadistica> estadisticas;
+	private int anotaciones;
+	private int asistencias;
+	private int rebotes;
 	
-	public Jugador() {
-		super();
-	}
-
-	public Jugador(String nombre, int numero, Posicion posicion, ArrayList<Estadistica> estadisticas) {
+	
+	
+	public Jugador(String nombre, int numero, Posicion posicion, int anotaciones, int asistencias, int rebotes) {
 		super();
 		this.nombre = nombre;
 		this.numero = numero;
 		this.posicion = posicion;
-		this.estadisticas = estadisticas;
-		this.estadisticas = new ArrayList<>();
+		this.anotaciones = anotaciones;
+		this.asistencias = asistencias;
+		this.rebotes = rebotes;
 	}
+
+
+
+	public Jugador() {
+		super();
+	}
+
+	
 
 	public String getNombre() {
 		return nombre;
@@ -50,11 +59,53 @@ public class Jugador implements Serializable{
 		this.posicion = posicion;
 	}
 
-	public ArrayList<Estadistica> getEstadisticas() {
-		return estadisticas;
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
-	public void setEstadisticas(ArrayList<Estadistica> estadisticas) {
-		this.estadisticas = estadisticas;
+
+
+	public static void setSerialversionuid(long serialversionuid) {
+		serialVersionUID = serialversionuid;
 	}
+
+
+
+	public int getAnotaciones() {
+		return anotaciones;
+	}
+
+
+
+	public void setAnotaciones(int anotaciones) {
+		this.anotaciones = anotaciones;
+	}
+
+
+
+	public int getAsistencias() {
+		return asistencias;
+	}
+
+
+
+	public void setAsistencias(int asistencias) {
+		this.asistencias = asistencias;
+	}
+
+
+
+	public int getRebotes() {
+		return rebotes;
+	}
+
+
+
+	public void setRebotes(int rebotes) {
+		this.rebotes = rebotes;
+	}
+	
+	
 }
