@@ -17,7 +17,7 @@ public class Inicio {
         login.setVisible(true);
         login.setLocationRelativeTo(null);
         Liga.getInstance().imprimirUsuarios();
-        
+     
 	}
 
 }

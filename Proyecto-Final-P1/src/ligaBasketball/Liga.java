@@ -36,7 +36,7 @@ public class Liga implements Serializable{
 	private int visita;
 	
 	public void InsertJugador(String nombre, int numero, Posicion posicion, int rebotes, int asistencias, int puntosAnotados){
-		Jugador player = new Jugador();
+		Jugador player = new Jugador(nombre, numero, posicion, rebotes, asistencias, puntosAnotados);
 		jugadores.add(player);
 	}
 	

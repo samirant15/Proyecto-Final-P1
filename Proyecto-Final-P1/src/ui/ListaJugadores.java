@@ -16,6 +16,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
+
 import ligaBasketball.Liga;
 import ligaBasketball.Jugador;
 
@@ -39,11 +40,15 @@ public class ListaJugadores extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
+	
+	
+	
+	
 	public ListaJugadores() {
 		setTitle("Lista de players"); 
 		setBounds(100, 100, 621, 496);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBorder(new TitledBorder(null, "Lista de players", TitledBorder.CENTER, TitledBorder.BELOW_TOP, null, null));
+		contentPanel.setBorder(new TitledBorder(null, "Lista de jugadores", TitledBorder.CENTER, TitledBorder.BELOW_TOP, null, null));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
@@ -76,7 +81,7 @@ public class ListaJugadores extends JDialog {
 					JButton btnVender = new JButton("aceptar");
 					btnVender.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent arg0) {
-							
+						
 						}
 					});
 					buttonPane.add(btnVender);
@@ -85,6 +90,8 @@ public class ListaJugadores extends JDialog {
 		}
 	}
 
+	
+	
 	private void loadplayers() {
 
 		tableModel.setRowCount(0);
