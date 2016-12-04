@@ -71,7 +71,7 @@ public class CreacionPartido extends JDialog {
 		ComboEquipoC = new JComboBox();
 		ComboEquipoC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				for (Jugador j : Liga.getInstancia().getEquipos().get(ComboEquipoC.getSelectedIndex()).getJugadores()) {
+				for (Jugador j : Liga.getInstance().getEquipos().get(ComboEquipoC.getSelectedIndex()).getJugadores()) {
 					textPane.setText(j.getNombre() + "\n");
 				}
 			}
@@ -82,7 +82,7 @@ public class CreacionPartido extends JDialog {
 		ComboEquipoV = new JComboBox();
 		ComboEquipoV.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				for (Jugador j : Liga.getInstancia().getEquipos().get(ComboEquipoV.getSelectedIndex()).getJugadores()) {
+				for (Jugador j : Liga.getInstance().getEquipos().get(ComboEquipoV.getSelectedIndex()).getJugadores()) {
 					textPane_1.setText(j.getNombre() + "\n");
 				}
 			}
@@ -137,8 +137,8 @@ public class CreacionPartido extends JDialog {
 		JButton btnGuardarPartido = new JButton("Guardar Partido");
 		btnGuardarPartido.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//Partido partido = new Partido(Integer.parseInt(textField_puntoC.getText()), Integer.parseInt(textField_puntoV.getText()), new Date(), Liga.getInstancia().getEquipos().get(ComboEquipoC.getSelectedIndex()), Liga.getInstancia().getEquipos().get(ComboEquipoV.getSelectedIndex()));
-				//Liga.getInstance().getPartidos().add(partido);
+			//	Partido partido = new Partido(Integer.parseInt(textField_puntoC.getText()), Integer.parseInt(textField_puntoV.getText()), new Date(), Liga.getInstance().getEquipos().get(ComboEquipoC.getSelectedIndex()), Liga.getInstance().getEquipos().get(ComboEquipoV.getSelectedIndex()));
+			//	Liga.getInstance().getPartidos().add(partido);
 				JOptionPane.showMessageDialog(null, "Partido agregado!", "Aviso!", JOptionPane.WARNING_MESSAGE);
 			}
 		});
@@ -148,8 +148,8 @@ public class CreacionPartido extends JDialog {
 		JButton btnControlDeEquipos = new JButton("Control de equipos");
 		btnControlDeEquipos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//InsertarEquipo ie = new InsertarEquipo();
-				//ie.setVisible(true);
+				InsertarEquipo ie = new InsertarEquipo();
+				ie.setVisible(true);
 			}
 		});
 		btnControlDeEquipos.setBounds(292, 512, 139, 25);
@@ -169,7 +169,7 @@ public class CreacionPartido extends JDialog {
 	private void inicializarEquipos(){
 		ComboEquipoC.removeAllItems();
 		ComboEquipoV.removeAllItems();
-		for (Equipo e : Liga.getInstancia().getEquipos()) {
+		for (Equipo e : Liga.getInstance().getEquipos()) {
 			ComboEquipoC.addItem(e.getNombre());
 			ComboEquipoV.addItem(e.getNombre());
 		}
