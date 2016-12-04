@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import onlineMedia.ConectorArchivoNoticia;
 import onlineMedia.MediaPlayer;
 
 import javax.swing.JTextArea;
@@ -23,6 +24,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.Date;
@@ -45,28 +47,56 @@ import javax.swing.border.TitledBorder;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import clases.Controlador;
+
 import javax.swing.JTree;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
 
 public class NoticiasJFrame extends JFrame {
 
-	private String nuevaNoticia = "";
-	
 	private JPanel noticiaPrincipalPanel;
 	private JTextField noticiaTituloText;
 	private static JFileChooser ourFileSelector = new JFileChooser(); 
 	private JInternalFrame medialFrame = new JInternalFrame("Media");
 	private String vlcPath="Proyecto-Final-P1/Resources/VLC", mediaPath="";
+	ConectorArchivoNoticia client = new ConectorArchivoNoticia();
 
 	/**
 	 * Create the frame.
 	 */
+	
+	public void GuardarNoticias(String nuevaNoticia, String user, String date, String mediapath){
+		try {
+			File file = new File("Noticias.txt");
+			
+			String txt="";			
+			// Si no existe se crea
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+			txt=user+"\n"+date+"\n"+mediapath+"\n"+nuevaNoticia;
+			FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write("#Start\n");
+			bw.write(txt+"\n");
+			bw.write("#End");
+			nuevaNoticia = "";
+			bw.newLine();
+			bw.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
 	public NoticiasJFrame() {
+				
 		setResizable(false);
 		setFont(new Font("Trebuchet MS", Font.PLAIN, 16));
 		setTitle("Noticias");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 608, 422);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -78,22 +108,34 @@ public class NoticiasJFrame extends JFrame {
 		JMenuItem mntmAadir = new JMenuItem("A\u00F1adir noticia");
 		mntmAadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				((CardLayout)noticiaPrincipalPanel.getLayout()).show(noticiaPrincipalPanel, "noticiaNuevaPanel");
+				
+				try {
+					client.Crear();
+					if(client.getSock()!=null)
+						((CardLayout)noticiaPrincipalPanel.getLayout()).show(noticiaPrincipalPanel, "noticiaNuevaPanel");
+					client.getSock().close();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
-		mnOpciones.add(mntmAadir);
 		
-		JMenuItem mntmVLCPath = new JMenuItem("Ruta VLC");
-		mntmVLCPath.addActionListener(new ActionListener() {
+		JMenuItem mntmActualizar = new JMenuItem("Actualizar");
+		mntmActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				File ourFile;
-				ourFileSelector.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-				ourFileSelector.showSaveDialog(null);
-				ourFile = ourFileSelector.getSelectedFile();
-				vlcPath = ourFile.getAbsolutePath();
+				try {
+					client.Crear();
+					client.receiveFile("Noticias.txt");
+					client.getSock().close();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
-		mnOpciones.add(mntmVLCPath);
+		mnOpciones.add(mntmActualizar);
+		mnOpciones.add(mntmAadir);
 		noticiaPrincipalPanel = new JPanel();
 		noticiaPrincipalPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(noticiaPrincipalPanel);
@@ -114,41 +156,23 @@ public class NoticiasJFrame extends JFrame {
 		noticiaNuevaText.setBounds(10, 90, 365, 176);
 		noticiaNuevaPanel.add(noticiaNuevaText);
 		
-		JButton noticiaNuevaGuardarBtn = new JButton("Guardar");
+		JButton noticiaNuevaGuardarBtn = new JButton("Enviar");
 		noticiaNuevaGuardarBtn.setFont(new Font("Trebuchet MS", Font.PLAIN, 16));
 		noticiaNuevaGuardarBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {//Se presiono boton guardar noticia
 				if(mediaPath.equals("")){
 					JOptionPane.showMessageDialog(null, "Seleccione una imagen o video", "ERROR", JOptionPane.ERROR_MESSAGE);
 				}else{
+					String nuevaNoticia = "";
 					nuevaNoticia += noticiaTituloText.getText()+"\n";
 					nuevaNoticia += noticiaNuevaText.getText();
 					try{
-						File file = new File("Noticias.txt");
-						Date d = new Date();
-						String date = "", user="user";
-						boolean pm = true;
-	
-						if(d.getHours()<12) {pm=false; date += d.getHours();} else date += d.getHours()-12;
-						if(d.getMinutes()>9) date += ":"+d.getMinutes(); else date += ":0"+d.getMinutes();
-						if(pm == false) date+=", AM "; else date+=" PM, ";
-						date+= d.getDate() +"/"+ (d.getMonth()+1) +"/"+ (d.getYear()-100);
-						
-						// Si no existe se crea
-						if (!file.exists()) {
-							file.createNewFile();
-						}
-						FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
-						BufferedWriter bw = new BufferedWriter(fw);
-						bw.write("#Start\n");
-						bw.write(user+"\n");
-						bw.write(date+"\n");
-						bw.write(mediaPath+"\n");
-						bw.write(nuevaNoticia+"\n");
-						bw.write("#End");
-						nuevaNoticia = "";
-						bw.newLine();
-						bw.close();
+						GuardarNoticias(nuevaNoticia, "user", Controlador.getInstance().ObtenerFecha(), mediaPath);
+							//client.Crear();
+							//client.sendFile("Noticias.txt");
+							//client.sendFile(mediaPath);
+							//client.getSock().close();
+							JOptionPane.showMessageDialog(null, "Eto no funciona aun, vayase pa otro lao", "ERROR", JOptionPane.ERROR_MESSAGE);
 						    }catch (Exception e){
 						  System.err.println("Error: " + e.getMessage());
 						  }

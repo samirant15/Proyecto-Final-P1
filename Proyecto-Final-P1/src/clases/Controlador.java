@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Date;
 
 import onlineMedia.Noticia;
 import ui.MainJFrame;
@@ -27,17 +28,10 @@ public class Controlador {
 	
 	//************************************************
 	
-	private static ArrayList<Noticia> noticias = new ArrayList<>(); 
-	
-	public static void main(String[] args) {
-		MainJFrame frame = new MainJFrame();
-		frame.setVisible(true);
-		leerNoticias(noticias); //lee las noticias cuando abre el programa
-	}
-	
-	
+	private static ArrayList<Noticia> noticias = new ArrayList<>();
+		
 	//leer noticias (luilli y samir)
-	public static void leerNoticias(ArrayList<Noticia> noticias){
+	public static void leerNoticias(){
 		try {
 			File file = new File("Noticias.txt");
 			String txtAux="", txt="", titulo = null, user="", date="", path="";
@@ -75,12 +69,26 @@ public class Controlador {
 		} catch (Exception e) {
 			
 		}
-		/*for (Noticia n : noticias) {
+		System.out.print("----Noticias----\n");
+		for (Noticia n : noticias) {
 			System.out.print("**Titulo: "+n.getTitulo()+"\n");
 			System.out.print("**Usuario: "+n.getUser()+"\n");
 			System.out.print("**Fecha: "+n.getFecha()+"\n");
 			System.out.print("**Path: "+n.getPath()+"\n");
 			System.out.print(n.getTexto()+"\n");
-		}*///**no me borren eto**
+		}
+		System.out.print("----Fin de Noticias----\n");
+	}
+	
+	public String ObtenerFecha(){
+		String date = "";
+		Date d = new Date();
+		boolean pm = true;
+		
+		if(d.getHours()<12) {pm=false; date += d.getHours();} else date += d.getHours()-12;
+		if(d.getMinutes()>9) date += ":"+d.getMinutes(); else date += ":0"+d.getMinutes();
+		if(pm == false) date+=", AM "; else date+=" PM, ";
+		date+= d.getDate() +"/"+ (d.getMonth()+1) +"/"+ (d.getYear()-100);
+		return date;
 	}
 }

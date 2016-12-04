@@ -31,18 +31,18 @@ public class ConectorClienteNoticia implements Runnable {
 	                    clientSocket.getInputStream()));
 	            String clientSelection;
 	            while ((clientSelection = in.readLine()) != null) {
-	            	if(clientSelection.equals("Recive")){
+	            	/*if(clientSelection.equals("Recive")){//Envia para que lo reciba
 	            		String outGoingFileName;
                         while ((outGoingFileName = in.readLine()) != null) {
                             sendFile(outGoingFileName);
                         }
 	            	}else
 	            		System.out.println("Incorrect command received.");
-	                /*switch (clientSelection) {
-	                    case "1":
+	                */switch (clientSelection) {
+	                    case "Send":
 	                        receiveFile();
 	                        break;
-	                    case "2":
+	                    case "Recive":
 	                        String outGoingFileName;
 	                        while ((outGoingFileName = in.readLine()) != null) {
 	                            sendFile(outGoingFileName);
@@ -52,7 +52,7 @@ public class ConectorClienteNoticia implements Runnable {
 	                    default:
 	                        System.out.println("Incorrect command received.");
 	                        break;
-	                }*/
+	                }
 	                in.close();
 	                break;
 	            }

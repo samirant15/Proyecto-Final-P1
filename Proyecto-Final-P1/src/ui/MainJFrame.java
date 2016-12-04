@@ -7,8 +7,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import clases.Controlador;
 import enums.Roles;
 import ligaBasketball.Liga;
+import onlineMedia.ServidorNoticia;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -54,17 +56,6 @@ public class MainJFrame extends JFrame {
 		panel.add(txtpnEsaVentanaEs);
 		txtpnEsaVentanaEs.setText("Esa ventana es para poder estar organizados, cuando creen una ventana para probar su parte del programa, pongan un boton aqui que abra su ventana. Asi trabajamos en el mismo proyecto y cada quien con sus ventanas");
 		
-		JButton btnNewButton = new JButton("Noticias (cero poner mano)");
-		btnNewButton.setBounds(245, 128, 189, 25);
-		panel.add(btnNewButton);
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				//Crea un JFrame de las noticias
-				NoticiasJFrame frame = new NoticiasJFrame();
-				frame.setVisible(true);
-			}
-		});
-		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 712, 26);
 		contentPane.add(menuBar);
@@ -104,6 +95,14 @@ public class MainJFrame extends JFrame {
 		menuBar.add(menu_1);
 		
 		JMenuItem mntmNoticias = new JMenuItem("Noticias    ");
+		mntmNoticias.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//Crea un JFrame de las noticias
+				NoticiasJFrame frame = new NoticiasJFrame();
+				frame.setVisible(true);
+				Controlador.getInstance().leerNoticias();
+			}
+		});
 		menu_1.add(mntmNoticias);
 		
 		JMenu menu_2 = new JMenu("Herramientas    ");
@@ -121,6 +120,15 @@ public class MainJFrame extends JFrame {
 			}
 		});
 		menu_3.add(mntmRegistrarUsuarioAdministrador);
+		
+		JMenuItem mntmIniciarServidorDe = new JMenuItem("Iniciar Servidor de Noticias");
+		mntmIniciarServidorDe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Thread server = new Thread(new ServidorNoticia());
+				server.start();
+			}
+		});
+		menu_3.add(mntmIniciarServidorDe);
 		
 		
 		JPanel panel_1 = new JPanel();

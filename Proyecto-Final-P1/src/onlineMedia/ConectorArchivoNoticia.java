@@ -21,21 +21,26 @@ import javax.swing.JOptionPane;
 
 public class ConectorArchivoNoticia {
 	private static Socket sock;
-    private static String fileName;
+	private static String fileName;
     private static BufferedReader stdin;
     private static PrintStream os;
-
+    
+    public static Socket getSock() {
+		return sock;
+	}
+    
     public void Crear() throws IOException {
         try {
-        	System.out.println("Client started.");
+        	System.out.println("Cliente de noticias iniciado!.");
             sock = new Socket("localhost", 5678);
             stdin = new BufferedReader(new InputStreamReader(System.in));
         } catch (Exception e) {
-            System.err.println("Cannot connect to the server, try again later.");
-            System.exit(1);
+        	JOptionPane.showMessageDialog(null, "Usted no esta conectado al servidor de noticias"
+					+ "\nVuelva a Intentelo mas tarde", "ERROR", JOptionPane.ERROR_MESSAGE);
+            //System.exit(1);
         }
 
-        os = new PrintStream(sock.getOutputStream());
+        /*os = new PrintStream(sock.getOutputStream());
 
         try {
                 os.println("Recive");
@@ -45,19 +50,17 @@ public class ConectorArchivoNoticia {
                 receiveFile(fileName);
         } catch (Exception e) {
             System.err.println("not valid input");
-        }
+        }*/
 
 
-        sock.close();
     }
 
 
 
-    public static void sendFile() {
+    public static void sendFile(String fileName) {
         try {
-            System.err.print("Enter file name: ");
-            fileName = stdin.readLine();
-
+        	os = new PrintStream(sock.getOutputStream());
+            os.println("Send");
             File myFile = new File(fileName);
             byte[] mybytearray = new byte[(int) myFile.length()];
 
@@ -84,13 +87,16 @@ public class ConectorArchivoNoticia {
 
     public static void receiveFile(String fileName) {
         try {
+        	os = new PrintStream(sock.getOutputStream());
+            os.println("Recive");
+            os.println(fileName);
             int bytesRead;
             InputStream in = sock.getInputStream();
 
             DataInputStream clientData = new DataInputStream(in);
 
             fileName = clientData.readUTF();
-            OutputStream output = new FileOutputStream(("received_from_server_" + fileName));
+            OutputStream output = new FileOutputStream((fileName));
             long size = clientData.readLong();
             byte[] buffer = new byte[1024];
             while (size > 0 && (bytesRead = clientData.read(buffer, 0, (int) Math.min(buffer.length, size))) != -1) {
@@ -101,7 +107,8 @@ public class ConectorArchivoNoticia {
             output.close();
             in.close();
 
-            System.out.println("File "+fileName+" received from Server.");
+            System.out.println("Las noticias han sido actualizadas desde el servidor");
+            JOptionPane.showMessageDialog(null, "Las noticias han sido actualizadas desde el servidor", "Actualizar noticias", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ex) {
             Logger.getLogger(ConectorClienteNoticia.class.getName()).log(Level.SEVERE, null, ex);
         }
