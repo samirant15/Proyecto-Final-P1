@@ -22,6 +22,7 @@ import java.awt.Component;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EtchedBorder;
 
+import enums.Posicion;
 import ligaBasketball.EquipoFantasy;
 import ligaBasketball.Jugador;
 import ligaBasketball.Liga;
@@ -55,7 +56,15 @@ public class FantasyLeague extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
+	
+	
 	public FantasyLeague() {
+		
+		
+		Liga.getInstance().InsertJugador("Pedro", 66, null, 6, 5, 6);
+		Liga.getInstance().InsertJugador("Juan", 7, null, 3, 6, 6);
+		
+		
 		setBounds(100, 100, 446, 283);
 		getContentPane().setLayout(null);
 		
@@ -179,7 +188,6 @@ public class FantasyLeague extends JDialog {
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Partidos", null, panel_1, null);
 		panel_1.setLayout(null);
-		
 		
 	}
 }
