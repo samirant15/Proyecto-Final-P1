@@ -17,6 +17,7 @@ public class Jugador implements Serializable{
 	
 	
 	
+	
 	public Jugador(String nombre, int numero, Posicion posicion, int anotaciones, int asistencias, int rebotes) {
 		super();
 		this.nombre = nombre;
