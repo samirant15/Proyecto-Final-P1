@@ -73,12 +73,10 @@ public class ListaJugadores extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				{
-					JButton btnVender = new JButton("Vender");
+					JButton btnVender = new JButton("aceptar");
 					btnVender.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent arg0) {
-							//Ventaplayer dialog = new Ventaplayer();
-							//dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-							//dialog.setVisible(true);
+							
 						}
 					});
 					buttonPane.add(btnVender);
