@@ -1,4 +1,4 @@
-//package Vistas;
+
 package ui;
 
 import java.awt.BorderLayout;
@@ -18,16 +18,13 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-//import Clases.Equipo;
-//import Clases.Jugador;
-//import Clases.Liga;
 
 import ligaBasketball.Equipo;
 import ligaBasketball.Jugador;
 import ligaBasketball.Liga;
 
 import javax.swing.DefaultComboBoxModel;
-//import Clases.Posicion;
+
 import enums.Posicion;
 
 
