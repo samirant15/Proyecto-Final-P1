@@ -121,7 +121,7 @@ public class FantasyLeague extends JDialog {
 		JButton btnCrear = new JButton("Crear");
 		btnCrear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Liga.getInstance().InsertEquipoFantasy(nameEquip.getText(), 0, 0, null);
+				Liga.getInstance().InsertEquipoFantasy(nameEquip.getText(), 0, 0, new ArrayList<Jugador>());
 				EquipoBox.removeAllItems();
 				for(int i=0; i<equipoFancy.size(); i++){
 					EquipoBox.addItem(equipoFancy.get(i).getNombre());
@@ -167,10 +167,13 @@ public class FantasyLeague extends JDialog {
 				
 				int team_index = EquipoBox.getSelectedIndex();
 				
-				EquipoFantasy team=Liga.getInstance().getEquiposfantasy().get(team_index);
+				EquipoFantasy team = Liga.getInstance().getEquiposfantasy().get(team_index);
 				Jugador player = Liga.getInstance().getJugadores().get(Integer.parseInt(idT.getText()));
 				
+				System.out.println(team.getNombre() + " "+ player+ " "+ team_index );
+				
 				Liga.getInstance().GenerateEquipoFantasy(team.getNombre(), player);
+				
 				
 				
 			}
@@ -192,14 +195,14 @@ public class FantasyLeague extends JDialog {
 		
 		JButton btnNewButton_1 = new JButton("New button");
 		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent arg0) {
+				
 				ListaEquiposFantasy dialog = new ListaEquiposFantasy();
 				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 				dialog.setVisible(true);
-				
 			}
 		});
-		btnNewButton_1.setBounds(177, 101, 89, 23);
+		btnNewButton_1.setBounds(161, 101, 89, 23);
 		panel.add(btnNewButton_1);
 		
 		JPanel panel_1 = new JPanel();
