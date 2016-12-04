@@ -60,6 +60,7 @@ public class Liga implements Serializable{
 		partidasfantasy.add(partyfancy);
 	}
 	
+	
 	public void GenerateEquipoFantasy(String name, Jugador id){
 		
 		for (int i=0; i<equiposfantasy.size(); i++){
