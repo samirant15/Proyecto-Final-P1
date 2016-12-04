@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import onlineMedia.Noticia;
-import ui.MainJFrame;
-import ui.NoticiasJFrame;
 
 //Clase controladora del programa
 
@@ -80,6 +78,10 @@ public class Controlador {
 		System.out.print("----Fin de Noticias----\n");
 	}
 	
+	public static ArrayList<Noticia> getNoticias() {
+		return noticias;
+	}
+
 	public String ObtenerFecha(){
 		String date = "";
 		Date d = new Date();
