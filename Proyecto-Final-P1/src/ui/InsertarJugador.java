@@ -114,10 +114,10 @@ public class InsertarJugador extends JDialog {
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Jugador jugador = new Jugador(NombreTF.getText(), Integer.parseInt(NumeroTF.getText()),(Posicion)comboBox.getSelectedItem(), null);
-				Liga.getInstancia().getEquipos().get(ComboEquipos.getSelectedIndex()).getJugadores().add(jugador);
+				//Jugador jugador = new Jugador(NombreTF.getText(), Integer.parseInt(NumeroTF.getText()),(Posicion)comboBox.getSelectedItem(), null);
+				//Liga.getInstancia().getEquipos().get(ComboEquipos.getSelectedIndex()).getJugadores().add(jugador);
 				//String anterior = textArea.getText();
-				textArea.setText( " Numero: " + jugador.getNumero() +  "\n"+ " Nombre: " + jugador.getNombre() + "\n" + " Posicion: " + jugador.getPosicion());
+				//textArea.setText( " Numero: " + jugador.getNumero() +  "\n"+ " Nombre: " + jugador.getNombre() + "\n" + " Posicion: " + jugador.getPosicion());
 				resetearCampos();
 				
 			}
@@ -139,8 +139,8 @@ public class InsertarJugador extends JDialog {
 		btnEquipo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				InsertarEquipo equipo = new InsertarEquipo();
-				equipo.setVisible(true);	
+				//InsertarEquipo equipo = new InsertarEquipo();
+				//equipo.setVisible(true);	
 				setVisible(false);
 				
 			}
@@ -168,8 +168,9 @@ public class InsertarJugador extends JDialog {
 	}
 	
 	private void llenarEquipos(){
-		for (Equipo e : Liga.getInstancia().getEquipos()) {
-			ComboEquipos.addItem(e.getNombre().toString());
+		//for (Equipo e : Liga.getInstancia().getEquipos()) 
+		{
+			//ComboEquipos.addItem(e.getNombre().toString());
 		}
 	}
 	
