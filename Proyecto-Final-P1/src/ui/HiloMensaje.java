@@ -6,17 +6,21 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import onlineMedia.Hilo;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextPane;
 
 public class HiloMensaje extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtMensaje;
 	private JTextField txtIP;
 	private JButton btnConectar;
+	JTextPane txtMensaje = new JTextPane();
 
 	/**
 	 * Launch the application.
@@ -33,17 +37,18 @@ public class HiloMensaje extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		txtMensaje = new JTextField();
-		txtMensaje.setBounds(10, 48, 424, 197);
-		contentPane.add(txtMensaje);
-		txtMensaje.setColumns(10);
-		
 		JButton btnMensaje = new JButton("Mensaje");
 		btnMensaje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				pruebaChatInicio.cliente.enviarMSG(txtMensaje.getText());
+				Hilo hilo = new Hilo();
+				hilo.setMensajes(txtMensaje.getText());
+				pruebaChatInicio.cliente.enviarMSG(hilo);
+				dispose();
 			}
 		});
+		
+		txtMensaje.setBounds(10, 42, 424, 193);
+		contentPane.add(txtMensaje);
 		btnMensaje.setBounds(345, 248, 89, 23);
 		contentPane.add(btnMensaje);
 		
@@ -55,11 +60,10 @@ public class HiloMensaje extends JFrame {
 		btnConectar = new JButton("Conectar");
 		btnConectar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				pruebaChatInicio.cliente.enviarMSG(txtMensaje.getText());
+				pruebaChatInicio.iniciarCliente(txtIP.getText());
 			}
 		});
 		btnConectar.setBounds(345, 10, 89, 23);
 		contentPane.add(btnConectar);
 	}
-
 }

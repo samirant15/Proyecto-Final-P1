@@ -43,7 +43,7 @@ public class ChatFrame extends JFrame {
 		btnEnviarButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//TODO Arreglar lo del IP, ese no es, le programa debe capturarlo solo
-				pruebaChatInicio.cliente.enviarMSG(txtEnviarMensaje.getText());
+				//pruebaChatInicio.cliente.enviarMSG(txtEnviarMensaje.getText());
 			}
 		});
 		
