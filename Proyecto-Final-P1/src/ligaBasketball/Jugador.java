@@ -11,26 +11,36 @@ public class Jugador implements Serializable{
 	private String nombre;
 	private int numero;
 	private Posicion posicion;
-	private int rebotes;
-	private int asistencias;
-	private int puntosAnotados;
+	private ArrayList<Estadistica> estadisticas;
 	
+	public Jugador() {
+		super();
+	}
+
+	public Jugador(String nombre, int numero, Posicion posicion, ArrayList<Estadistica> estadisticas) {
+		super();
+		this.nombre = nombre;
+		this.numero = numero;
+		this.posicion = posicion;
+		this.estadisticas = estadisticas;
+		this.estadisticas = new ArrayList<>();
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
-	
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
+
 	public int getNumero() {
 		return numero;
 	}
-	
+
 	public void setNumero(int numero) {
 		this.numero = numero;
 	}
-	
 
 	public Posicion getPosicion() {
 		return posicion;
@@ -39,43 +49,12 @@ public class Jugador implements Serializable{
 	public void setPosicion(Posicion posicion) {
 		this.posicion = posicion;
 	}
-	
-	
-	public int getRebotes() {
-		return rebotes;
-	}
-	
-	public void setRebotes(int rebotes) {
-		this.rebotes = rebotes;
-	}
-	
-	public int getAsistencias() {
-		return asistencias;
-	}
-	public void setAsistencias(int asistencias) {
-		this.asistencias = asistencias;
-	}
-	
-	public int getPuntosAnotados() {
-		return puntosAnotados;
-	}
-	
-	public void setPuntosAnotados(int puntosAnotados) {
-		this.puntosAnotados = puntosAnotados;
+
+	public ArrayList<Estadistica> getEstadisticas() {
+		return estadisticas;
 	}
 
-
-	public Jugador(String nombre, int numero, Posicion posicion, int rebotes, int asistencias, int puntosAnotados) {
-		super();
-		this.nombre = nombre;
-		this.numero = numero;
-		this.posicion = posicion;
-		this.rebotes = rebotes;
-		this.asistencias = asistencias;
-		this.puntosAnotados = puntosAnotados;
+	public void setEstadisticas(ArrayList<Estadistica> estadisticas) {
+		this.estadisticas = estadisticas;
 	}
-
-	
-	
-	
 }
