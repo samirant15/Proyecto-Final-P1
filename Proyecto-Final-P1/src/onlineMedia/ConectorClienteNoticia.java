@@ -120,5 +120,3 @@ public class ConectorClienteNoticia implements Runnable {
 	    }
 
 }
-
-
