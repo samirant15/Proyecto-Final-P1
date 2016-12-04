@@ -140,6 +140,7 @@ public class CreacionPartido extends JDialog {
 			//	Partido partido = new Partido(Integer.parseInt(textField_puntoC.getText()), Integer.parseInt(textField_puntoV.getText()), new Date(), Liga.getInstance().getEquipos().get(ComboEquipoC.getSelectedIndex()), Liga.getInstance().getEquipos().get(ComboEquipoV.getSelectedIndex()));
 			//	Liga.getInstance().getPartidos().add(partido);
 				JOptionPane.showMessageDialog(null, "Partido agregado!", "Aviso!", JOptionPane.WARNING_MESSAGE);
+				
 			}
 		});
 		btnGuardarPartido.setBounds(266, 587, 153, 25);
