@@ -1,4 +1,4 @@
-package Clases;
+package ligaBasketball;
 
 public class Estadistica {
 
