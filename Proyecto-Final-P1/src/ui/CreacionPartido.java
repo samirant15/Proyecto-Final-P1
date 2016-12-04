@@ -137,8 +137,8 @@ public class CreacionPartido extends JDialog {
 		JButton btnGuardarPartido = new JButton("Guardar Partido");
 		btnGuardarPartido.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Partido partido = new Partido(Integer.parseInt(textField_puntoC.getText()), Integer.parseInt(textField_puntoV.getText()), new Date(), Liga.getInstancia().getEquipos().get(ComboEquipoC.getSelectedIndex()), Liga.getInstancia().getEquipos().get(ComboEquipoV.getSelectedIndex()));
-				Liga.getInstancia().getPartidos().add(partido);
+				//Partido partido = new Partido(Integer.parseInt(textField_puntoC.getText()), Integer.parseInt(textField_puntoV.getText()), new Date(), Liga.getInstancia().getEquipos().get(ComboEquipoC.getSelectedIndex()), Liga.getInstancia().getEquipos().get(ComboEquipoV.getSelectedIndex()));
+				//Liga.getInstance().getPartidos().add(partido);
 				JOptionPane.showMessageDialog(null, "Partido agregado!", "Aviso!", JOptionPane.WARNING_MESSAGE);
 			}
 		});
@@ -148,8 +148,8 @@ public class CreacionPartido extends JDialog {
 		JButton btnControlDeEquipos = new JButton("Control de equipos");
 		btnControlDeEquipos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				InsertarEquipo ie = new InsertarEquipo();
-				ie.setVisible(true);
+				//InsertarEquipo ie = new InsertarEquipo();
+				//ie.setVisible(true);
 			}
 		});
 		btnControlDeEquipos.setBounds(292, 512, 139, 25);
