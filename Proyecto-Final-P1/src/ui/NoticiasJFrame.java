@@ -60,10 +60,10 @@ public class NoticiasJFrame extends JFrame {
 	int pos = 0;
 	JInternalFrame imagenPlayList = new JInternalFrame("New JInternalFrame");
 	MediaPlayer imagenPlayer;
-	private JTextField Parrafo1;
-	private JTextField Parrafo2;
-	private JTextField Parrafo3;
-	private JTextField ParrafoPlay;
+	JTextArea Parrafo1 = new JTextArea();
+	JTextArea Parrafo2 = new JTextArea();
+	JTextArea Parrafo3 = new JTextArea();
+	JTextArea ParrafoPlay = new JTextArea();
 	ArrayList<Integer> al = new ArrayList<Integer>();
 
 	/**
@@ -200,29 +200,8 @@ public class NoticiasJFrame extends JFrame {
 		Titulo3.setForeground(Color.WHITE);
 		Titulo3.setBounds(60, 245, 115, 14);
 		ListaNoticias.add(Titulo3);
-
-		Parrafo1 = new JTextField();
-		Parrafo1.setBounds(64, 38, 293, 76);
-		ListaNoticias.add(Parrafo1);
-		Parrafo1.setEditable(false);
-		Parrafo1.setText(Controlador.getNoticias().get(pagina).getTexto());
-		Parrafo1.setColumns(10);
 		Controlador.getInstance();
-
-		Parrafo2 = new JTextField();
-		Parrafo2.setBounds(64, 157, 293, 76);
-		ListaNoticias.add(Parrafo2);
-		Parrafo2.setText(Controlador.getNoticias().get(pagina + 1).getTexto());
-		Parrafo2.setEditable(false);
-		Parrafo2.setColumns(10);
 		Controlador.getInstance();
-
-		Parrafo3 = new JTextField();
-		Parrafo3.setBounds(64, 270, 293, 76);
-		ListaNoticias.add(Parrafo3);
-		Parrafo3.setEditable(false);
-		Parrafo3.setText(Controlador.getNoticias().get(pagina + 2).getTexto());
-		Parrafo3.setColumns(10);
 
 		Controlador.getInstance();
 
@@ -452,6 +431,30 @@ public class NoticiasJFrame extends JFrame {
 		});
 		btnAadirALa_1.setBounds(430, 284, 116, 50);
 		ListaNoticias.add(btnAadirALa_1);
+		
+		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2.setBounds(60, 51, 297, 70);
+		ListaNoticias.add(scrollPane_2);
+		scrollPane_2.setViewportView(Parrafo1);
+		Parrafo1.setLineWrap(true);
+		Parrafo1.setEditable(false);
+		Parrafo1.setText(Controlador.getNoticias().get(pagina).getTexto());
+		
+		
+		Parrafo2.setText((String) null);
+		Parrafo2.setLineWrap(true);
+		Parrafo2.setEditable(false);
+		Parrafo2.setBounds(60, 157, 295, 68);
+		ListaNoticias.add(Parrafo2);
+		Parrafo2.setText(Controlador.getNoticias().get(pagina + 1).getTexto());
+		
+		
+		Parrafo3.setText((String) null);
+		Parrafo3.setLineWrap(true);
+		Parrafo3.setEditable(false);
+		Parrafo3.setBounds(58, 270, 295, 68);
+		ListaNoticias.add(Parrafo3);
+		Parrafo3.setText(Controlador.getNoticias().get(pagina + 2).getTexto());
 		JPanel PlaylistRun = new JPanel();
 		PlaylistRun.setForeground(Color.GRAY);
 		noticiaPrincipalPanel.add(PlaylistRun, "PlaylistRun");
@@ -462,6 +465,7 @@ public class NoticiasJFrame extends JFrame {
 				JButton EmpezarBoton = new JButton("Empezar a ver la lista");
 				EmpezarBoton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						ParrafoPlay.setText(Controlador.getNoticias().get(al.get(pos)).getTexto());
 						if(new File(Controlador.getNoticias().get(al.get(pos)).getPath().replaceAll("/", "\\\\")).exists())
 							imagenPlayer = new MediaPlayer(imagenPlayList, vlcPath, Controlador.getNoticias().get(al.get(pos)).getPath().replaceAll("/", "\\\\"));
 						else
@@ -566,16 +570,7 @@ public class NoticiasJFrame extends JFrame {
 				"C:\\Users\\Luilli\\git\\Proyecto-Final-P1\\Proyecto-Final-P1\\Resources\\rsz_1rsz_next.png"));
 		atras.setBounds(66, 11, 40, 40);
 		PlaylistRun.add(atras);
-
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(12, 90, 344, 223);
-		PlaylistRun.add(scrollPane_1);
-
-		ParrafoPlay = new JTextField();
 		Controlador.getInstance();
-		ParrafoPlay.setText(Controlador.getNoticias().get(pagina).getTexto());
-		scrollPane_1.setViewportView(ParrafoPlay);
-		ParrafoPlay.setColumns(10);
 				
 				JButton btnDescargarMedia = new JButton("Descargar Media");
 				btnDescargarMedia.addActionListener(new ActionListener() {
@@ -601,6 +596,14 @@ public class NoticiasJFrame extends JFrame {
 				});
 				btnDescargarMedia.setBounds(432, 320, 113, 23);
 				PlaylistRun.add(btnDescargarMedia);
+						
+						JScrollPane scrollPane_1 = new JScrollPane();
+						scrollPane_1.setBounds(10, 90, 363, 223);
+						PlaylistRun.add(scrollPane_1);
+						scrollPane_1.setViewportView(ParrafoPlay);
+						
+						
+						ParrafoPlay.setLineWrap(true);
 		imagenPlayList.setVisible(true);
 	}
 }
