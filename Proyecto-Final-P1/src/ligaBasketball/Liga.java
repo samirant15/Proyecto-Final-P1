@@ -101,7 +101,6 @@ public class Liga implements Serializable{
 		
 	}
 	
-	
 	public static Liga getLiga() {
 		return Liga;
 	}
