@@ -101,7 +101,7 @@ public class ListaEquiposFantasy extends JDialog {
 			fila[0] = equipofancy.getNombre(); 
 			fila[1] = equipofancy.getPartidosGanados(); 
 			fila[2] = equipofancy.getPartidasPerdidas(); 
-			fila[3] = equipofancy.getJugadores(); 
+			fila[3] = equipofancy.getJugadoresfantasy(); 
 
 			
 			tableModel.addRow(fila);

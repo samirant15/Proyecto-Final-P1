@@ -19,7 +19,7 @@ import javax.swing.table.TableColumnModel;
 
 import ligaBasketball.Liga;
 import ligaBasketball.Jugador;
-
+import ligaBasketball.JugadorFantasy;
 
 import javax.swing.UIManager;
 import java.awt.Color;
@@ -65,7 +65,7 @@ public class ListaJugadores extends JDialog {
 					table = new JTable();
 					//TODO mouse listener 
 					tableModel = new DefaultTableModel();
-					String[] columnNames = {"Nombre","Número", "Posición","Anotaciones","Asistencias", "Rebotes"};
+					String[] columnNames = {"ID","Nombre","Número", "Posición","Anotaciones","Asistencias", "Rebotes"};
 					tableModel.setColumnIdentifiers(columnNames);
 					loadplayers();
 					scrollPane.setViewportView(table);
@@ -96,13 +96,15 @@ public class ListaJugadores extends JDialog {
 
 		tableModel.setRowCount(0);
 		fila = new Object[tableModel.getColumnCount()];
-		for (Jugador player : liga.getJugadores()){
-			fila[0] = player.getNombre(); 
-			fila[1] = player.getNumero(); 
-			fila[2] = player.getPosicion(); 
-			fila[3] = player.getEstadisticas(); 
-			//fila[4] = player.getAsistencias() ; 
-			//fila[5] = player.getRebotes();
+		int i=0;
+		for (JugadorFantasy player : liga.getJugadoresfantasy()){
+			fila[0]= i++;
+			fila[1] = player.getNombre(); 
+			fila[2] = player.getNumero(); 
+			fila[3] = player.getPosicion(); 
+			fila[4] = player.getAnotaciones(); 
+			fila[5] = player.getAsistencias() ; 
+			fila[6] = player.getRebotes();
 		
 			
 			tableModel.addRow(fila);
@@ -116,6 +118,7 @@ public class ListaJugadores extends JDialog {
 		columnModel.getColumn(2).setPreferredWidth(110);
 		columnModel.getColumn(3).setPreferredWidth(80);
 		columnModel.getColumn(4).setPreferredWidth(80);
+		columnModel.getColumn(5).setPreferredWidth(100);
 		columnModel.getColumn(5).setPreferredWidth(100);
 		
 	}

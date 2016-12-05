@@ -30,6 +30,7 @@ public class Liga implements Serializable{
 	private ArrayList<PartidaFantasy> partidasfantasy = new ArrayList<PartidaFantasy>();
 	private ArrayList<Equipo> equipos = new ArrayList<Equipo>();
 	private ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+	private ArrayList<JugadorFantasy> jugadoresfantasy = new ArrayList<JugadorFantasy>();
 	private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 	private ArrayList<EquipoFantasy> equiposfantasy = new ArrayList<EquipoFantasy>();
 	private int casa;
@@ -40,12 +41,17 @@ public class Liga implements Serializable{
 		jugadores.add(player);
 	}
 	
+	public void InsertJugadorFantasy(String nombre, int numero, Posicion posicion, int anotaciones, int asistencias, int rebotes){
+		JugadorFantasy playerfantasy = new JugadorFantasy(nombre,  numero, posicion, anotaciones, asistencias, rebotes);
+		jugadoresfantasy.add(playerfantasy);
+	}
+	
 	public void InsertEquipo(String nombre, int partidosGanados, int partidasPerdidas, ArrayList<Jugador> jugador){
 		Equipo team = new Equipo(nombre, partidosGanados, partidasPerdidas, jugador);
 		equipos.add(team);
 	}
 	
-	public void InsertEquipoFantasy(String nombre, int partidosGanados, int partidasPerdidas, ArrayList<Jugador> jugador){
+	public void InsertEquipoFantasy(String nombre, int partidosGanados, int partidasPerdidas, ArrayList<JugadorFantasy> jugador){
 		EquipoFantasy teamfancy = new EquipoFantasy(nombre, partidosGanados, partidasPerdidas, jugador);
 		equiposfantasy.add(teamfancy);
 	}
@@ -62,12 +68,12 @@ public class Liga implements Serializable{
 	
 	
 	
-	public void GenerateEquipoFantasy(String name, Jugador player){
+	public void GenerateEquipoFantasy(String name, JugadorFantasy player){
 		
 		for (int i=0; i<equiposfantasy.size(); i++){
 			if(equiposfantasy.get(i).getNombre().equals(name)){
 				
-				equiposfantasy.get(i).getJugadores().add(player);
+				equiposfantasy.get(i).getJugadoresfantasy().add(player);
 			}
 		}
 	
@@ -153,6 +159,14 @@ public class Liga implements Serializable{
 	}
 	public void setPartidasfantasy(ArrayList<PartidaFantasy> partidasfantasy) {
 		this.partidasfantasy = partidasfantasy;
+	}
+	
+	
+	public ArrayList<JugadorFantasy> getJugadoresfantasy() {
+		return jugadoresfantasy;
+	}
+	public void setJugadoresfantasy(ArrayList<JugadorFantasy> jugadoresfantasy) {
+		this.jugadoresfantasy = jugadoresfantasy;
 	}
 	public void ChoosePlayer(Jugador jugador){
 		

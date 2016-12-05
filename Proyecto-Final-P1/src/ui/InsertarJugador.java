@@ -122,7 +122,7 @@ public class InsertarJugador extends JDialog {
 		JButton btnAgregar = new JButton("Agregar");
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				Liga.getInstance().InsertJugadorFantasy(NombreTF.getText(), Integer.parseInt(NumeroTF.getText()), (Posicion)comboBox.getSelectedItem(), Integer.parseInt(anotaciones.getText()), Integer.parseInt(asistencia.getText()), Integer.parseInt(rebotes.getText()));
 				Jugador jugador = new Jugador(NombreTF.getText(), Integer.parseInt(NumeroTF.getText()),(Posicion)comboBox.getSelectedItem(), estadisticas);
 				Liga.getInstance().getEquipos().get(ComboEquipos.getSelectedIndex()).getJugadores().add(jugador);
 				//Liga.getInstance().InsertJugador(NombreTF.getText(), Integer.parseInt(NumeroTF.getText()),(Posicion)comboBox.getSelectedItem(), estadisticas);
@@ -240,6 +240,17 @@ public class InsertarJugador extends JDialog {
 		});
 		button_3.setBounds(338, 25, 97, 25);
 		contentPanel.add(button_3);
+		
+		JButton btnAbrir = new JButton("abrir");
+		btnAbrir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				FantasyLeague dialog = new FantasyLeague();
+				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				dialog.setVisible(true);
+			}
+		});
+		btnAbrir.setBounds(56, 401, 89, 23);
+		contentPanel.add(btnAbrir);
 		
 		llenarEquipos();
 	}
