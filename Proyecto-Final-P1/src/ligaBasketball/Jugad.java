@@ -20,6 +20,7 @@ public class Jugad {
 		vjugad.addElement(jugador);
 		
 		
+		
 	}
 	
 	public void guardarArchivo(JugadorFantasy jugad){
