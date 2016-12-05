@@ -41,15 +41,15 @@ public class Foro extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent arg0) {
-				pruebaChatInicio.iniciarCliente("localhost");
+				MainJFrame.iniciarCliente("localhost");
 				try {
-					pruebaChatInicio.server.enviarHilos();
+					MainJFrame.server.enviarHilos();
 				} catch (ClassNotFoundException | IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				if(pruebaChatInicio.cliente.leerMSG() != null){
-					hilos = pruebaChatInicio.cliente.leerMSG();
+					hilos = MainJFrame.cliente.leerMSG();
 					llenar();
 				}
 			}

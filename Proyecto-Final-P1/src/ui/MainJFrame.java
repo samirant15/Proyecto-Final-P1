@@ -7,6 +7,8 @@ import javax.swing.border.EmptyBorder;
 import clases.Controlador;
 import enums.Roles;
 import ligaBasketball.Liga;
+import onlineMedia.Conector;
+import onlineMedia.ConectorCliente;
 import onlineMedia.ServidorNoticia;
 
 import javax.swing.JLabel;
@@ -22,7 +24,6 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 
 public class MainJFrame extends JFrame {
 
@@ -36,6 +37,8 @@ public class MainJFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	public static Conector server;
+	public static ConectorCliente cliente;
 	public MainJFrame() {
 		Liga liga = Liga.getInstance();
 		setTitle("Basketball");
@@ -64,8 +67,7 @@ public class MainJFrame extends JFrame {
 					e.printStackTrace();
 				}
 				frame.setVisible(true);
-				Controlador.getInstance();
-				Controlador.leerNoticias();
+				Controlador.getInstance().getNoticias();
 			}
 		});
 		btnNewButton.setBackground(Color.DARK_GRAY);
@@ -80,13 +82,6 @@ public class MainJFrame extends JFrame {
 		panel.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("");
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CreacionPartido dialog = new CreacionPartido();
-				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-				dialog.setVisible(true);
-			}
-		});
 		btnNewButton_2.setBackground(Color.DARK_GRAY);
 		btnNewButton_2.setIcon(new ImageIcon("Proyecto-Final-P1\\Resources\\rsz_free-vector-nba-logo_090617_nba_logo.png"));
 		btnNewButton_2.setBounds(10, 11, 135, 135);
@@ -164,6 +159,15 @@ public class MainJFrame extends JFrame {
 		JMenu menu_2 = new JMenu("Herramientas    ");
 		menuBar.add(menu_2);
 		
+		JMenuItem mntmForo = new JMenuItem("Foro");
+		mntmForo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Foro clientChat = new Foro();
+				clientChat.setVisible(true);
+			}
+		});
+		menu_2.add(mntmForo);
+		
 		JMenu menu_3 = new JMenu("Admin Options");
 		menuBar.add(menu_3);
 		
@@ -186,6 +190,15 @@ public class MainJFrame extends JFrame {
 		});
 		menu_3.add(mntmIniciarServidorDe);
 		
+		JMenuItem mntmIniciarServidorForo = new JMenuItem("Iniciar Servidor Foro");
+		mntmIniciarServidorForo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ServerFrame server = new ServerFrame();
+				server.setVisible(true);
+			}
+		});
+		menu_3.add(mntmIniciarServidorForo);
+		
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
@@ -202,5 +215,14 @@ public class MainJFrame extends JFrame {
 	}
 	public void setPosUser(int posUser) {
 		this.posUser = posUser;
+	}
+	public static void iniciarServidor(){
+		server = new Conector("Servidor");
+		server.start();
+		
+	} 
+	public static void iniciarCliente(String IP){
+		cliente = new ConectorCliente(IP);
+		cliente.start();
 	}
 }
