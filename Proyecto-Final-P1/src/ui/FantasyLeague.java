@@ -43,7 +43,6 @@ public class FantasyLeague extends JDialog {
 	private JTextField nameEquip;
 	private JTable table;
 	private JTextField idT;
-	private JTextField textField;
 	private JTextField idC;
 	private JTextField idV;
 
@@ -216,22 +215,11 @@ public class FantasyLeague extends JDialog {
 		btnVerEquipos.setBounds(51, 230, 115, 23);
 		panel.add(btnVerEquipos);
 		
-		JLabel lblVerJugador = new JLabel("Ver jugadores:");
+		JLabel lblVerJugador = new JLabel("Ver jugadores por equipo:");
 		lblVerJugador.setHorizontalAlignment(SwingConstants.CENTER);
 		lblVerJugador.setFont(new Font("Times New Roman", Font.BOLD, 12));
-		lblVerJugador.setBounds(224, 196, 154, 14);
+		lblVerJugador.setBounds(235, 221, 162, 14);
 		panel.add(lblVerJugador);
-		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(275, 221, 39, 17);
-		panel.add(textField);
-		
-		JLabel lblIdEquipo = new JLabel("ID Equipo:");
-		lblIdEquipo.setHorizontalAlignment(SwingConstants.LEFT);
-		lblIdEquipo.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		lblIdEquipo.setBounds(214, 221, 78, 14);
-		panel.add(lblIdEquipo);
 		
 		JButton btnMostrarJugadores = new JButton("Mostrar jugadores");
 		btnMostrarJugadores.addActionListener(new ActionListener() {
