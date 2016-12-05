@@ -22,6 +22,7 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 
 public class MainJFrame extends JFrame {
 
@@ -79,6 +80,13 @@ public class MainJFrame extends JFrame {
 		panel.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CreacionPartido dialog = new CreacionPartido();
+				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				dialog.setVisible(true);
+			}
+		});
 		btnNewButton_2.setBackground(Color.DARK_GRAY);
 		btnNewButton_2.setIcon(new ImageIcon("Proyecto-Final-P1\\Resources\\rsz_free-vector-nba-logo_090617_nba_logo.png"));
 		btnNewButton_2.setBounds(10, 11, 135, 135);

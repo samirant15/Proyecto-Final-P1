@@ -26,6 +26,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
+import java.awt.Font;
 
 public class CreacionPartido extends JDialog {
 
@@ -226,6 +227,18 @@ public class CreacionPartido extends JDialog {
 		});
 		btnNewButton_1.setBounds(0, 63, 97, 25);
 		contentPanel.add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("Liga Fantasy");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FantasyLeague dialog = new FantasyLeague();
+				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				dialog.setVisible(true);
+			}
+		});
+		btnNewButton_2.setFont(new Font("Times New Roman", Font.BOLD, 11));
+		btnNewButton_2.setBounds(0, 88, 109, 23);
+		contentPanel.add(btnNewButton_2);
 	}
 
 	
