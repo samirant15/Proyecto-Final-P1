@@ -32,6 +32,7 @@ public class Foro extends JFrame {
 	 * Create the frame.
 	 */
 	public Foro() {
+		setTitle("Foro");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 360, 451);

@@ -49,7 +49,7 @@ public class RegistrarUsuarioJDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegistrarUsuarioJDialog() {
-		setTitle("Registrar usuario Visitante");
+		setTitle("Registrar usuario");
 		setBounds(100, 100, 576, 392);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -110,7 +110,7 @@ public class RegistrarUsuarioJDialog extends JDialog {
 		txtPasswordConfirmar.setBounds(238, 267, 265, 22);
 		contentPanel.add(txtPasswordConfirmar);
 		
-		JLabel lblRegistrarUsuario = new JLabel("Registrar Usuario Visitante");
+		JLabel lblRegistrarUsuario = new JLabel("Registrar Usuario");
 		lblRegistrarUsuario.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblRegistrarUsuario.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRegistrarUsuario.setBounds(153, 13, 237, 54);

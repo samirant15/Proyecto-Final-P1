@@ -37,7 +37,7 @@ public class MainJFrame extends JFrame {
 	 */
 	public MainJFrame() {
 		Liga liga = Liga.getInstance();
-		setTitle("Soccer Frame");
+		setTitle("Basketball");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 730, 435);
 		contentPane = new JPanel();

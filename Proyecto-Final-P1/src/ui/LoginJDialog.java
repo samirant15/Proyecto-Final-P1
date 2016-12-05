@@ -37,7 +37,7 @@ public class LoginJDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public LoginJDialog() {
-		setTitle("Soccer Chat login");
+		setTitle("Chat login");
 		setBounds(100, 100, 540, 356);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(Color.DARK_GRAY);
