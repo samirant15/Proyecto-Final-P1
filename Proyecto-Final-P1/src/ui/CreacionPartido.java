@@ -1,5 +1,4 @@
-
- package ui;
+package ui;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -10,6 +9,10 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import ui.CreacionPartido;
+import ui.InsertarEquipo;
+import ui.InsertarJugador;
+import ui.Ranking;
 import ligaBasketball.Equipo;
 import ligaBasketball.Jugador;
 import ligaBasketball.Liga;
@@ -21,12 +24,12 @@ import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.util.ArrayList;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
-import java.awt.Font;
 
 public class CreacionPartido extends JDialog {
 
@@ -72,9 +75,11 @@ public class CreacionPartido extends JDialog {
 		ComboEquipoC = new JComboBox();
 		ComboEquipoC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ArrayList<String> jug1 = new ArrayList<String>();
 				for (Jugador j : Liga.getInstance().getEquipos().get(ComboEquipoC.getSelectedIndex()).getJugadores()) {
-					textPane.setText(j.getNombre() + "\n");
+					jug1.add(j.getNombre());
 				}
+				textPane.setText(jug1.toString());
 			}
 		});
 		ComboEquipoC.setBounds(151, 42, 117, 22);
@@ -83,9 +88,12 @@ public class CreacionPartido extends JDialog {
 		ComboEquipoV = new JComboBox();
 		ComboEquipoV.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ArrayList<String> jug = new ArrayList<String>();
 				for (Jugador j : Liga.getInstance().getEquipos().get(ComboEquipoV.getSelectedIndex()).getJugadores()) {
-					textPane_1.setText(j.getNombre() + "\n");
+					jug.add(j.getNombre() );
+					
 				}
+				textPane_1.setText(jug.toString());
 			}
 		});
 		ComboEquipoV.setBounds(415, 42, 103, 22);
@@ -227,18 +235,6 @@ public class CreacionPartido extends JDialog {
 		});
 		btnNewButton_1.setBounds(0, 63, 97, 25);
 		contentPanel.add(btnNewButton_1);
-		
-		JButton btnNewButton_2 = new JButton("Liga Fantasy");
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				FantasyLeague dialog = new FantasyLeague();
-				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-				dialog.setVisible(true);
-			}
-		});
-		btnNewButton_2.setFont(new Font("Times New Roman", Font.BOLD, 11));
-		btnNewButton_2.setBounds(0, 88, 109, 23);
-		contentPanel.add(btnNewButton_2);
 	}
 
 	
