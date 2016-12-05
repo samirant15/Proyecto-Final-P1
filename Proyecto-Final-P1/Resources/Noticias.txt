@@ -1,0 +1,26 @@
+#Start
+user
+5:00 PM, 4/12/16
+Proyecto-Final-P1/Resources/rsz_1adduser.png
+asda
+#End
+#Start
+user
+5:00 PM, 4/12/16
+Proyecto-Final-P1/Resources/avatar.png
+asda
+#End
+#Start
+user
+11:50 PM, 4/12/16
+Proyecto-Final-P1/Resources/aaaa.png
+bacano
+y klk
+#End
+#Start
+user
+11:53 PM, 4/12/16
+Proyecto-Final-P1/Resources/since.png
+noticia bacana
+blah
+#End

@@ -90,7 +90,7 @@ public class ConectorArchivoNoticia {
             DataInputStream clientData = new DataInputStream(in);
 
             fileName = clientData.readUTF();
-            OutputStream output = new FileOutputStream((fileName));
+            OutputStream output = new FileOutputStream(("Proyecto-Final-P1/Resources/"+fileName));
             long size = clientData.readLong();
             byte[] buffer = new byte[1024];
             while (size > 0 && (bytesRead = clientData.read(buffer, 0, (int) Math.min(buffer.length, size))) != -1) {
