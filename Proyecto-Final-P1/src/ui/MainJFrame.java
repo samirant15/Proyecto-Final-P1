@@ -100,7 +100,7 @@ public class MainJFrame extends JFrame {
 				//Crea un JFrame de las noticias
 				NoticiasJFrame frame = new NoticiasJFrame();
 				frame.setVisible(true);
-				Controlador.getInstance().leerNoticias();
+				//Controlador.getInstance().leerNoticias();
 			}
 		});
 		menu_1.add(mntmNoticias);
