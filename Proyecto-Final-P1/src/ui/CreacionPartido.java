@@ -239,7 +239,7 @@ public class CreacionPartido extends JDialog {
 		JButton btnNewButton_2 = new JButton("Fantasy");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ListaJugadores dialog = new ListaJugadores();
+				FantasyLeague dialog = new FantasyLeague();
 				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 				dialog.setVisible(true);
 			}

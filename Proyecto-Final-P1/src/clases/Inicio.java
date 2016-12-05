@@ -17,7 +17,7 @@ public class Inicio {
 	public static void main(String[] args) throws ClassNotFoundException, IOException {
 		// TODO Auto-generated method stub
 		
-
+	     
 	    Liga.getInstance().imprimirUsuarios();
 	    Liga.getInstance().leerBinario();
         LoginJDialog login = new LoginJDialog();
