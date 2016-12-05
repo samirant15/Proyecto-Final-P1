@@ -28,6 +28,9 @@ public class MediaPlayer {
 	
 	public void run(){
 		ourMediaPlayer.getMediaPlayer().playMedia(mediaPath);
+		
 	}
-	
+	public void changeMedia(String media){
+		ourMediaPlayer.getMediaPlayer().playMedia(media);
+	}
 }

@@ -31,7 +31,7 @@ public class Controlador {
 	//leer noticias (luilli y samir)
 	public static void leerNoticias(){
 		try {
-			File file = new File("Noticias.txt");
+			File file = new File("Proyecto-Final-P1/Resources/Noticias.txt");
 			String txtAux="", txt="", titulo = null, user="", date="", path="";
 			// Si no existe se crea
 			if (!file.exists()) {

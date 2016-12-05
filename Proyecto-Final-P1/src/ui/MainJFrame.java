@@ -1,8 +1,5 @@
 package ui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -12,7 +9,6 @@ import enums.Roles;
 import ligaBasketball.Liga;
 import onlineMedia.ServidorNoticia;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
 import java.awt.event.ActionListener;
@@ -22,9 +18,16 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.Font;
+import java.awt.Color;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 public class MainJFrame extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private int posUser; 
 	
@@ -42,21 +45,53 @@ public class MainJFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 25, 712, 363);
+		panel.setBackground(Color.DARK_GRAY);
+		panel.setBounds(0, 25, 726, 382);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
+		JButton btnNewButton = new JButton("");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//Crea un JFrame de las noticias
+				NoticiasJFrame frame = new NoticiasJFrame();
+				frame.setVisible(true);
+				Controlador.getInstance();
+				Controlador.leerNoticias();
+			}
+		});
+		btnNewButton.setBackground(Color.DARK_GRAY);
+		btnNewButton.setIcon(new ImageIcon("Proyecto-Final-P1\\Resources\\rsz_rss-logo-icon-png-4.png"));
+		btnNewButton.setBounds(581, 0, 135, 135);
+		panel.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.setBackground(Color.DARK_GRAY);
+		btnNewButton_1.setIcon(new ImageIcon("Proyecto-Final-P1\\Resources\\rsz_vs_logo.png"));
+		btnNewButton_1.setBounds(10, 187, 135, 135);
+		panel.add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("");
+		btnNewButton_2.setBackground(Color.DARK_GRAY);
+		btnNewButton_2.setIcon(new ImageIcon("Proyecto-Final-P1\\Resources\\rsz_free-vector-nba-logo_090617_nba_logo.png"));
+		btnNewButton_2.setBounds(10, 11, 135, 135);
+		panel.add(btnNewButton_2);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBounds(238, 0, 249, 371);
+		panel.add(panel_2);
+		panel_2.setLayout(null);
+		
 		JLabel lblBienvenido = new JLabel("Bienvenido," + liga.getUsuario(posUser).getUsername());
-		lblBienvenido.setBounds(265, 5, 182, 22);
-		panel.add(lblBienvenido);
+		lblBienvenido.setBounds(33, 5, 182, 22);
+		panel_2.add(lblBienvenido);
+		lblBienvenido.setForeground(Color.BLACK);
+		lblBienvenido.setBackground(Color.WHITE);
 		lblBienvenido.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
-		JTextPane txtpnEsaVentanaEs = new JTextPane();
-		txtpnEsaVentanaEs.setBounds(119, 40, 433, 75);
-		panel.add(txtpnEsaVentanaEs);
-		txtpnEsaVentanaEs.setText("Esa ventana es para poder estar organizados, cuando creen una ventana para probar su parte del programa, pongan un boton aqui que abra su ventana. Asi trabajamos en el mismo proyecto y cada quien con sus ventanas");
-		
 		JMenuBar menuBar = new JMenuBar();
+		menuBar.setForeground(Color.DARK_GRAY);
+		menuBar.setBackground(Color.BLACK);
 		menuBar.setBounds(0, 0, 712, 26);
 		contentPane.add(menuBar);
 		
@@ -100,7 +135,8 @@ public class MainJFrame extends JFrame {
 				//Crea un JFrame de las noticias
 				NoticiasJFrame frame = new NoticiasJFrame();
 				frame.setVisible(true);
-				Controlador.getInstance().leerNoticias();
+				Controlador.getInstance();
+				Controlador.leerNoticias();
 			}
 		});
 		menu_1.add(mntmNoticias);
@@ -129,17 +165,6 @@ public class MainJFrame extends JFrame {
 			}
 		});
 		menu_3.add(mntmIniciarServidorDe);
-		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Administrar Partidos");
-		mntmNewMenuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				CreacionPartido creacionPartido = new CreacionPartido();
-				creacionPartido.setVisible(true);
-				creacionPartido.setLocationRelativeTo(null);
-				
-			}
-		});
-		menu_3.add(mntmNewMenuItem);
 		
 		
 		JPanel panel_1 = new JPanel();
