@@ -241,17 +241,6 @@ public class InsertarJugador extends JDialog {
 		button_3.setBounds(338, 25, 97, 25);
 		contentPanel.add(button_3);
 		
-		JButton btnAbrir = new JButton("abrir");
-		btnAbrir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				FantasyLeague dialog = new FantasyLeague();
-				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-				dialog.setVisible(true);
-			}
-		});
-		btnAbrir.setBounds(56, 401, 89, 23);
-		contentPanel.add(btnAbrir);
-		
 		llenarEquipos();
 	}
 	

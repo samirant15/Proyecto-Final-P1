@@ -46,7 +46,7 @@ public class ListaJugadores extends JDialog {
 	
 	public ListaJugadores() {
 		setTitle("Lista de players"); 
-		setBounds(100, 100, 621, 496);
+		setBounds(100, 100, 621, 451);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new TitledBorder(null, "Lista de jugadores", TitledBorder.CENTER, TitledBorder.BELOW_TOP, null, null));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -59,7 +59,7 @@ public class ListaJugadores extends JDialog {
 			contentPanel.add(panel);
 			{
 				JScrollPane scrollPane = new JScrollPane();
-				scrollPane.setBounds(12, 26, 976, 393);
+				scrollPane.setBounds(12, 26, 604, 393);
 				panel.add(scrollPane);
 				{
 					table = new JTable();
@@ -69,22 +69,6 @@ public class ListaJugadores extends JDialog {
 					tableModel.setColumnIdentifiers(columnNames);
 					loadplayers();
 					scrollPane.setViewportView(table);
-				}
-			}
-		}
-		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
-				{
-					JButton btnVender = new JButton("aceptar");
-					btnVender.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent arg0) {
-						
-						}
-					});
-					buttonPane.add(btnVender);
 				}
 			}
 		}

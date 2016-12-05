@@ -9,9 +9,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.JDialog;
+
 import enums.Posicion;
 import enums.Roles;
 import onlineMedia.Usuario;
+import ui.FantasyLeague;
  
 
 public class Liga implements Serializable{
@@ -59,14 +62,16 @@ public class Liga implements Serializable{
         equipos.get(posEquipo).InsertJugador(jugadores.get(posJugador));
 	}
 	
-	public void InsertParidaFantasy(int ptsEquipoCasa, int ptsEquipoVisitante, EquipoFantasy equipoCasa, EquipoFantasy equipoVisitante,
-			Date fecha){
-		PartidaFantasy partyfancy = new PartidaFantasy(ptsEquipoCasa, ptsEquipoVisitante, equipoCasa, equipoVisitante,
-				 fecha);
+	public void InsertParidaFantasy(int ptsEquipoCasa, int ptsEquipoVisitante, EquipoFantasy equipoCasa, EquipoFantasy equipoVisitante){
+		PartidaFantasy partyfancy = new PartidaFantasy(ptsEquipoCasa, ptsEquipoVisitante, equipoCasa, equipoVisitante);
 		partidasfantasy.add(partyfancy);
 	}
 	
-	
+	/*
+	 * FantasyLeague dialog = new FantasyLeague();
+				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				dialog.setVisible(true);
+	 */
 	
 	public void GenerateEquipoFantasy(String name, JugadorFantasy player){
 		
@@ -80,7 +85,7 @@ public class Liga implements Serializable{
 	}
 	
 	
-	public void GeneratePartidaFantasy(String equipoC, String equipoV, Date fecha){
+	public void GeneratePartidaFantasy(String equipoC, String equipoV){
 		for (int i=0; i<equiposfantasy.size(); i++){
 			if (equiposfantasy.get(i).getNombre().equals(equipoC)){
 				casa = i;
@@ -91,7 +96,7 @@ public class Liga implements Serializable{
 				visita = i;
 				
 			}
-			InsertParidaFantasy(0, 0, equiposfantasy.get(casa), equiposfantasy.get(visita), fecha);
+			InsertParidaFantasy(0, 0, equiposfantasy.get(casa), equiposfantasy.get(visita));
 		}
 		
 	}

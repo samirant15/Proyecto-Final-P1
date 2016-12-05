@@ -47,7 +47,7 @@ public class ListaEquiposFantasy extends JDialog {
 	
 	public ListaEquiposFantasy() {
 		setTitle("Lista de equipos fantasy"); 
-		setBounds(100, 100, 621, 496);
+		setBounds(100, 100, 515, 403);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new TitledBorder(null, "Lista de Equipos Fantasy", TitledBorder.CENTER, TitledBorder.BELOW_TOP, null, null));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -56,36 +56,20 @@ public class ListaEquiposFantasy extends JDialog {
 			JPanel panel = new JPanel();
 			panel.setLayout(null);
 			panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Listado de equipofancys", TitledBorder.CENTER, TitledBorder.BELOW_TOP, null, new Color(0, 0, 0)));
-			panel.setBounds(0, 0, 605, 419);
+			panel.setBounds(0, 0, 506, 370);
 			contentPanel.add(panel);
 			{
 				JScrollPane scrollPane = new JScrollPane();
-				scrollPane.setBounds(12, 26, 976, 393);
+				scrollPane.setBounds(12, 26, 494, 344);
 				panel.add(scrollPane);
 				{
 					table = new JTable();
 					//TODO mouse listener 
 					tableModel = new DefaultTableModel();
-					String[] columnNames = {"Nombre","Partidas Ganadas", "Partidas Perdidas","Jugadores"};
+					String[] columnNames = {"ID","Nombre","Partidas Ganadas", "Partidas Perdidas"};
 					tableModel.setColumnIdentifiers(columnNames);
 					loadequipofancys();
 					scrollPane.setViewportView(table);
-				}
-			}
-		}
-		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
-				{
-					JButton btnVender = new JButton("aceptar");
-					btnVender.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent arg0) {
-						
-						}
-					});
-					buttonPane.add(btnVender);
 				}
 			}
 		}
@@ -97,11 +81,13 @@ public class ListaEquiposFantasy extends JDialog {
 
 		tableModel.setRowCount(0);
 		fila = new Object[tableModel.getColumnCount()];
+		int i=0;
 		for (EquipoFantasy equipofancy : liga.getEquiposfantasy()){
-			fila[0] = equipofancy.getNombre(); 
-			fila[1] = equipofancy.getPartidosGanados(); 
-			fila[2] = equipofancy.getPartidasPerdidas(); 
-			fila[3] = equipofancy.getJugadoresfantasy(); 
+			fila[0] = i++; 
+			fila[1] = equipofancy.getNombre(); 
+			fila[2] = equipofancy.getPartidosGanados(); 
+			fila[3] = equipofancy.getPartidasPerdidas(); 
+
 
 			
 			tableModel.addRow(fila);
@@ -113,9 +99,9 @@ public class ListaEquiposFantasy extends JDialog {
 		columnModel.getColumn(0).setPreferredWidth(110);
 		columnModel.getColumn(1).setPreferredWidth(110);
 		columnModel.getColumn(2).setPreferredWidth(110);
-		columnModel.getColumn(3).setPreferredWidth(80);
-		columnModel.getColumn(4).setPreferredWidth(80);
-		columnModel.getColumn(5).setPreferredWidth(100);
+		columnModel.getColumn(3).setPreferredWidth(110);
+
+
 		
 	}
 

@@ -6,7 +6,7 @@ public class PartidaFantasy {
 	private int ptsEquipoVisitante;
 	private EquipoFantasy equipoCasa;
 	private EquipoFantasy equipoVisitante;
-	Date fecha = new Date();
+
 	
 	
 	
@@ -58,26 +58,17 @@ public class PartidaFantasy {
 
 
 
-	public Date getFecha() {
-		return fecha;
-	}
 
 
 
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
 
-
-
-	public PartidaFantasy(int ptsEquipoCasa, int ptsEquipoVisitante, EquipoFantasy equipoCasa2, EquipoFantasy equipoVisitante2,
-			Date fecha) {
+	public PartidaFantasy(int ptsEquipoCasa, int ptsEquipoVisitante, EquipoFantasy equipoCasa2, EquipoFantasy equipoVisitante2) {
 		super();
 		this.ptsEquipoCasa = ptsEquipoCasa;
 		this.ptsEquipoVisitante = ptsEquipoVisitante;
 		this.equipoCasa = equipoCasa2;
 		this.equipoVisitante = equipoVisitante2;
-		this.fecha = fecha;
+
 	}
 	
 	
