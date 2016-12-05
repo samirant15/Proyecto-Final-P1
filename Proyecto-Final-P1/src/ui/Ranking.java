@@ -9,6 +9,12 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import ui.CreacionPartido;
+import ui.InsertarEquipo;
+import ui.InsertarJugador;
+import ui.Ranking;
+
 import javax.swing.JList;
 
 import ligaBasketball.Equipo;
@@ -54,6 +60,7 @@ public class Ranking extends JDialog {
 			
 			for(Equipo e : Liga.getInstance().getEquipos()){
 				puntos.add(e.getPartidosGanados());
+				System.out.println(e);
 			}
 			
 			Collections.sort(puntos);
