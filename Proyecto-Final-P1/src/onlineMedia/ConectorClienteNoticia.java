@@ -62,19 +62,13 @@ public class ConectorClienteNoticia implements Runnable {
 
 	    public void receiveFile(String fileName) {
 	    	try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	    	try {
 	        	
 	            int bytesRead;
 
 	            DataInputStream clientData = new DataInputStream(clientSocket.getInputStream());
 
 	            //String fileName = clientData.readUTF();
-	            OutputStream output = new FileOutputStream(("Proyecto-Final-P1/Resources/" + fileName));
+	            OutputStream output = new FileOutputStream((fileName));//"Proyecto-Final-P1/Resources/" 
 	            long size = clientData.readLong();
 	            byte[] buffer = new byte[1024];
 	            while (size > 0 && (bytesRead = clientData.read(buffer, 0, (int) Math.min(buffer.length, size))) != -1) {

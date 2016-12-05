@@ -53,17 +53,11 @@ public class NoticiasJFrame extends JFrame {
 	private JInternalFrame medialFrame = new JInternalFrame("Media");
 	private String vlcPath = "Proyecto-Final-P1/Resources/VLC", mediaPath = "";
 	ConectorArchivoNoticia client = new ConectorArchivoNoticia();
-	String ip = "10.126.35.2";
+	String ip = "localhost";
 	int port = 8080;
 	int pagina = 0;
 	int n = 0;
 	int pos = 0;
-	JInternalFrame Imagen1 = new JInternalFrame("New JInternalFrame");
-	MediaPlayer player1;
-	JInternalFrame Imagen2 = new JInternalFrame("New JInternalFrame");
-	MediaPlayer player2;
-	JInternalFrame Imagen3 = new JInternalFrame("New JInternalFrame");
-	MediaPlayer player3;
 	JInternalFrame imagenPlayList = new JInternalFrame("New JInternalFrame");
 	MediaPlayer imagenPlayer;
 	private JTextField Parrafo1;
@@ -145,15 +139,6 @@ public class NoticiasJFrame extends JFrame {
 					ConectorArchivoNoticia.receiveFile("Proyecto-Final-P1/Resources/Noticias.txt");
 					Controlador.getInstance();
 					Controlador.leerNoticias();
-					Controlador.getInstance();
-					for (Noticia n : Controlador.getNoticias()) {
-						File f = new File(n.getPath());
-						if (!f.exists()) {
-							client.Crear(sock);
-							ConectorArchivoNoticia.receiveFile(n.getPath());
-						}
-					}
-					ConectorArchivoNoticia.getSock().close();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -192,67 +177,6 @@ public class NoticiasJFrame extends JFrame {
 		Controlador.getInstance();
 		Controlador.leerNoticias();
 
-		/*JButton Mostrar = new JButton("Mostrar Noticias");
-		Mostrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				player1 = new MediaPlayer(Imagen1, vlcPath,
-						Controlador.getNoticias().get(pagina).getPath().replaceAll("/", "\\\\"));
-				player1.run();
-				player2 = new MediaPlayer(Imagen2, vlcPath,
-						Controlador.getNoticias().get(pagina + 1).getPath().replaceAll("/", "\\\\"));
-				player2.run();
-				player3 = new MediaPlayer(Imagen3, vlcPath,
-						Controlador.getNoticias().get(pagina + 2).getPath().replaceAll("/", "\\\\"));
-				player3.run();
-				Mostrar.setVisible(false);
-			}
-		});
-		Mostrar.setFont(new Font("Tahoma", Font.PLAIN, 50));
-		Mostrar.setBounds(0, 0, 592, 362);
-		ListaNoticias.add(Mostrar);*/
-
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.DARK_GRAY);
-		panel_1.setBounds(367, 13, 165, 103);
-		ListaNoticias.add(panel_1);
-
-		Imagen1.getContentPane().setSize(165, 107);
-		// Controlador.getInstance().leerNoticias();
-		// String mediaPath1 =
-		// Controlador.getInstance().getNoticias().get(0).getPath();
-		// new MediaPlayer(Imagen1, vlcPath, mediaPath1).run();
-		Imagen1.getContentPane().setBackground(Color.DARK_GRAY);
-		Imagen1.setBorder(new EmptyBorder(0, 0, 0, 0));
-		Imagen1.setBounds(0, -31, 165, 134);
-
-		panel_1.setLayout(null);
-		panel_1.add(Imagen1);
-		Imagen1.setVisible(true);
-
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(Color.DARK_GRAY);
-		panel_2.setBounds(367, 129, 165, 103);
-		ListaNoticias.add(panel_2);
-		panel_2.setLayout(null);
-
-		Imagen2.getContentPane().setSize(165, 105);
-		Imagen2.getContentPane().setBackground(Color.DARK_GRAY);
-		Imagen2.setBorder(new EmptyBorder(0, 0, 0, 0));
-		Imagen2.setBounds(0, -29, 165, 132);
-		panel_2.add(Imagen2);
-		Imagen2.setVisible(true);
-
-		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(Color.DARK_GRAY);
-		panel_3.setBounds(367, 245, 165, 103);
-		ListaNoticias.add(panel_3);
-		panel_3.setLayout(null);
-
-		Imagen3.getContentPane().setBackground(Color.DARK_GRAY);
-		Imagen3.setBorder(new EmptyBorder(0, 0, 0, 0));
-		Imagen3.setBounds(0, -29, 165, 132);
-		panel_3.add(Imagen3);
-
 		JLabel Titulo1 = new JLabel("Titulo");
 		Controlador.getInstance();
 		Titulo1.setText(Controlador.getNoticias().get(pagina).getTitulo());
@@ -274,11 +198,11 @@ public class NoticiasJFrame extends JFrame {
 		Titulo3.setText(Controlador.getNoticias().get(pagina + 2).getTitulo());
 		Titulo3.setBackground(Color.DARK_GRAY);
 		Titulo3.setForeground(Color.WHITE);
-		Titulo3.setBounds(238, 251, 115, 14);
+		Titulo3.setBounds(60, 245, 115, 14);
 		ListaNoticias.add(Titulo3);
 
 		Parrafo1 = new JTextField();
-		Parrafo1.setBounds(60, 156, 293, 76);
+		Parrafo1.setBounds(64, 38, 293, 76);
 		ListaNoticias.add(Parrafo1);
 		Parrafo1.setEditable(false);
 		Parrafo1.setText(Controlador.getNoticias().get(pagina).getTexto());
@@ -286,7 +210,7 @@ public class NoticiasJFrame extends JFrame {
 		Controlador.getInstance();
 
 		Parrafo2 = new JTextField();
-		Parrafo2.setBounds(60, 272, 293, 76);
+		Parrafo2.setBounds(64, 157, 293, 76);
 		ListaNoticias.add(Parrafo2);
 		Parrafo2.setText(Controlador.getNoticias().get(pagina + 1).getTexto());
 		Parrafo2.setEditable(false);
@@ -294,7 +218,7 @@ public class NoticiasJFrame extends JFrame {
 		Controlador.getInstance();
 
 		Parrafo3 = new JTextField();
-		Parrafo3.setBounds(60, 40, 293, 76);
+		Parrafo3.setBounds(64, 270, 293, 76);
 		ListaNoticias.add(Parrafo3);
 		Parrafo3.setEditable(false);
 		Parrafo3.setText(Controlador.getNoticias().get(pagina + 2).getTexto());
@@ -320,7 +244,7 @@ public class NoticiasJFrame extends JFrame {
 		Fecha3.setForeground(Color.WHITE);
 		Controlador.getInstance();
 		Fecha3.setText(Controlador.getNoticias().get(pagina + 2).getFecha());
-		Fecha3.setBounds(60, 251, 117, 14);
+		Fecha3.setBounds(238, 245, 117, 14);
 		ListaNoticias.add(Fecha3);
 
 		JPanel noticiaNuevaPanel = new JPanel();
@@ -355,7 +279,6 @@ public class NoticiasJFrame extends JFrame {
 						Socket sock = new Socket(ip, port);
 						client.Crear(sock);
 						ConectorArchivoNoticia.sendFile("Proyecto-Final-P1/Resources/Noticias.txt");
-						ConectorArchivoNoticia.getSock().close();
 						dispose();
 						// JOptionPane.showMessageDialog(null, "Eto no funciona
 						// aun, vayase pa otro lao", "ERROR",
@@ -419,7 +342,6 @@ public class NoticiasJFrame extends JFrame {
 						Socket sock = new Socket(ip, port);
 						client.Crear(sock);
 						ConectorArchivoNoticia.sendFile(mediaPath);
-						ConectorArchivoNoticia.getSock().close();
 						btnEnviarMedia.setBackground(Color.green);
 						btnEnviarMedia.setEnabled(false);
 						// JOptionPane.showMessageDialog(null, "Eto no funciona
@@ -437,7 +359,6 @@ public class NoticiasJFrame extends JFrame {
 		JButton btnNewButton = new JButton("");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
 				pagina += 1;
 				Controlador.getInstance();
 				if (Controlador.getNoticias().size() < pagina) {
@@ -446,27 +367,21 @@ public class NoticiasJFrame extends JFrame {
 					Controlador.getInstance();
 					Parrafo1.setText(Controlador.getNoticias().get(pagina).getTexto());
 					Controlador.getInstance();
-					Parrafo2.setText(Controlador.getNoticias().get(pagina + 1).getTexto());
-					Controlador.getInstance();
-					Parrafo3.setText(Controlador.getNoticias().get(pagina + 2).getTexto());
-					Controlador.getInstance();
 					Titulo1.setText(Controlador.getNoticias().get(pagina).getTitulo());
-					Controlador.getInstance();
-					Titulo2.setText(Controlador.getNoticias().get(pagina + 1).getTitulo());
-					Controlador.getInstance();
-					Titulo3.setText(Controlador.getNoticias().get(pagina + 2).getTitulo());
 					Controlador.getInstance();
 					Fecha1.setText(Controlador.getNoticias().get(pagina).getFecha());
 					Controlador.getInstance();
+					Parrafo2.setText(Controlador.getNoticias().get(pagina + 1).getTexto());
+					Controlador.getInstance();
+					Titulo2.setText(Controlador.getNoticias().get(pagina + 1).getTitulo());
+					Controlador.getInstance();
 					Fecha2.setText(Controlador.getNoticias().get(pagina + 1).getFecha());
 					Controlador.getInstance();
+					Parrafo3.setText(Controlador.getNoticias().get(pagina + 2).getTexto());
+					Controlador.getInstance();
+					Titulo3.setText(Controlador.getNoticias().get(pagina + 2).getTitulo());
+					Controlador.getInstance();
 					Fecha3.setText(Controlador.getNoticias().get(pagina + 2).getFecha());
-					Controlador.getInstance();
-					player1.changeMedia(Controlador.getNoticias().get(pagina).getPath().replaceAll("/", "\\\\"));
-					Controlador.getInstance();
-					player2.changeMedia(Controlador.getNoticias().get(pagina + 1).getPath().replaceAll("/", "\\\\"));
-					Controlador.getInstance();
-					player3.changeMedia(Controlador.getNoticias().get(pagina + 2).getPath().replaceAll("/", "\\\\"));
 				}
 			}
 		});
@@ -486,26 +401,21 @@ public class NoticiasJFrame extends JFrame {
 					Controlador.getInstance();
 					Parrafo1.setText(Controlador.getNoticias().get(pagina).getTexto());
 					Controlador.getInstance();
-					Parrafo2.setText(Controlador.getNoticias().get(pagina + 1).getTexto());
-					Controlador.getInstance();
-					Parrafo3.setText(Controlador.getNoticias().get(pagina + 2).getTexto());
-					Controlador.getInstance();
 					Titulo1.setText(Controlador.getNoticias().get(pagina).getTitulo());
-					Controlador.getInstance();
-					Titulo2.setText(Controlador.getNoticias().get(pagina + 1).getTitulo());
-					Controlador.getInstance();
-					Titulo3.setText(Controlador.getNoticias().get(pagina + 2).getTitulo());
 					Controlador.getInstance();
 					Fecha1.setText(Controlador.getNoticias().get(pagina).getFecha());
 					Controlador.getInstance();
+					Parrafo2.setText(Controlador.getNoticias().get(pagina + 1).getTexto());
+					Controlador.getInstance();
+					Titulo2.setText(Controlador.getNoticias().get(pagina + 1).getTitulo());
+					Controlador.getInstance();
 					Fecha2.setText(Controlador.getNoticias().get(pagina + 1).getFecha());
 					Controlador.getInstance();
+					Parrafo3.setText(Controlador.getNoticias().get(pagina + 2).getTexto());
+					Controlador.getInstance();
+					Titulo3.setText(Controlador.getNoticias().get(pagina + 2).getTitulo());
+					Controlador.getInstance();
 					Fecha3.setText(Controlador.getNoticias().get(pagina + 2).getFecha());
-					player1.changeMedia(Controlador.getNoticias().get(pagina).getPath().replaceAll("/", "\\\\"));
-					Controlador.getInstance();
-					player2.changeMedia(Controlador.getNoticias().get(pagina + 1).getPath().replaceAll("/", "\\\\"));
-					Controlador.getInstance();
-					player3.changeMedia(Controlador.getNoticias().get(pagina + 2).getPath().replaceAll("/", "\\\\"));
 				}
 			}
 		});
@@ -515,33 +425,33 @@ public class NoticiasJFrame extends JFrame {
 		button.setBounds(10, 13, 40, 40);
 		ListaNoticias.add(button);
 
-		JButton btnNewButton_1 = new JButton("New button");
+		JButton btnNewButton_1 = new JButton("A\u00F1adir a la lista");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				al.add(pagina);
 
 			}
 		});
-		btnNewButton_1.setBounds(542, 40, 50, 50);
+		btnNewButton_1.setBounds(430, 51, 116, 50);
 		ListaNoticias.add(btnNewButton_1);
 
-		JButton button_1 = new JButton("New button");
-		button_1.addActionListener(new ActionListener() {
+		JButton btnAadirALa = new JButton("A\u00F1adir a la lista");
+		btnAadirALa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				al.add(pagina + 1);
 			}
 		});
-		button_1.setBounds(542, 154, 50, 50);
-		ListaNoticias.add(button_1);
+		btnAadirALa.setBounds(430, 165, 116, 50);
+		ListaNoticias.add(btnAadirALa);
 
-		JButton button_2 = new JButton("New button");
-		button_2.addActionListener(new ActionListener() {
+		JButton btnAadirALa_1 = new JButton("A\u00F1adir a la lista");
+		btnAadirALa_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				al.add(pagina + 2);
 			}
 		});
-		button_2.setBounds(542, 273, 50, 50);
-		ListaNoticias.add(button_2);
+		btnAadirALa_1.setBounds(430, 284, 116, 50);
+		ListaNoticias.add(btnAadirALa_1);
 		JPanel PlaylistRun = new JPanel();
 		PlaylistRun.setForeground(Color.GRAY);
 		noticiaPrincipalPanel.add(PlaylistRun, "PlaylistRun");
@@ -549,18 +459,20 @@ public class NoticiasJFrame extends JFrame {
 		TituloPlay = new JTextField();
 		Controlador.getInstance();
 		
-		JButton EmpezarBoton = new JButton("Empezar a ver la lista");
-		EmpezarBoton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				imagenPlayer = new MediaPlayer(imagenPlayList, vlcPath,
-						Controlador.getNoticias().get(al.get(pos)).getPath().replaceAll("/", "\\\\"));
-				imagenPlayer.run();
-				EmpezarBoton.setVisible(false);
-			}
-		});
-		EmpezarBoton.setFont(new Font("Tahoma", Font.PLAIN, 50));
-		EmpezarBoton.setBounds(0, 0, 592, 362);
-		PlaylistRun.add(EmpezarBoton);
+				JButton EmpezarBoton = new JButton("Empezar a ver la lista");
+				EmpezarBoton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if(new File(Controlador.getNoticias().get(al.get(pos)).getPath().replaceAll("/", "\\\\")).exists())
+							imagenPlayer = new MediaPlayer(imagenPlayList, vlcPath, Controlador.getNoticias().get(al.get(pos)).getPath().replaceAll("/", "\\\\"));
+						else
+							imagenPlayer = new MediaPlayer(imagenPlayList, vlcPath, "Proyecto-Final-P1\\Resources\\warning.png");
+						imagenPlayer.run();
+						EmpezarBoton.setVisible(false);
+					}
+				});
+				EmpezarBoton.setFont(new Font("Tahoma", Font.PLAIN, 50));
+				EmpezarBoton.setBounds(0, 0, 592, 362);
+				PlaylistRun.add(EmpezarBoton);
 		TituloPlay.setText(Controlador.getNoticias().get(pagina).getTitulo());
 		TituloPlay.setBounds(116, 22, 363, 23);
 		TituloPlay.setFont(new Font("Trebuchet MS", Font.PLAIN, 16));
@@ -591,7 +503,6 @@ public class NoticiasJFrame extends JFrame {
 		PlaylistRun.add(panel_4);
 		panel_4.setLayout(null);
 
-		
 		imagenPlayList.setBorder(new EmptyBorder(0, 0, 0, 0));
 		imagenPlayList.setBounds(0, -29, 199, 252);
 		panel_4.add(imagenPlayList);
@@ -601,36 +512,24 @@ public class NoticiasJFrame extends JFrame {
 		delante.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				pos += 1;
-				if (al.size() < pos) {
+				if (al.size() - 1 < pos)
 					pos = 0;
-					Controlador.getInstance();
-					ParrafoPlay.setText(Controlador.getNoticias().get(al.get(pos)).getTexto());
-					Controlador.getInstance();
-					TituloPlay.setText(Controlador.getNoticias().get(al.get(pos)).getTitulo());
-					Controlador.getInstance();
-					Fecha1.setText(Controlador.getNoticias().get(al.get(pos)).getFecha());
-					Controlador.getInstance();
-					player1.changeMedia(Controlador.getNoticias().get(al.get(pos)).getPath().replaceAll("/", "\\\\"));
-					Controlador.getInstance();
-					autor.setText(Controlador.getNoticias().get(al.get(pos)).getUser());
-					Controlador.getInstance();
-					publicacion.setText(Controlador.getNoticias().get(al.get(pos)).getFecha());
+				Controlador.getInstance();
+				ParrafoPlay.setText(Controlador.getNoticias().get(al.get(pos)).getTexto());
+				Controlador.getInstance();
+				TituloPlay.setText(Controlador.getNoticias().get(al.get(pos)).getTitulo());
+				Controlador.getInstance();
+				Fecha1.setText(Controlador.getNoticias().get(al.get(pos)).getFecha());
+				Controlador.getInstance();
+				autor.setText(Controlador.getNoticias().get(al.get(pos)).getUser());
+				Controlador.getInstance();
+				publicacion.setText(Controlador.getNoticias().get(al.get(pos)).getFecha());
+				Controlador.getInstance();
+				if(new File(Controlador.getNoticias().get(al.get(pos)).getPath().replaceAll("/", "\\\\")).exists())
 					imagenPlayer.changeMedia(Controlador.getNoticias().get(al.get(pos)).getPath().replaceAll("/", "\\\\"));
-				} else {
-					Controlador.getInstance();
-					ParrafoPlay.setText(Controlador.getNoticias().get(al.get(pos)).getTexto());
-					Controlador.getInstance();
-					TituloPlay.setText(Controlador.getNoticias().get(al.get(pos)).getTitulo());
-					Controlador.getInstance();
-					Fecha1.setText(Controlador.getNoticias().get(al.get(pos)).getFecha());
-					Controlador.getInstance();
-					player1.changeMedia(Controlador.getNoticias().get(al.get(pos)).getPath().replaceAll("/", "\\\\"));
-					Controlador.getInstance();
-					autor.setText(Controlador.getNoticias().get(al.get(pos)).getUser());
-					Controlador.getInstance();
-					publicacion.setText(Controlador.getNoticias().get(al.get(pos)).getFecha());
-					imagenPlayer.changeMedia(Controlador.getNoticias().get(al.get(pos)).getPath().replaceAll("/", "\\\\"));
-				}
+				else
+					imagenPlayer.changeMedia("Proyecto-Final-P1\\Resources\\warning.png");
+
 			}
 		});
 		delante.setIcon(
@@ -642,38 +541,26 @@ public class NoticiasJFrame extends JFrame {
 		atras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				pos -= 1;
-				if (0 > pos) {
-					pos = al.size();
-					Controlador.getInstance();
-					ParrafoPlay.setText(Controlador.getNoticias().get(al.get(pos)).getTexto());
-					Controlador.getInstance();
-					TituloPlay.setText(Controlador.getNoticias().get(al.get(pos)).getTitulo());
-					Controlador.getInstance();
-					Fecha1.setText(Controlador.getNoticias().get(al.get(pos)).getFecha());
-					Controlador.getInstance();
-					player1.changeMedia(Controlador.getNoticias().get(al.get(pos)).getPath().replaceAll("/", "\\\\"));
-					Controlador.getInstance();
-					autor.setText(Controlador.getNoticias().get(al.get(pos)).getUser());
-					Controlador.getInstance();
-					publicacion.setText(Controlador.getNoticias().get(al.get(pos)).getFecha());
+				if (0 > pos)
+					pos = al.size() - 1;
+
+				Controlador.getInstance();
+				ParrafoPlay.setText(Controlador.getNoticias().get(al.get(pos)).getTexto());
+				Controlador.getInstance();
+				TituloPlay.setText(Controlador.getNoticias().get(al.get(pos)).getTitulo());
+				Controlador.getInstance();
+				Fecha1.setText(Controlador.getNoticias().get(al.get(pos)).getFecha());
+				Controlador.getInstance();
+				autor.setText(Controlador.getNoticias().get(al.get(pos)).getUser());
+				Controlador.getInstance();
+				publicacion.setText(Controlador.getNoticias().get(al.get(pos)).getFecha());
+				Controlador.getInstance();
+				if(new File(Controlador.getNoticias().get(al.get(pos)).getPath().replaceAll("/", "\\\\")).exists())
 					imagenPlayer.changeMedia(Controlador.getNoticias().get(al.get(pos)).getPath().replaceAll("/", "\\\\"));
-				} else {
-					Controlador.getInstance();
-					ParrafoPlay.setText(Controlador.getNoticias().get(al.get(pos)).getTexto());
-					Controlador.getInstance();
-					TituloPlay.setText(Controlador.getNoticias().get(al.get(pos)).getTitulo());
-					Controlador.getInstance();
-					Fecha1.setText(Controlador.getNoticias().get(al.get(pos)).getFecha());
-					Controlador.getInstance();
-					player1.changeMedia(Controlador.getNoticias().get(al.get(pos)).getPath().replaceAll("/", "\\\\"));
-					Controlador.getInstance();
-					autor.setText(Controlador.getNoticias().get(al.get(pos)).getUser());
-					Controlador.getInstance();
-					publicacion.setText(Controlador.getNoticias().get(al.get(pos)).getFecha());
-					imagenPlayer.changeMedia(Controlador.getNoticias().get(al.get(pos)).getPath().replaceAll("/", "\\\\"));
-				}
+				else
+					imagenPlayer.changeMedia("Proyecto-Final-P1\\Resources\\warning.png");
 			}
-			
+
 		});
 		atras.setIcon(new ImageIcon(
 				"C:\\Users\\Luilli\\git\\Proyecto-Final-P1\\Proyecto-Final-P1\\Resources\\rsz_1rsz_next.png"));
@@ -689,6 +576,31 @@ public class NoticiasJFrame extends JFrame {
 		ParrafoPlay.setText(Controlador.getNoticias().get(pagina).getTexto());
 		scrollPane_1.setViewportView(ParrafoPlay);
 		ParrafoPlay.setColumns(10);
+				
+				JButton btnDescargarMedia = new JButton("Descargar Media");
+				btnDescargarMedia.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						try {
+								File f = new File(Controlador.getNoticias().get(al.get(pos)).getPath());
+								if (!f.exists()) {
+									Socket sock = new Socket(ip, port);
+									client.Crear(sock);
+									ConectorArchivoNoticia.receiveFile(Controlador.getNoticias().get(al.get(pos)).getPath());
+								}else{
+									JOptionPane.showMessageDialog(null, "Usted ya tiene este archivo", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+								}
+							
+							ConectorArchivoNoticia.getSock().close();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+						
+					}
+				});
+				btnDescargarMedia.setBounds(432, 320, 113, 23);
+				PlaylistRun.add(btnDescargarMedia);
 		imagenPlayList.setVisible(true);
 	}
 }

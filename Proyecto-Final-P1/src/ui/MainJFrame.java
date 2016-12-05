@@ -148,8 +148,7 @@ public class MainJFrame extends JFrame {
 					e.printStackTrace();
 				}
 				frame.setVisible(true);
-				Controlador.getInstance();
-				Controlador.leerNoticias();
+				Controlador.getInstance().leerNoticias();
 			}
 		});
 		menu_1.add(mntmNoticias);
