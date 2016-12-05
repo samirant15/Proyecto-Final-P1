@@ -257,6 +257,7 @@ public class FantasyLeague extends JDialog {
 				for(int i=0; i<Liga.getInstance().getEquiposfantasy().get(Integer.parseInt(idV.getText())).getJugadoresfantasy().size(); i++){
 					ptsV= ptsV+ Liga.getInstance().getEquiposfantasy().get(Integer.parseInt(idV.getText())).getJugadoresfantasy().get(i).getAnotaciones();
 					
+					
 				}
 				if(ptsC>ptsV){
 					JOptionPane.showMessageDialog(null, "El equipo: "+ Liga.getInstance().getEquiposfantasy().get(Integer.parseInt(idC.getText())).getNombre()+ " ha sido el ganador");
