@@ -6,7 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 
@@ -22,6 +22,7 @@ import ui.InsertarEquipo;
 import ui.InsertarJugador;
 import ui.Ranking;
 import ligaBasketball.Equipo;
+import ligaBasketball.Jugador;
 import ligaBasketball.Liga;
 
 
@@ -82,7 +83,7 @@ public class InsertarEquipo extends JDialog {
 		btnAgregar.setBounds(117, 447, 97, 25);
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Equipo equipo = new Equipo(NombreTF.getText(), 0, 0,null);
+				Equipo equipo = new Equipo(NombreTF.getText(), 0, 0,new ArrayList<Jugador>());
 				Liga.getInstance().getEquipos().add(equipo);
 				textArea.setText( " Nombre: " + equipo.getNombre() +  "\n"+ " Partidos ganados: " + equipo.getPartidosGanados() +  "\n"+ " Partidos perdidos: " + equipo.getPartidasPerdidas());
 				resetearCampos();
