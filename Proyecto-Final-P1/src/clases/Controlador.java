@@ -12,7 +12,7 @@ import onlineMedia.Noticia;
 
 public class Controlador {
 
-	//********   SINGLETON  **************************
+	//****   SINGLETON  **********
 	private static Controlador controlador = null;
 	
 	private Controlador(){};
@@ -24,7 +24,7 @@ public class Controlador {
 		return controlador;
 	}
 	
-	//************************************************
+	//******************
 	
 	private static ArrayList<Noticia> noticias = new ArrayList<>();
 		
