@@ -17,7 +17,10 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-
+import ui.CreacionPartido;
+import ui.InsertarEquipo;
+import ui.InsertarJugador;
+import ui.Ranking;
 import ligaBasketball.Equipo;
 import ligaBasketball.Liga;
 
@@ -31,10 +34,7 @@ public class InsertarEquipo extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField NombreTF;
-	private JTextField PartidosGanadosTF;
-	private JTextField PartidoTF;
 	private JTextArea textArea = new JTextArea();
-	private JTextField PartidosPerdidosTF;
 	
 	
 	/**
@@ -61,74 +61,47 @@ public class InsertarEquipo extends JDialog {
 		contentPanel.setLayout(null);
 		{
 			JLabel lblNombre = new JLabel("Nombre\r\n");
+			lblNombre.setBounds(26, 129, 90, 16);
 			lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 16));
-			lblNombre.setBounds(12, 60, 90, 16);
 			contentPanel.add(lblNombre);
-		}
-		{
-			JLabel lblPartidosGanado = new JLabel("Ganados");
-			lblPartidosGanado.setFont(new Font("Tahoma", Font.PLAIN, 16));
-			lblPartidosGanado.setBounds(12, 114, 90, 16);
-			contentPanel.add(lblPartidosGanado);
-		}
-		{
-			JLabel lblPartidosPerdidos = new JLabel("Perdidos");
-			lblPartidosPerdidos.setFont(new Font("Tahoma", Font.PLAIN, 16));
-			lblPartidosPerdidos.setBounds(12, 164, 90, 16);
-			contentPanel.add(lblPartidosPerdidos);
-		}
-		{
-			JLabel lblPartido = new JLabel("Partido \r\n\r\n");
-			lblPartido.setFont(new Font("Tahoma", Font.PLAIN, 16));
-			lblPartido.setBounds(12, 220, 90, 16);
-			contentPanel.add(lblPartido);
 		}
 		
 		NombreTF = new JTextField();
-		NombreTF.setBounds(151, 57, 116, 22);
+		NombreTF.setBounds(151, 127, 116, 22);
 		contentPanel.add(NombreTF);
 		NombreTF.setColumns(10);
-		
-		PartidosGanadosTF = new JTextField();
-		PartidosGanadosTF.setBounds(151, 111, 116, 22);
-		contentPanel.add(PartidosGanadosTF);
-		PartidosGanadosTF.setColumns(10);
-		
-		PartidoTF = new JTextField();
-		PartidoTF.setBounds(151, 217, 116, 22);
-		contentPanel.add(PartidoTF);
-		PartidoTF.setColumns(10);
 		
 		
 		
 		JLabel lblInsertarEquipo = new JLabel("Insertar Equipo\r\n");
-		lblInsertarEquipo.setFont(new Font("Tahoma", Font.BOLD, 30));
 		lblInsertarEquipo.setBounds(12, 0, 255, 37);
+		lblInsertarEquipo.setFont(new Font("Tahoma", Font.BOLD, 30));
 		contentPanel.add(lblInsertarEquipo);
 		
 		JButton btnAgregar = new JButton("Agregar");
+		btnAgregar.setBounds(117, 447, 97, 25);
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Equipo equipo = new Equipo(NombreTF.getText(), Integer.parseInt(PartidosGanadosTF.getText()),Integer.parseInt(PartidosPerdidosTF.getText()), null);
+				Equipo equipo = new Equipo(NombreTF.getText(), 0, 0,null);
 				Liga.getInstance().getEquipos().add(equipo);
 				textArea.setText( " Nombre: " + equipo.getNombre() +  "\n"+ " Partidos ganados: " + equipo.getPartidosGanados() +  "\n"+ " Partidos perdidos: " + equipo.getPartidasPerdidas());
 				resetearCampos();
 			}
 		});
-		btnAgregar.setBounds(117, 447, 97, 25);
 		contentPanel.add(btnAgregar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(240, 447, 97, 25);
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 		
 			}
 		});
-		btnCancelar.setBounds(240, 447, 97, 25);
 		contentPanel.add(btnCancelar);
 		
 		JButton btnJugador = new JButton("Jugadores");
+		btnJugador.setBounds(279, 0, 90, 25);
 		btnJugador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -139,7 +112,6 @@ public class InsertarEquipo extends JDialog {
 				
 			}
 		});
-		btnJugador.setBounds(284, 0, 90, 25);
 		contentPanel.add(btnJugador);
 		
 		JPanel panel = new JPanel();
@@ -150,10 +122,30 @@ public class InsertarEquipo extends JDialog {
 		textArea.setBounds(12, 13, 155, 218);
 		panel.add(textArea);
 		
-		PartidosPerdidosTF = new JTextField();
-		PartidosPerdidosTF.setBounds(151, 164, 116, 20);
-		contentPanel.add(PartidosPerdidosTF);
-		PartidosPerdidosTF.setColumns(10);
+		JButton btnNewButton = new JButton("Partido");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				CreacionPartido partido = new CreacionPartido();
+				partido.setVisible(true);
+				setVisible(false);
+			}
+		});
+		btnNewButton.setBounds(375, 0, 97, 25);
+		contentPanel.add(btnNewButton);
+		
+		JButton btnLiga = new JButton("Liga");
+		btnLiga.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Ranking ranking = new Ranking();
+				ranking.setVisible(true);
+				setVisible(false);
+			}
+			
+		});
+		btnLiga.setBounds(330, 23, 97, 25);
+		contentPanel.add(btnLiga);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -162,9 +154,7 @@ public class InsertarEquipo extends JDialog {
 	}
 	
 	void resetearCampos(){
-		PartidosGanadosTF.setText("");
 		NombreTF.setText("");
-		PartidoTF.setText("");
 		
 	}
 }

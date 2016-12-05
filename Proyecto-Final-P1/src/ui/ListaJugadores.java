@@ -100,9 +100,9 @@ public class ListaJugadores extends JDialog {
 			fila[0] = player.getNombre(); 
 			fila[1] = player.getNumero(); 
 			fila[2] = player.getPosicion(); 
-			fila[3] = player.getAnotaciones(); 
-			fila[4] = player.getAsistencias() ; 
-			fila[5] = player.getRebotes();
+			fila[3] = player.getEstadisticas(); 
+			//fila[4] = player.getAsistencias() ; 
+			//fila[5] = player.getRebotes();
 		
 			
 			tableModel.addRow(fila);

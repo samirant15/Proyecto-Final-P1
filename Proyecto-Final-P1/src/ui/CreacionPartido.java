@@ -31,8 +31,8 @@ public class CreacionPartido extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JPanel panel;
-	private JTextField textField_puntoC;
-	private JTextField textField_puntoV;
+	private JTextField puntosEqC;
+	private JTextField puntosEqV;
 	private JComboBox<String> ComboEquipoC, ComboEquipoV;
 	private JTextPane textPane, textPane_1;
 
@@ -124,26 +124,39 @@ public class CreacionPartido extends JDialog {
 		lblPuntos.setBounds(356, 404, 92, 16);
 		contentPanel.add(lblPuntos);
 		
-		textField_puntoC = new JTextField();
-		textField_puntoC.setBounds(195, 401, 116, 22);
-		contentPanel.add(textField_puntoC);
-		textField_puntoC.setColumns(10);
+		puntosEqC = new JTextField();
+		puntosEqC.setBounds(195, 401, 116, 22);
+		contentPanel.add(puntosEqC);
+		puntosEqC.setColumns(10);
 		
-		textField_puntoV = new JTextField();
-		textField_puntoV.setBounds(458, 401, 116, 22);
-		contentPanel.add(textField_puntoV);
-		textField_puntoV.setColumns(10);
+		puntosEqV = new JTextField();
+		puntosEqV.setBounds(458, 401, 116, 22);
+		contentPanel.add(puntosEqV);
+		puntosEqV.setColumns(10);
 		
 		JButton btnGuardarPartido = new JButton("Guardar Partido");
 		btnGuardarPartido.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			//	Partido partido = new Partido(Integer.parseInt(textField_puntoC.getText()), Integer.parseInt(textField_puntoV.getText()), new Date(), Liga.getInstance().getEquipos().get(ComboEquipoC.getSelectedIndex()), Liga.getInstance().getEquipos().get(ComboEquipoV.getSelectedIndex()));
-			//	Liga.getInstance().getPartidos().add(partido);
-				JOptionPane.showMessageDialog(null, "Partido agregado!", "Aviso!", JOptionPane.WARNING_MESSAGE);
+				Partido partido = new Partido(Integer.parseInt(puntosEqC.getText()), Integer.parseInt(puntosEqV.getText()), new Date(), Liga.getInstance().getEquipos().get(ComboEquipoC.getSelectedIndex()), Liga.getInstance().getEquipos().get(ComboEquipoV.getSelectedIndex()));
+				Liga.getInstance().getPartidos().add(partido);
 				
+				for(Partido p : Liga.getInstance().getPartidos()){
+					if(p.getPtsEquipoCasa() > p.getPtsEquipoVisitante()){
+						
+						Equipo equipo = p.getEquipoCasa();
+						int eganadas = equipo.getPartidosGanados() + 1;
+						equipo.setPartidosGanados(eganadas);
+						
+						Equipo equipo2 = p.getEquipoVisitante();
+						int eperdidas = equipo.getPartidasPerdidas() + 1;
+						equipo2.setPartidasPerdidas(eperdidas);
+					}
+				}
+				
+				JOptionPane.showMessageDialog(null, "Partido agregado!", "Aviso!", JOptionPane.WARNING_MESSAGE);
 			}
 		});
-		btnGuardarPartido.setBounds(266, 587, 153, 25);
+		btnGuardarPartido.setBounds(262, 587, 153, 25);
 		contentPanel.add(btnGuardarPartido);
 		
 		JButton btnControlDeEquipos = new JButton("Control de equipos");
@@ -164,6 +177,55 @@ public class CreacionPartido extends JDialog {
 		});
 		btnNewButton.setBounds(570, 42, 130, 23);
 		contentPanel.add(btnNewButton);
+		
+		JButton btnVerRanking = new JButton("Ver Ranking");
+		btnVerRanking.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Ranking ir = new Ranking();
+				ir.setVisible(true);
+			}
+		});
+		btnVerRanking.setBounds(568, 535, 89, 23);
+		contentPanel.add(btnVerRanking);
+		
+		JButton btnEquipos = new JButton("Equipos");
+		btnEquipos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				InsertarEquipo equipo = new InsertarEquipo();
+				equipo.setVisible(true);
+				setVisible(false);
+				
+			}
+		});
+		btnEquipos.setBounds(0, 13, 97, 25);
+		contentPanel.add(btnEquipos);
+		
+		JButton btnJugadores = new JButton("Jugadores");
+		btnJugadores.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				InsertarJugador jugador = new InsertarJugador();
+				jugador.setVisible(true);
+				setVisible(false);
+				
+			}
+		});
+		btnJugadores.setBounds(0, 39, 97, 25);
+		contentPanel.add(btnJugadores);
+		
+		JButton btnNewButton_1 = new JButton("Liga");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Ranking ranking = new Ranking();
+				ranking.setVisible(true);
+				setVisible(false);
+				
+			}
+		});
+		btnNewButton_1.setBounds(0, 63, 97, 25);
+		contentPanel.add(btnNewButton_1);
 	}
 
 	

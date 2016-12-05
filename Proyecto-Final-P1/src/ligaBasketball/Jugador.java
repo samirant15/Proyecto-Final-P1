@@ -1,40 +1,28 @@
 package ligaBasketball;
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import ligaBasketball.Estadistica;
 import enums.Posicion;
-public class Jugador implements Serializable{
-    
-	/**
-	 * 
-	 */
-	//private static long serialVersionUID = 7356002253677261975L;
+public class Jugador {
+
 	private String nombre;
 	private int numero;
 	private Posicion posicion;
-	private int anotaciones;
-	private int asistencias;
-	private int rebotes;
+	private ArrayList<Estadistica> estadisticas;
 	
-	
-
-	
-	public Jugador(String nombre, int numero, Posicion posicion, int anotaciones, int asistencias, int rebotes) {
-		super();
-		this.nombre = nombre;
-		this.numero = numero;
-		this.posicion = posicion;
-		this.anotaciones = anotaciones;
-		this.asistencias = asistencias;
-		this.rebotes = rebotes;
-	}
-
-
-
 	public Jugador() {
 		super();
 	}
 
-	
+	public Jugador(String nombre, int numero, Posicion posicion, ArrayList<Estadistica> estadisticas) {
+		super();
+		this.nombre = nombre;
+		this.numero = numero;
+		this.posicion = posicion;
+		this.estadisticas = estadisticas;
+		this.estadisticas = new ArrayList<>();
+	}
 
 	public String getNombre() {
 		return nombre;
@@ -60,45 +48,11 @@ public class Jugador implements Serializable{
 		this.posicion = posicion;
 	}
 
-
-
-
-
-
-
-	public int getAnotaciones() {
-		return anotaciones;
+	public ArrayList<Estadistica> getEstadisticas() {
+		return estadisticas;
 	}
 
-
-
-	public void setAnotaciones(int anotaciones) {
-		this.anotaciones = anotaciones;
+	public void setEstadisticas(ArrayList<Estadistica> estadisticas) {
+		this.estadisticas = estadisticas;
 	}
-
-
-
-	public int getAsistencias() {
-		return asistencias;
-	}
-
-
-
-	public void setAsistencias(int asistencias) {
-		this.asistencias = asistencias;
-	}
-
-
-
-	public int getRebotes() {
-		return rebotes;
-	}
-
-
-
-	public void setRebotes(int rebotes) {
-		this.rebotes = rebotes;
-	}
-	
-	
 }

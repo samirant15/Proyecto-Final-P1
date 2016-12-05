@@ -61,8 +61,8 @@ public class FantasyLeague extends JDialog {
 	public FantasyLeague() {
 		
 		
-		Liga.getInstance().InsertJugador("Pedro", 66, null, 6, 5, 6);
-		Liga.getInstance().InsertJugador("Juan", 7, null, 3, 6, 6);
+		//Liga.getInstance().InsertJugador("Pedro", 66, null, 6, 5, 6);
+		//Liga.getInstance().InsertJugador("Juan", 7, null, 3, 6, 6);
 		
 		
 		setBounds(100, 100, 446, 283);
