@@ -45,16 +45,10 @@ public class ConectorArchivoNoticia {
 
     public static void sendFile(String fileName) {
     	try {
-			Thread.sleep(100);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-        try {
         	os = new PrintStream(sock.getOutputStream());
             os.println("Send");
             File myFile = new File(fileName);
-            os.println(myFile.getName());
+            os.println("Proyecto-Final-P1/Resources/"+myFile.getName());
             byte[] mybytearray = new byte[(int) myFile.length()];
 
             FileInputStream fis = new FileInputStream(myFile);
