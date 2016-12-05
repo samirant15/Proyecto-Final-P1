@@ -13,18 +13,24 @@ import javax.swing.JList;
 import javax.swing.table.DefaultTableModel;
 
 import onlineMedia.Hilo;
+import ui.HiloMensaje;
+import ui.pruebaChatInicio;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.IOException;
 
 public class Foro extends JFrame {
 
 	private JPanel contentPane;
 	private JTable tableForo;
 	private ArrayList<Hilo>hilos = new ArrayList<Hilo>();
-	
+	private DefaultTableModel tableModel = new DefaultTableModel( new String[] {"Títutlo", "Usuario"},0);
+
 	/**
 	 * Launch the application.
 	 */
@@ -32,7 +38,23 @@ public class Foro extends JFrame {
 	 * Create the frame.
 	 */
 	public Foro() {
-		setTitle("Foro");
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent arg0) {
+				pruebaChatInicio.iniciarCliente("localhost");
+				try {
+					pruebaChatInicio.server.enviarHilos();
+				} catch (ClassNotFoundException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				if(pruebaChatInicio.cliente.leerMSG() != null){
+					hilos = pruebaChatInicio.cliente.leerMSG();
+					llenar();
+				}
+			}
+		});
+		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 360, 451);
@@ -41,26 +63,11 @@ public class Foro extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		tableForo = new JTable();
-		tableForo.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null},
-			},
-			new String[] {
-				"Hilo", "Creador"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				String.class, Object.class
-			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-		});
+		tableForo = new JTable(tableModel);
 		tableForo.getColumnModel().getColumn(0).setPreferredWidth(530);
 		tableForo.getColumnModel().getColumn(0).setMinWidth(10);
 		tableForo.setCellSelectionEnabled(true);
-		tableForo.setBounds(0, 45, 344, 362);
+		tableForo.setBounds(0, 61, 344, 346);
 		contentPane.add(tableForo);
 		
 		JLabel label = new JLabel("");
@@ -76,5 +83,12 @@ public class Foro extends JFrame {
 		});
 		btnCrear.setBounds(245, 11, 89, 23);
 		contentPane.add(btnCrear);
+	}
+	private void llenar(){
+		tableModel.setRowCount(0);
+		for (Hilo h : hilos) {
+			tableModel.addRow(new Object[]{h.getTitulo(), h.getTitulo()});
+			System.out.println(h.getTitulo() + "" + h.getTitulo());
+		}
 	}
 }
