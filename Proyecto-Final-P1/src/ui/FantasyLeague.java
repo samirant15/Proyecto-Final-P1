@@ -46,7 +46,6 @@ public class FantasyLeague extends JDialog {
 	private JTextField textField;
 	private JTextField idC;
 	private JTextField idV;
-	private JTable table_1;
 
 	/**
 	 * Launch the application.
@@ -249,7 +248,7 @@ public class FantasyLeague extends JDialog {
 		JButton btnGenerarPartido = new JButton("Generar Partido");
 		btnGenerarPartido.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int ptsC=0, ptsV=0;
+				int ptsC=0, ptsV=0, C;
 				
 				for(int i=0; i<Liga.getInstance().getEquiposfantasy().get(Integer.parseInt(idC.getText())).getJugadoresfantasy().size(); i++){
 					ptsC= ptsC+ Liga.getInstance().getEquiposfantasy().get(Integer.parseInt(idC.getText())).getJugadoresfantasy().get(i).getAnotaciones();
@@ -257,12 +256,17 @@ public class FantasyLeague extends JDialog {
 				
 				for(int i=0; i<Liga.getInstance().getEquiposfantasy().get(Integer.parseInt(idV.getText())).getJugadoresfantasy().size(); i++){
 					ptsV= ptsV+ Liga.getInstance().getEquiposfantasy().get(Integer.parseInt(idV.getText())).getJugadoresfantasy().get(i).getAnotaciones();
+					
 				}
 				if(ptsC>ptsV){
 					JOptionPane.showMessageDialog(null, "El equipo: "+ Liga.getInstance().getEquiposfantasy().get(Integer.parseInt(idC.getText())).getNombre()+ " ha sido el ganador");
+					Liga.getInstance().getEquiposfantasy().get(Integer.parseInt(idC.getText())).setPartidosGanados(1+Liga.getInstance().getEquiposfantasy().get(Integer.parseInt(idC.getText())).getPartidosGanados());
+					Liga.getInstance().getEquiposfantasy().get(Integer.parseInt(idV.getText())).setPartidasPerdidas(1+Liga.getInstance().getEquiposfantasy().get(Integer.parseInt(idV.getText())).getPartidasPerdidas());
 				}
 				else if(ptsC<ptsV){
 					JOptionPane.showMessageDialog(null, "El equipo: "+ Liga.getInstance().getEquiposfantasy().get(Integer.parseInt(idV.getText())).getNombre()+ " ha sido el ganador");
+					Liga.getInstance().getEquiposfantasy().get(Integer.parseInt(idV.getText())).setPartidosGanados(1+Liga.getInstance().getEquiposfantasy().get(Integer.parseInt(idV.getText())).getPartidosGanados());
+					Liga.getInstance().getEquiposfantasy().get(Integer.parseInt(idC.getText())).setPartidasPerdidas(1+Liga.getInstance().getEquiposfantasy().get(Integer.parseInt(idC.getText())).getPartidasPerdidas());
 				}
 				else{
 					JOptionPane.showMessageDialog(null, "El partido termino en un empate");
@@ -271,7 +275,7 @@ public class FantasyLeague extends JDialog {
 			
 			}
 		});
-		btnGenerarPartido.setBounds(139, 271, 136, 23);
+		btnGenerarPartido.setBounds(139, 218, 136, 23);
 		panel_1.add(btnGenerarPartido);
 		
 		idC = new JTextField();
@@ -308,13 +312,20 @@ public class FantasyLeague extends JDialog {
 		label_2.setBounds(286, 56, 39, 14);
 		panel_1.add(label_2);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(115, 100, 191, 132);
-		panel_1.add(scrollPane);
+		JButton btnVerEquipos_1 = new JButton("Ver Equipos");
+		btnVerEquipos_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListaEquiposFantasy dialog = new ListaEquiposFantasy();
+				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				dialog.setVisible(true);
+				
+				
+			}
+		});
+		btnVerEquipos_1.setBounds(139, 147, 136, 23);
+		panel_1.add(btnVerEquipos_1);
 		
-		table_1 = new JTable();
-		table_1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		scrollPane.setViewportView(table_1);
+		
 		
 	}
 }
