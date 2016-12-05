@@ -14,11 +14,13 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 
 import java.awt.event.ActionListener;
+import java.beans.PropertyVetoException;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -34,7 +36,6 @@ import clases.Controlador;
 
 import javax.swing.JScrollPane;
 import javax.swing.ImageIcon;
-import javax.swing.UIManager;
 
 public class NoticiasJFrame extends JFrame {
 
@@ -44,6 +45,9 @@ public class NoticiasJFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel noticiaPrincipalPanel;
 	private JTextField noticiaTituloText;
+	@SuppressWarnings("unused")
+	private JPanel PlaylistRun;
+	private JTextField TituloPlay;
 	private static JFileChooser ourFileSelector = new JFileChooser();
 	JButton btnEnviarMedia = new JButton("Enviar Media");
 	private JInternalFrame medialFrame = new JInternalFrame("Media");
@@ -53,7 +57,8 @@ public class NoticiasJFrame extends JFrame {
 	int port = 8080;
 	int pagina = 0;
 	int n = 0;
-	JInternalFrame Imagen1 = new JInternalFrame("New JInternalFrame");// ------------------
+	int pos = 0;
+	JInternalFrame Imagen1 = new JInternalFrame("New JInternalFrame");
 	MediaPlayer player1;
 	JInternalFrame Imagen2 = new JInternalFrame("New JInternalFrame");
 	MediaPlayer player2;
@@ -62,6 +67,8 @@ public class NoticiasJFrame extends JFrame {
 	private JTextField Parrafo1;
 	private JTextField Parrafo2;
 	private JTextField Parrafo3;
+	private JTextField ParrafoPlay;
+	ArrayList<Integer> al = new ArrayList<Integer>();
 
 	/**
 	 * Create the frame.
@@ -92,7 +99,7 @@ public class NoticiasJFrame extends JFrame {
 
 	}
 
-	public NoticiasJFrame() {
+	public NoticiasJFrame() throws PropertyVetoException {
 
 		setResizable(false);
 		setFont(new Font("Trebuchet MS", Font.PLAIN, 16));
@@ -101,6 +108,7 @@ public class NoticiasJFrame extends JFrame {
 		setBounds(100, 100, 608, 422);
 
 		JMenuBar menuBar = new JMenuBar();
+		menuBar.setForeground(Color.WHITE);
 		menuBar.setBackground(Color.BLACK);
 		setJMenuBar(menuBar);
 
@@ -159,7 +167,16 @@ public class NoticiasJFrame extends JFrame {
 				((CardLayout) noticiaPrincipalPanel.getLayout()).show(noticiaPrincipalPanel, "listanoticias");
 			}
 		});
+
 		mnOpciones.add(mntmNoticias);
+
+		JMenuItem mntmPlaylist = new JMenuItem("Playlist");
+		mntmPlaylist.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				((CardLayout) noticiaPrincipalPanel.getLayout()).show(noticiaPrincipalPanel, "PlaylistRun");
+			}
+		});
+		mnOpciones.add(mntmPlaylist);
 		noticiaPrincipalPanel = new JPanel();
 		noticiaPrincipalPanel.setBackground(Color.BLACK);
 		noticiaPrincipalPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -445,16 +462,15 @@ public class NoticiasJFrame extends JFrame {
 					Controlador.getInstance();
 					player1.changeMedia(Controlador.getNoticias().get(pagina).getPath().replaceAll("/", "\\\\"));
 					Controlador.getInstance();
-				    player2.changeMedia(Controlador.getNoticias().get(pagina+1).getPath().replaceAll("/", "\\\\"));
+					player2.changeMedia(Controlador.getNoticias().get(pagina + 1).getPath().replaceAll("/", "\\\\"));
 					Controlador.getInstance();
-				    player3.changeMedia(Controlador.getNoticias().get(pagina+2).getPath().replaceAll("/", "\\\\"));
+					player3.changeMedia(Controlador.getNoticias().get(pagina + 2).getPath().replaceAll("/", "\\\\"));
 				}
 			}
 		});
 		btnNewButton.setForeground(Color.DARK_GRAY);
 		btnNewButton.setBackground(Color.DARK_GRAY);
-		btnNewButton.setIcon(new ImageIcon(
-				"Proyecto-Final-P1\\Resources\\rsz_1rsz_rsz_next.png"));
+		btnNewButton.setIcon(new ImageIcon("Proyecto-Final-P1\\Resources\\rsz_1rsz_rsz_next.png"));
 		btnNewButton.setBounds(10, 311, 40, 40);
 		ListaNoticias.add(btnNewButton);
 		JButton button = new JButton("");
@@ -485,20 +501,173 @@ public class NoticiasJFrame extends JFrame {
 					Fecha3.setText(Controlador.getNoticias().get(pagina + 2).getFecha());
 					player1.changeMedia(Controlador.getNoticias().get(pagina).getPath().replaceAll("/", "\\\\"));
 					Controlador.getInstance();
-				    player2.changeMedia(Controlador.getNoticias().get(pagina+1).getPath().replaceAll("/", "\\\\"));
+					player2.changeMedia(Controlador.getNoticias().get(pagina + 1).getPath().replaceAll("/", "\\\\"));
 					Controlador.getInstance();
-				    player3.changeMedia(Controlador.getNoticias().get(pagina+2).getPath().replaceAll("/", "\\\\"));
+					player3.changeMedia(Controlador.getNoticias().get(pagina + 2).getPath().replaceAll("/", "\\\\"));
 				}
 			}
 		});
-		button.setIcon(new ImageIcon(
-				"Proyecto-Final-P1\\Resources\\rsz_rsz_next.png"));
+		button.setIcon(new ImageIcon("Proyecto-Final-P1\\Resources\\rsz_rsz_next.png"));
 		button.setForeground(Color.DARK_GRAY);
 		button.setBackground(Color.DARK_GRAY);
 		button.setBounds(10, 13, 40, 40);
 		ListaNoticias.add(button);
 
-		Imagen3.setVisible(true);
+		JButton btnNewButton_1 = new JButton("New button");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				al.add(pagina);
 
+			}
+		});
+		btnNewButton_1.setBounds(542, 40, 50, 50);
+		ListaNoticias.add(btnNewButton_1);
+
+		JButton button_1 = new JButton("New button");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				al.add(pagina + 1);
+			}
+		});
+		button_1.setBounds(542, 154, 50, 50);
+		ListaNoticias.add(button_1);
+
+		JButton button_2 = new JButton("New button");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				al.add(pagina + 2);
+			}
+		});
+		button_2.setBounds(542, 273, 50, 50);
+		ListaNoticias.add(button_2);
+		JPanel PlaylistRun = new JPanel();
+		PlaylistRun.setForeground(Color.GRAY);
+		noticiaPrincipalPanel.add(PlaylistRun, "PlaylistRun");
+		PlaylistRun.setLayout(null);
+		TituloPlay = new JTextField();
+		Controlador.getInstance();
+		TituloPlay.setText(Controlador.getNoticias().get(pagina).getTitulo());
+		TituloPlay.setBounds(116, 22, 363, 23);
+		TituloPlay.setFont(new Font("Trebuchet MS", Font.PLAIN, 16));
+		PlaylistRun.add(TituloPlay);
+		TituloPlay.setColumns(10);
+
+		JLabel lblAutor = new JLabel("Autor");
+		lblAutor.setBounds(10, 324, 46, 14);
+		PlaylistRun.add(lblAutor);
+
+		JLabel autor = new JLabel("");
+		Controlador.getInstance();
+		autor.setText(Controlador.getNoticias().get(pagina).getUser());
+		autor.setBounds(66, 324, 128, 14);
+		PlaylistRun.add(autor);
+
+		JLabel lel = new JLabel("Publicado");
+		lel.setBounds(204, 324, 56, 14);
+		PlaylistRun.add(lel);
+
+		JLabel publicacion = new JLabel("");
+		publicacion.setText(Controlador.getNoticias().get(pagina).getFecha());
+		publicacion.setBounds(270, 324, 103, 14);
+		PlaylistRun.add(publicacion);
+
+		JPanel panel_4 = new JPanel();
+		panel_4.setBounds(383, 90, 199, 223);
+		PlaylistRun.add(panel_4);
+		panel_4.setLayout(null);
+
+		JInternalFrame internalFrame = new JInternalFrame("New JInternalFrame");
+		internalFrame.setBorder(new EmptyBorder(0, 0, 0, 0));
+		internalFrame.setBounds(0, -29, 199, 252);
+		panel_4.add(internalFrame);
+
+		JButton delante = new JButton("");
+		delante.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				pos += 1;
+				if (al.size() < pos) {
+					pos = 0;
+					Controlador.getInstance();
+					ParrafoPlay.setText(Controlador.getNoticias().get(al.get(pos)).getTexto());
+					Controlador.getInstance();
+					TituloPlay.setText(Controlador.getNoticias().get(al.get(pos)).getTitulo());
+					Controlador.getInstance();
+					Fecha1.setText(Controlador.getNoticias().get(al.get(pos)).getFecha());
+					Controlador.getInstance();
+					player1.changeMedia(Controlador.getNoticias().get(al.get(pos)).getPath().replaceAll("/", "\\\\"));
+					Controlador.getInstance();
+					autor.setText(Controlador.getNoticias().get(al.get(pos)).getUser());
+					Controlador.getInstance();
+					publicacion.setText(Controlador.getNoticias().get(al.get(pos)).getFecha());
+				} else {
+					Controlador.getInstance();
+					ParrafoPlay.setText(Controlador.getNoticias().get(al.get(pos)).getTexto());
+					Controlador.getInstance();
+					TituloPlay.setText(Controlador.getNoticias().get(al.get(pos)).getTitulo());
+					Controlador.getInstance();
+					Fecha1.setText(Controlador.getNoticias().get(al.get(pos)).getFecha());
+					Controlador.getInstance();
+					player1.changeMedia(Controlador.getNoticias().get(al.get(pos)).getPath().replaceAll("/", "\\\\"));
+					Controlador.getInstance();
+					autor.setText(Controlador.getNoticias().get(al.get(pos)).getUser());
+					Controlador.getInstance();
+					publicacion.setText(Controlador.getNoticias().get(al.get(pos)).getFecha());
+				}
+			}
+		});
+		delante.setIcon(
+				new ImageIcon("C:\\Users\\Luilli\\git\\Proyecto-Final-P1\\Proyecto-Final-P1\\Resources\\rsz_next.png"));
+		delante.setBounds(489, 11, 40, 40);
+		PlaylistRun.add(delante);
+
+		JButton atras = new JButton("");
+		atras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				pos -= 1;
+				if (0 > pos) {
+					pos = al.size();
+					Controlador.getInstance();
+					ParrafoPlay.setText(Controlador.getNoticias().get(al.get(pos)).getTexto());
+					Controlador.getInstance();
+					TituloPlay.setText(Controlador.getNoticias().get(al.get(pos)).getTitulo());
+					Controlador.getInstance();
+					Fecha1.setText(Controlador.getNoticias().get(al.get(pos)).getFecha());
+					Controlador.getInstance();
+					player1.changeMedia(Controlador.getNoticias().get(al.get(pos)).getPath().replaceAll("/", "\\\\"));
+					Controlador.getInstance();
+					autor.setText(Controlador.getNoticias().get(al.get(pos)).getUser());
+					Controlador.getInstance();
+					publicacion.setText(Controlador.getNoticias().get(al.get(pos)).getFecha());
+				} else {
+					Controlador.getInstance();
+					ParrafoPlay.setText(Controlador.getNoticias().get(al.get(pos)).getTexto());
+					Controlador.getInstance();
+					TituloPlay.setText(Controlador.getNoticias().get(al.get(pos)).getTitulo());
+					Controlador.getInstance();
+					Fecha1.setText(Controlador.getNoticias().get(al.get(pos)).getFecha());
+					Controlador.getInstance();
+					player1.changeMedia(Controlador.getNoticias().get(al.get(pos)).getPath().replaceAll("/", "\\\\"));
+					Controlador.getInstance();
+					autor.setText(Controlador.getNoticias().get(al.get(pos)).getUser());
+					Controlador.getInstance();
+					publicacion.setText(Controlador.getNoticias().get(al.get(pos)).getFecha());
+				}
+			}
+		});
+		atras.setIcon(new ImageIcon(
+				"C:\\Users\\Luilli\\git\\Proyecto-Final-P1\\Proyecto-Final-P1\\Resources\\rsz_1rsz_next.png"));
+		atras.setBounds(66, 11, 40, 40);
+		PlaylistRun.add(atras);
+
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(12, 90, 344, 223);
+		PlaylistRun.add(scrollPane_1);
+
+		ParrafoPlay = new JTextField();
+		Controlador.getInstance();
+		ParrafoPlay.setText(Controlador.getNoticias().get(pagina).getTexto());
+		scrollPane_1.setViewportView(ParrafoPlay);
+		ParrafoPlay.setColumns(10);
+		internalFrame.setVisible(true);
 	}
 }
