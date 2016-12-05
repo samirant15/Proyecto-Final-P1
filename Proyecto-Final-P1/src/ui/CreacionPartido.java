@@ -235,6 +235,17 @@ public class CreacionPartido extends JDialog {
 		});
 		btnNewButton_1.setBounds(0, 63, 97, 25);
 		contentPanel.add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("Fantasy");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListaJugadores dialog = new ListaJugadores();
+				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				dialog.setVisible(true);
+			}
+		});
+		btnNewButton_2.setBounds(0, 87, 97, 23);
+		contentPanel.add(btnNewButton_2);
 	}
 
 	
