@@ -64,6 +64,8 @@ public class NoticiasJFrame extends JFrame {
 	MediaPlayer player2;
 	JInternalFrame Imagen3 = new JInternalFrame("New JInternalFrame");
 	MediaPlayer player3;
+	JInternalFrame imagenPlayList = new JInternalFrame("New JInternalFrame");
+	MediaPlayer imagenPlayer;
 	private JTextField Parrafo1;
 	private JTextField Parrafo2;
 	private JTextField Parrafo3;
@@ -190,7 +192,7 @@ public class NoticiasJFrame extends JFrame {
 		Controlador.getInstance();
 		Controlador.leerNoticias();
 
-		JButton Mostrar = new JButton("Mostrar Noticias");
+		/*JButton Mostrar = new JButton("Mostrar Noticias");
 		Mostrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				player1 = new MediaPlayer(Imagen1, vlcPath,
@@ -207,7 +209,7 @@ public class NoticiasJFrame extends JFrame {
 		});
 		Mostrar.setFont(new Font("Tahoma", Font.PLAIN, 50));
 		Mostrar.setBounds(0, 0, 592, 362);
-		ListaNoticias.add(Mostrar);
+		ListaNoticias.add(Mostrar);*/
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.DARK_GRAY);
@@ -546,6 +548,19 @@ public class NoticiasJFrame extends JFrame {
 		PlaylistRun.setLayout(null);
 		TituloPlay = new JTextField();
 		Controlador.getInstance();
+		
+		JButton EmpezarBoton = new JButton("Empezar a ver la lista");
+		EmpezarBoton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				imagenPlayer = new MediaPlayer(imagenPlayList, vlcPath,
+						Controlador.getNoticias().get(al.get(pos)).getPath().replaceAll("/", "\\\\"));
+				imagenPlayer.run();
+				EmpezarBoton.setVisible(false);
+			}
+		});
+		EmpezarBoton.setFont(new Font("Tahoma", Font.PLAIN, 50));
+		EmpezarBoton.setBounds(0, 0, 592, 362);
+		PlaylistRun.add(EmpezarBoton);
 		TituloPlay.setText(Controlador.getNoticias().get(pagina).getTitulo());
 		TituloPlay.setBounds(116, 22, 363, 23);
 		TituloPlay.setFont(new Font("Trebuchet MS", Font.PLAIN, 16));
@@ -576,10 +591,11 @@ public class NoticiasJFrame extends JFrame {
 		PlaylistRun.add(panel_4);
 		panel_4.setLayout(null);
 
-		JInternalFrame internalFrame = new JInternalFrame("New JInternalFrame");
-		internalFrame.setBorder(new EmptyBorder(0, 0, 0, 0));
-		internalFrame.setBounds(0, -29, 199, 252);
-		panel_4.add(internalFrame);
+		
+		imagenPlayList.setBorder(new EmptyBorder(0, 0, 0, 0));
+		imagenPlayList.setBounds(0, -29, 199, 252);
+		panel_4.add(imagenPlayList);
+		imagenPlayList.setVisible(true);
 
 		JButton delante = new JButton("");
 		delante.addActionListener(new ActionListener() {
@@ -599,6 +615,7 @@ public class NoticiasJFrame extends JFrame {
 					autor.setText(Controlador.getNoticias().get(al.get(pos)).getUser());
 					Controlador.getInstance();
 					publicacion.setText(Controlador.getNoticias().get(al.get(pos)).getFecha());
+					imagenPlayer.changeMedia(Controlador.getNoticias().get(al.get(pos)).getPath().replaceAll("/", "\\\\"));
 				} else {
 					Controlador.getInstance();
 					ParrafoPlay.setText(Controlador.getNoticias().get(al.get(pos)).getTexto());
@@ -612,6 +629,7 @@ public class NoticiasJFrame extends JFrame {
 					autor.setText(Controlador.getNoticias().get(al.get(pos)).getUser());
 					Controlador.getInstance();
 					publicacion.setText(Controlador.getNoticias().get(al.get(pos)).getFecha());
+					imagenPlayer.changeMedia(Controlador.getNoticias().get(al.get(pos)).getPath().replaceAll("/", "\\\\"));
 				}
 			}
 		});
@@ -638,6 +656,7 @@ public class NoticiasJFrame extends JFrame {
 					autor.setText(Controlador.getNoticias().get(al.get(pos)).getUser());
 					Controlador.getInstance();
 					publicacion.setText(Controlador.getNoticias().get(al.get(pos)).getFecha());
+					imagenPlayer.changeMedia(Controlador.getNoticias().get(al.get(pos)).getPath().replaceAll("/", "\\\\"));
 				} else {
 					Controlador.getInstance();
 					ParrafoPlay.setText(Controlador.getNoticias().get(al.get(pos)).getTexto());
@@ -651,8 +670,10 @@ public class NoticiasJFrame extends JFrame {
 					autor.setText(Controlador.getNoticias().get(al.get(pos)).getUser());
 					Controlador.getInstance();
 					publicacion.setText(Controlador.getNoticias().get(al.get(pos)).getFecha());
+					imagenPlayer.changeMedia(Controlador.getNoticias().get(al.get(pos)).getPath().replaceAll("/", "\\\\"));
 				}
 			}
+			
 		});
 		atras.setIcon(new ImageIcon(
 				"C:\\Users\\Luilli\\git\\Proyecto-Final-P1\\Proyecto-Final-P1\\Resources\\rsz_1rsz_next.png"));
@@ -668,6 +689,6 @@ public class NoticiasJFrame extends JFrame {
 		ParrafoPlay.setText(Controlador.getNoticias().get(pagina).getTexto());
 		scrollPane_1.setViewportView(ParrafoPlay);
 		ParrafoPlay.setColumns(10);
-		internalFrame.setVisible(true);
+		imagenPlayList.setVisible(true);
 	}
 }
