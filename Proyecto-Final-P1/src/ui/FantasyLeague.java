@@ -71,7 +71,7 @@ public class FantasyLeague extends JDialog {
 		Liga.getInstance().InsertJugadorFantasy("Juan", 7, null, 3, 6, 6);
 	
 		
-		setBounds(100, 100, 446, 362);
+		setBounds(100, 100, 446, 328);
 		getContentPane().setLayout(null);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
@@ -149,7 +149,7 @@ public class FantasyLeague extends JDialog {
 		JLabel lblJugadores = new JLabel("A\u00F1adir jugador:");
 		lblJugadores.setHorizontalAlignment(SwingConstants.CENTER);
 		lblJugadores.setFont(new Font("Times New Roman", Font.BOLD, 12));
-		lblJugadores.setBounds(235, 88, 154, 14);
+		lblJugadores.setBounds(235, 108, 154, 14);
 		panel.add(lblJugadores);
 		
 		JSeparator separator_2 = new JSeparator();
@@ -159,11 +159,11 @@ public class FantasyLeague extends JDialog {
 		JLabel lblId = new JLabel("ID");
 		lblId.setHorizontalAlignment(SwingConstants.LEFT);
 		lblId.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-		lblId.setBounds(245, 116, 39, 14);
+		lblId.setBounds(245, 136, 39, 14);
 		panel.add(lblId);
 		
 		idT = new JTextField();
-		idT.setBounds(275, 114, 39, 17);
+		idT.setBounds(275, 134, 39, 17);
 		panel.add(idT);
 		idT.setColumns(10);
 		
@@ -185,7 +185,7 @@ public class FantasyLeague extends JDialog {
 				
 			}
 		});
-		btnNewButton.setBounds(253, 150, 136, 23);
+		btnNewButton.setBounds(253, 170, 136, 23);
 		panel.add(btnNewButton);
 		
 		JButton btnVerJugadores = new JButton("Ver jugadores");
@@ -201,7 +201,7 @@ public class FantasyLeague extends JDialog {
 		panel.add(btnVerJugadores);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(235, 184, 169, 1);
+		separator.setBounds(235, 204, 169, 1);
 		panel.add(separator);
 		
 		JButton btnVerEquipos = new JButton("Ver equipos");
@@ -212,22 +212,8 @@ public class FantasyLeague extends JDialog {
 					dialog.setVisible(true);
 			}
 		});
-		btnVerEquipos.setBounds(51, 230, 115, 23);
+		btnVerEquipos.setBounds(51, 212, 115, 23);
 		panel.add(btnVerEquipos);
-		
-		JLabel lblVerJugador = new JLabel("Ver jugadores por equipo:");
-		lblVerJugador.setHorizontalAlignment(SwingConstants.CENTER);
-		lblVerJugador.setFont(new Font("Times New Roman", Font.BOLD, 12));
-		lblVerJugador.setBounds(235, 221, 162, 14);
-		panel.add(lblVerJugador);
-		
-		JButton btnMostrarJugadores = new JButton("Mostrar jugadores");
-		btnMostrarJugadores.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnMostrarJugadores.setBounds(248, 249, 141, 23);
-		panel.add(btnMostrarJugadores);
 		
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Partidos", null, panel_1, null);
