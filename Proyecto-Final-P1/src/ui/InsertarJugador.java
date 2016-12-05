@@ -19,6 +19,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+
 import ligaBasketball.Estadistica;
 import ui.CreacionPartido;
 import ui.InsertarEquipo;
@@ -26,12 +27,13 @@ import ui.InsertarJugador;
 import ui.Ranking;
 import ligaBasketball.Equipo;
 import ligaBasketball.Jugador;
+import ligaBasketball.JugadorFantasy;
 import ligaBasketball.Liga;
 
 import javax.swing.DefaultComboBoxModel;
 
 import enums.Posicion;
-
+import ligaBasketball.Jugad;
 
 public class InsertarJugador extends JDialog {
 
@@ -42,7 +44,7 @@ public class InsertarJugador extends JDialog {
 	private static final long serialVersionUID = 1L;
 
 	private final JPanel contentPanel = new JPanel();
-	
+	Jugad jug = new Jugad();
 	private JTextField NumeroTF;
 	private JTextField NombreTF;
 	private JTextArea textArea = new JTextArea();
@@ -127,6 +129,9 @@ public class InsertarJugador extends JDialog {
 				Liga.getInstance().getEquipos().get(ComboEquipos.getSelectedIndex()).getJugadores().add(jugador);
 				//Liga.getInstance().InsertJugador(NombreTF.getText(), Integer.parseInt(NumeroTF.getText()),(Posicion)comboBox.getSelectedItem(), estadisticas);
 				//String anterior = textArea.getText();
+				JugadorFantasy jugadorfancy = new JugadorFantasy(NombreTF.getText(), Integer.parseInt(NumeroTF.getText()), (Posicion)comboBox.getSelectedItem(), Integer.parseInt(anotaciones.getText()), Integer.parseInt(asistencia.getText()), Integer.parseInt(rebotes.getText()));
+				jug.guardar(jugadorfancy);
+				jug.guardarArchivo(jugadorfancy);
 				textArea.setText( " Numero: " + jugador.getNumero() +  "\n"+ " Nombre: " + jugador.getNombre() + "\n" + " Posicion: " + jugador.getPosicion());
 				resetearCampos();
 				
