@@ -12,7 +12,7 @@ import java.util.Date;
 import enums.Posicion;
 import enums.Roles;
 import onlineMedia.Usuario;
-
+ 
 
 public class Liga implements Serializable{
 
