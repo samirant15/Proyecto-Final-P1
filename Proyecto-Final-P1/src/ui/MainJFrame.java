@@ -130,6 +130,17 @@ public class MainJFrame extends JFrame {
 		});
 		menu_3.add(mntmIniciarServidorDe);
 		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Administrar Partidos");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				CreacionPartido creacionPartido = new CreacionPartido();
+				creacionPartido.setVisible(true);
+				creacionPartido.setLocationRelativeTo(null);
+				
+			}
+		});
+		menu_3.add(mntmNewMenuItem);
+		
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
